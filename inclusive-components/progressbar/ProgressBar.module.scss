@@ -1,0 +1,58 @@
+@import "../../assets/sass/base/presets";
+@import "../typography/body/Text.module.scss";
+@import "../A11y-common.module.scss";
+
+.progress {
+  @extend .focusable;
+
+  &__bar {
+    background-color: rgba(#c7c9cf, 0.3);
+    height: 6px;
+    border-radius: 10px;
+    overflow: hidden;
+
+    &_disabled {
+      background-color: $ui-200;
+    }
+  }
+  &__value {
+    background: linear-gradient(
+      90deg,
+      #6bb5b9 0%,
+      #4ea0d5 50.54%,
+      #178fdd 95.35%
+    );
+    height: 100%;
+    border-radius: 10px;
+    transition: all 0.3s linear;
+  }
+  &__text {
+    margin-top: 10px;
+    color: $ui-999;
+
+    @extend .text-14;
+    @extend .text-bold;
+  }
+
+  &__footer {
+    display: flex;
+
+    &_left {
+      justify-content: flex-start;
+    }
+    &_right {
+      justify-content: flex-end;
+    }
+    &_center {
+      justify-content: center;
+    }
+    &_space-between {
+      justify-content: space-between;
+    }
+  }
+
+  &__extra_content {
+    display: flex;
+    justify-content: flex-end;
+  }
+}

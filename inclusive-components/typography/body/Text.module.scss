@@ -1,0 +1,45 @@
+@import "../../../assets/sass/helpers/responsive-design-mixins";
+
+.text {
+  &-32 {
+    font: 400 24px/1.44 "PT Root UI", sans-serif;
+
+    @include screen-from(sm) {
+      font-size: 32px;
+    }
+  }
+  &-20 {
+    font: 400 20px/1.5 "PT Root UI", sans-serif;
+  }
+  &-18 {
+    font: 400 18px/1.33 "PT Root UI", sans-serif;
+  }
+  &-16 {
+    font: 400 16px/1.5 "PT Root UI", sans-serif;
+  }
+  &-14 {
+    font: 400 14px/1.57 "PT Root UI", sans-serif;
+  }
+  &-13 {
+    font: 400 13px/1.2307 "PT Root UI", sans-serif;
+  }
+  &-12 {
+    font: 400 12px/1.83 "PT Root UI", sans-serif;
+  }
+  &-10 {
+    font: 400 10px/1.27 "PT Root UI", sans-serif;
+  }
+  &-inherit {
+    font: inherit;
+  }
+  &-bold {
+    font-weight: 700;
+  }
+  &-caps {
+    &-mod {
+      font: 700 12px/1 "PT Root UI", sans-serif;
+      letter-spacing: 0.03em;
+      text-transform: uppercase;
+    }
+  }
+}

@@ -1,0 +1,97 @@
+@import "../../../assets/sass/base/presets";
+@import "../../../assets/sass/helpers/responsive-design-mixins";
+@import "../../../inclusive-components/typography/body/Text.module.scss";
+@import "../../../inclusive-components/A11y-common.module.scss";
+@import "../../page/Home.module.scss";
+
+.home-advantages {
+  background: url(./img/teplitsa-kursy-2_mobile.png) 50% 100% no-repeat
+    $blue-700;
+  background-size: auto;
+  border: 1px solid $blue-700;
+  margin: 0 0 40px;
+  padding: 30px 0 370px;
+  color: $ui-000;
+
+  @include screen-from(sm) {
+    background: url(./img/teplitsa-kursy-2.png) calc(50% - 1140px / 3) 100%
+      no-repeat $blue-700;
+    background-size: auto 100%;
+    margin: 0 0 80px;
+    padding: 0;
+    color: $ui-000;
+  }
+
+  &__inner {
+    @extend .home-section;
+
+    @include screen-from(sm) {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      padding: 60px 0;
+    }
+  }
+
+  &__title {
+    margin: 0 0 20px;
+
+    @extend .h5;
+
+    @include screen-from(sm) {
+      grid-column: 2 / 4;
+      grid-row: 1;
+      font-size: 32px;
+    }
+  }
+
+  &__list {
+    display: block;
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+
+    @include screen-from(sm) {
+      display: grid;
+      grid-column: 2 / 4;
+      grid-row: 2;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 40px;
+    }
+  }
+
+  &__item {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    column-gap: 10px;
+    row-gap: 8px;
+    align-items: center;
+
+    &-image {
+      grid-column: 1;
+      grid-row: 1 / 2;
+    }
+
+    &-title {
+      grid-column: 2;
+      grid-row: 1;
+      margin: 0;
+      @extend .h5;
+    }
+
+    &-text {
+      grid-column: 2;
+      grid-row: 2;
+      margin: 0;
+      @extend .text-18;
+
+      a {
+        text-decoration: underline;
+        color: $ui-000;
+
+        &:hover {
+          text-decoration: none;
+        }
+      }
+    }
+  }
+}

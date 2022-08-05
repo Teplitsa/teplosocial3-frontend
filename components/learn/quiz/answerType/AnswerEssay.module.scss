@@ -1,0 +1,62 @@
+@import "../../../../assets/sass/base/fonts";
+@import "../../../../assets/sass/base/presets";
+@import "../../../../assets/sass/base/typography";
+@import "../../../../assets/sass/components/learn-content";
+
+@import "bootstrap/scss/_functions";
+@import "bootstrap/scss/_variables";
+@import "bootstrap/scss/_mixins";
+@import "bootstrap/scss/mixins/_breakpoints";
+
+.answer {
+    margin-top: 52px;
+    background-color: $color-gray-light-opacity04;
+    border-top: 6px solid $color-blue;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    align-self: center;
+    padding: 16px;
+
+    @include media-breakpoint-up(md) {
+        max-width: 626px;
+        width: 100%;
+    }
+
+    & > h5 {
+        @include text-h-xs;
+    }
+
+    div[class^=TextArea_textarea-wrapper__],
+    div[class^=InputText_input-wrapper__],
+    div[class^=InputFile_input-wrapper__] {
+        background-color: $color-white;        
+        width: 100%;
+    }
+
+    & > div[class^=QuizActions_actions__] {
+        margin-top: 16px;
+        width: 100%;
+        max-width: 626px;
+
+        button {
+            max-width: unset;
+
+            &:nth-child(2n) {
+                margin-left: 32px;
+            }
+        }
+    }
+}
+
+.answerWrapper {
+    @include media-breakpoint-up(md) {
+        display: flex;
+        justify-content: center;
+    }
+}
+
+.actionsLoader {
+    display: flex;
+    justify-content: center;
+}

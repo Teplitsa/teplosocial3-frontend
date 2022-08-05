@@ -1,0 +1,78 @@
+@import "../assets/sass/base/presets";
+@import "../assets/sass/helpers/responsive-design-mixins";
+@import "../inclusive-components/typography/article/Article.module.scss";
+@import "../inclusive-components/typography/heading/Heading.module.scss";
+@import "../inclusive-components/typography/body/Text.module.scss";
+
+.testimonial {
+  margin: 0;
+  padding: 40px 40px 70px 40px;
+
+  @include screen-from(sm) {
+    padding: 80px 80px 110px 80px;
+  }
+
+  &__text {
+    margin: 0;
+
+    @extend .article;
+
+    &[class*="__text"] {
+      @extend .text-20;
+
+      @include screen-from(sm) {
+        font-size: 32px;
+      }
+    }
+  }
+
+  &__photo {
+    background-color: $ui-200;
+    max-width: 61px;
+    max-height: 61px;
+    border-radius: 50%;
+  }
+
+  &__author {
+    display: grid;
+    row-gap: 20px;
+    justify-items: center;
+    margin: 50px 0 0;
+
+    @include screen-from(sm) {
+      column-gap: 19px;
+      row-gap: unset;
+      grid-template-columns: auto 1fr;
+      justify-items: left;
+    }
+
+    &-title {
+      display: grid;
+      justify-items: center;
+      text-align: center;
+
+      @include screen-from(sm) {
+        row-gap: 6px;
+        grid-template-columns: 1fr;
+        justify-items: left;
+        text-align: left;
+      }
+    }
+
+    &-name {
+      margin: 0 0 6px;
+
+      @extend .h5;
+
+      @include screen-from(sm) {
+        margin: 0;
+      }
+    }
+
+    &-position {
+      color: $ui-700;
+
+      @extend .text-14;
+    }
+  }
+}

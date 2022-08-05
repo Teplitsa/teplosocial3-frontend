@@ -1,0 +1,27 @@
+@import "../../../assets/sass/helpers/responsive-design-mixins";
+
+.skeleton-card-list {
+  display: grid;
+  grid-template: auto / 1fr;
+  gap: 30px;
+
+  @include screen-from(sm) {
+    grid-template: repeat(2, 1fr) / repeat(3, 1fr);
+  }
+
+  &_count {
+    &-3 {
+      @include screen-from(sm) {
+        grid-template: 1fr / repeat(3, 1fr);
+      }
+    }
+  }
+
+  > :not(:first-child) {
+    display: none;
+
+    @include screen-from(sm) {
+      display: block;
+    }
+  }
+}

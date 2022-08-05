@@ -1,0 +1,53 @@
+@import "../assets/sass/base/presets";
+@import "../assets/sass/helpers/responsive-design-mixins";
+@import "../inclusive-components/typography/article/Article.module.scss";
+@import "../inclusive-components/typography/body/Text.module.scss";
+
+.testimonial {
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
+  margin: 0;
+  padding: 30px 20px;
+  border: 1px solid $color-gray-light;
+  box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.06);
+  border-radius: 2px;
+
+  &__photo {
+    background-color: $color-gray;
+    margin-bottom: 32px;
+    max-width: 136px;
+    max-height: 136px;
+    border-radius: 50%;
+
+    @include screen-from(sm) {
+      max-width: 144px;
+      max-height: 144px;
+    }
+  }
+
+  &__text {
+    margin: 0 0 20px;
+    @extend .article;
+    @extend .text-14;
+
+    @include screen-from(sm) {
+      margin: 0 0 35px;
+      font-size: 16px;
+    }
+  }
+
+  &__author {
+    display: flex;
+    flex-flow: column nowrap;
+    @extend .text-12;
+
+    @include screen-from(sm) {
+      font-size: 14px;
+    }
+
+    &-name {
+      font-weight: 700;
+    }
+  }
+}

@@ -1,0 +1,30 @@
+@import "../../../assets/sass/base/fonts";
+@import "../../../assets/sass/base/presets";
+@import "../../../assets/sass/base/typography";
+@import "../../../assets/sass/helpers/mixins";
+@import "../../../assets/sass/components/learn-content";
+
+@import "bootstrap/scss/_functions";
+@import "bootstrap/scss/_variables";
+@import "bootstrap/scss/_mixins";
+@import "bootstrap/scss/mixins/_breakpoints";
+
+.container {
+    padding: 0px;
+
+    display: flex;
+    justify-content: center;
+}
+
+.containerInner {
+    width: 100%;
+
+    @include media-breakpoint-up(md) {
+        max-width: $desktop-content-width;
+    }
+}
+
+.loading {
+    margin-top: 10px;
+    margin-bottom: 40px;
+}

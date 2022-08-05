@@ -1,0 +1,222 @@
+@import "../../../../assets/sass/helpers/effects";
+@import "../../../../assets/sass/helpers/responsive-design-mixins";
+@import "../../../../assets/sass/base/presets";
+@import "../../../../inclusive-components/typography/body/Text.module.scss";
+@import "../../../../inclusive-components/A11y-common.module.scss";
+
+.notifications {
+  position: relative;
+  margin-right: 20px;
+
+  &__title {
+    background-color: $ui-050;
+    border-bottom: 1px solid rgba(47, 89, 231, 0.1);
+    padding: 12px 20px;
+    font-weight: 500;
+    text-align: left;
+    border-radius: 4px 4px 0 0;
+
+    @extend .text-16;
+  }
+
+  &__count {
+    @extend .text-18;
+
+    &_unread,
+    &_read {
+      &::before {
+        content: "";
+        display: inline-block;
+        background-color: transparent;
+        margin-left: 4px;
+        margin-right: 8px;
+        width: 6px;
+        height: 6px;
+        vertical-align: middle;
+        border-radius: 50%;
+        transition: all 0.15s linear;
+      }
+    }
+
+    &_unread {
+      &::before {
+        background-color: $red-700;
+      }
+    }
+
+    &_read {
+      &::before {
+        background-color: $green-200;
+      }
+    }
+
+    &-caption {
+      @extend .visually-hidden;
+    }
+  }
+
+  &__control {
+    background: url(./img/notification-control.svg) 50% 50% no-repeat;
+    background-size: 100%;
+    padding: 0;
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
+    transition: all 0.15s linear;
+
+    @extend .focusable;
+
+    &_active {
+      background: url(./img/notification-control_active.svg) 50% 50% no-repeat;
+    }
+
+    &-caption {
+      @extend .visually-hidden;
+    }
+  }
+
+  &__empty-message {
+    position: relative;
+    display: grid;
+    justify-content: center;
+    padding: 10px;
+    min-height: calc(217px - 22px);
+    box-sizing: border-box;
+
+    @extend .text-20;
+    @extend .text-bold;
+
+    &::before {
+      content: "";
+      display: block;
+      background: url(./img/notification-no-messages.svg) 50% 50% no-repeat;
+      background-size: 100%;
+      margin: 34px auto 16px;
+      width: 110px;
+      height: 110px;
+    }
+  }
+
+  &__list {
+    margin: 0 3px 0 6px;
+    padding: 3px 10px 4px;
+    list-style-type: none;
+    height: calc(405px - 3px - 22px - 4px);
+    text-align: left;
+    overflow-y: auto;
+    scrollbar-color: $green-gradient transparent;
+    scrollbar-width: thin;
+    box-sizing: border-box;
+
+    &::-webkit-scrollbar {
+      background-color: $ui-050;
+      width: 3px;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background-color: $green-gradient;
+      width: 3px;
+      border-radius: 8px;
+    }
+
+    &-wrapper {
+      position: absolute;
+      top: calc(100% + 3px);
+      left: 50%;
+      background-color: $ui-000;
+      padding-bottom: 22px;
+      width: 455px;
+      max-width: calc(100vw - 20px - 20px);
+      border-radius: 4px;
+      transform: translate(-50%, 0);
+      opacity: 1;
+      visibility: visible;
+      transition: all 0.15s linear;
+      z-index: 1;
+
+      @extend .effect-card-shadow;
+
+      &::before {
+        content: "";
+        display: block;
+        position: absolute;
+        left: 50%;
+        bottom: 100%;
+        border: 6.5px solid transparent;
+        border-bottom-color: $ui-000;
+        width: 13px;
+        height: 13px;
+        box-sizing: border-box;
+        transform: translate(-50%, 0);
+      }
+
+      &_inactive {
+        opacity: 0;
+        visibility: hidden;
+      }
+    }
+  }
+
+  &__item {
+    position: relative;
+    padding: 18px 4px 8px 23px;
+    border-radius: 4px;
+    user-select: none;
+    cursor: pointer;
+    transition: all 0.15s linear;
+
+    @extend .focusable;
+
+    &:hover {
+      background-color: rgba($ui-100, 0.5);
+    }
+
+    &::before {
+      content: "";
+      position: absolute;
+      top: 28px;
+      left: 5px;
+      background-color: $green-gradient;
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+    }
+
+    &_unread {
+      &::before {
+        background-color: $red-700;
+      }
+    }
+
+    &-text {
+      margin-bottom: 4px;
+
+      @extend .text-16;
+
+      &_unread {
+        @extend .text-bold;
+      }
+
+      a {
+        text-decoration: underline;
+        color: $ui-999;
+
+        @extend .focusable;
+
+        &:hover {
+          text-decoration: none;
+        }
+      }
+    }
+
+    &-date {
+      color: $ui-300;
+
+      @extend .text-14;
+    }
+
+    &-tip {
+      @extend .visually-hidden;
+    }
+  }
+}

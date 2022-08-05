@@ -1,0 +1,30 @@
+@import "../base/fonts";
+@import "../base/presets";
+@import "../base/typography";
+@import "../helpers/mixins";
+@import "../helpers/utils";
+
+.homeContent {
+  color: blueviolet;
+
+  h1 {
+    color: red;
+    @include test-tps;
+  }
+
+  h2 {
+    color: coral;
+  }
+}
+
+.homeTestimonials {
+  color: green;
+
+  h2.someClass {
+    color: fuchsia;
+  }
+
+  h3 {
+    color: yellowgreen;
+  }
+}

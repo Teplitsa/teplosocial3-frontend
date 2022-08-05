@@ -1,0 +1,35 @@
+@import "../../../assets/sass/base/fonts";
+@import "../../../assets/sass/base/presets";
+@import "../../../assets/sass/base/typography";
+@import "../../../assets/sass/components/learn-content";
+
+@import "bootstrap/scss/_functions";
+@import "bootstrap/scss/_variables";
+@import "bootstrap/scss/_mixins";
+@import "bootstrap/scss/mixins/_breakpoints";
+
+.actions {
+  display: grid;
+  justify-content: stretch !important;
+  row-gap: 10px;
+  column-gap: 30px;
+  margin-top: 40px;
+
+  @include media-breakpoint-up(sm) {
+    grid-template-columns: max-content max-content;
+    justify-content: center !important;
+  }
+
+  button[class^="Button_btn_"] {
+    margin: 0 !important;
+    width: 100%;
+  }
+
+  @include media-breakpoint-up(sm) {
+    margin-top: 50px;
+
+    button[class^="Button_btn_"] {
+      width: 300px;
+    }
+  }
+}

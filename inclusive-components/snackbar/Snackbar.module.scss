@@ -1,0 +1,115 @@
+@import "../../assets/sass/base/presets";
+@import "../typography/heading/Heading.module.scss";
+@import "../typography/body/Text.module.scss";
+@import "../A11y-common.module.scss";
+
+.snackbar {
+  &-list {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    display: grid;
+    grid-template-columns: 1fr;
+    row-gap: 0;
+    width: 100%;
+    z-index: 999;
+
+    &__item {
+      position: relative;
+      background: linear-gradient(rgba($color-black, 0), rgba($color-black, 0))
+        50% 50% no-repeat;
+      padding: 20px;
+      color: $color-white;
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.3s ease-in-out;
+
+      &_active {
+        opacity: 1;
+        visibility: visible;
+      }
+      &_success {
+        background: linear-gradient(
+            92.43deg,
+            $color-green-gradient-start 0.18%,
+            $color-green-gradient-stop 100%
+          )
+          50% 50% no-repeat;
+        color: $color-black;
+      }
+      &_error {
+        background-color: $color-error;
+      }
+      &-inner {
+        margin: 0 auto;
+        width: 626px;
+        max-width: 100%;
+      }
+      &-title {
+        margin: 0 0 7px;
+
+        &_error {
+          @extend .h6;
+        }
+        &_success {
+          @extend .text-20;
+          @extend .text-bold;
+        }
+      }
+      &-text {
+        visibility: visible;
+
+        &_error {
+          @extend .text-16;
+          @extend .text-bold;
+        }
+        &_success {
+          @extend .text-18;
+        }
+      }
+      &-message {
+        a {
+          text-decoration: underline;
+          color: $ui-000;
+
+          @extend .focusable-white;
+
+          &:hover,
+          &:active,
+          &:focus {
+            text-decoration: none;
+          }
+        }
+      }
+      &-close {
+        position: absolute;
+        top: 20px;
+        right: 20px;
+        background-color: transparent;
+        border-style: none;
+        margin-left: 8px;
+        padding: 0;
+        outline: none;
+        cursor: pointer;
+
+        &::before {
+          content: "";
+          display: block;
+          background: url("./img/icon-snackbar-close.svg") 50% 50% no-repeat;
+          width: 20px;
+          height: 20px;
+        }
+
+        &_success {
+          &::before {
+            background: url("./img/icon-snackbar-close_black.svg") 50% 50%
+              no-repeat;
+          }
+        }
+      }
+      &-context {
+        @extend .visually-hidden;
+      }
+    }
+  }
+}

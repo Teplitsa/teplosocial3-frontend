@@ -1,0 +1,129 @@
+@import "../../../assets/sass/base/fonts";
+@import "../../../assets/sass/base/presets";
+@import "../../../assets/sass/base/typography";
+
+@import "bootstrap/scss/_functions";
+@import "bootstrap/scss/_variables";
+@import "bootstrap/scss/_mixins";
+@import "bootstrap/scss/mixins/_breakpoints";
+
+.banner {
+    @include text;
+    padding: 20px 10px 20px 10px;
+    background-color: $color-white;
+    background-position: right bottom;
+    background-repeat: no-repeat;
+    color: $color-black;
+    position: relative;
+    border: 1px solid $blue-700;
+    height: 400px;
+
+    @media(min-width: 391px) {
+        background-image: url(../../../assets/img/adaptest-banner.svg);
+    }    
+
+    @include media-breakpoint-up(sm) {
+        background-size: auto 180px;
+        height: 270px;
+    }
+
+    @include media-breakpoint-up(md) {
+        padding: 38px 0px 38px 50px;
+        height: unset;
+        background-size: unset;
+    }
+}
+
+.bannerContent {
+    & > h2 {
+        margin: 20px 0px 0px 0px;
+        padding-right: 45px;
+        @include text-h-sm20;
+
+        @include media-breakpoint-up(md) {
+            max-width: calc(100% - 180px);
+        }
+    }
+}
+
+.teaser {
+    margin: 10px 0px 0px 0px;
+    padding-right: 0px;
+    @include text-xl-rare;
+
+    @include media-breakpoint-up(md) {
+        max-width: calc(100% - 200px);
+    }
+}
+
+.meta {
+    display: flex;
+    align-items: flex-start;
+}
+
+.metaItem {
+    display: flex;
+    align-items: center;
+    @include text-sm-bold;
+    color: $ui-700;
+    text-transform: uppercase;
+
+    &:not(:first-child) {
+        &::before {
+            content: " ";
+            width: 1px;
+            height: 10px;
+            margin-left: 8px;
+            margin-right: 8px;
+        }
+    }
+
+    & > img {
+        margin-right: 6px;
+        width: 16px;
+        height: 16px;
+    }
+}
+
+.startTestLink {
+    margin-top: 20px;
+    width: 180px;
+
+    @include media-breakpoint-up(sm) {
+        width: unset;
+    }
+
+    @include media-breakpoint-up(md) {
+        width: unset;
+    }
+
+    a {
+        @include text-h-sm20;
+        color: $green-700;
+        padding-right: 30px;
+
+        @include media-breakpoint-up(md) {
+            display: flex;
+            align-items: center;
+        }
+
+        &::after {
+            content: " ";            
+            background-image: url(../../../assets/img/arrow-down-green.svg);
+            background-position: right center;
+            background-repeat: no-repeat;
+            background-size: 24px 24px;
+            transform: rotate(-90deg);
+            width: 24px;
+            height: 24px;
+            margin-left: 6px;
+            display: inline-block;
+            vertical-align: middle;
+
+            @include media-breakpoint-up(md) {
+                display: block;
+                vertical-align: unset;
+            }
+        }
+    }
+}

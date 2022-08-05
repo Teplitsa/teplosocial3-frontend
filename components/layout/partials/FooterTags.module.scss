@@ -1,0 +1,127 @@
+@import "../../../assets/sass/base/presets";
+@import "../../../assets/sass/helpers/responsive-design-mixins";
+@import "../../page/Home.module.scss";
+@import "../../../inclusive-components/form/button/Button.module.scss";
+@import "../../../inclusive-components/typography/body/Text.module.scss";
+@import "../../../inclusive-components/typography/heading/Heading.module.scss";
+
+@import "bootstrap/scss/_functions";
+@import "bootstrap/scss/_variables";
+@import "bootstrap/scss/_mixins";
+@import "bootstrap/scss/mixins/_breakpoints";
+
+@import "../../../inclusive-components/A11y-common.module.scss";
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  margin-left: 0px;
+  margin-right: 0px;
+  margin-top: 30px;
+
+  @include media-breakpoint-up(lg) {
+    margin-top: 0px;
+    margin-left: 54px;
+    margin-right: 54px;
+    width: calc(100% - 625px);
+  }
+}
+
+.home-course-filter {
+  margin-bottom: 40px;
+  @extend .home-section;
+
+  @include screen-from(sm) {
+    margin-bottom: 80px;
+  }
+
+  &__title {
+    margin: 0 0 20px;
+    @extend .h3;
+  }
+
+  &__lead {
+    margin: 0 0 30px;
+    @extend .text-18;
+  }
+
+  &__list {
+    display: flex;
+    flex-flow: row wrap;
+    gap: 12px;
+    margin: 0 0 30px;
+    padding: 0;
+    list-style-type: none;
+  }
+
+  &__btn-all-courses {
+    display: flex;
+    align-items: center;
+    padding: 6.5px 20px;
+
+    @extend .btn;
+    @extend .btn_default;
+
+    background: unset;
+    border: 1px solid $ui-050;
+    // background-color: $blue-700;
+    // color: $color-white;
+    background-color: $color-white;
+    color: $blue-700;
+
+    &[class*="__btn"] {
+      @extend .text-16;
+      @extend .text-bold;
+    }
+
+    &:hover {
+      // background-color: $color-white;
+      // color: $blue-700;
+      background: unset;
+      background-color: $blue-700;
+      color: $color-white;
+      text-decoration: none;
+
+      &::after {
+        // background-image: url(../../../assets/img/arrow-right-blue.svg);
+        background-image: url(../../../assets/img/arrow-right-white.svg);
+      }
+    }
+
+    &::after {
+      content: " ";
+      // background-image: url(../../../assets/img/arrow-right-white.svg);
+      background-image: url(../../../assets/img/arrow-right-blue.svg);
+      display: inline-block;
+      width: 16px;
+      height: 16px;
+      margin-left: 6px;
+    }
+  }
+
+  &__btn {
+    display: block;
+    padding: 6.5px 20px;
+
+    @extend .btn;
+    @extend .btn_default;
+
+    background: unset;
+    border: 1px solid $ui-050;
+    background-color: $blue-700;
+    color: $color-white;
+
+    &:hover {
+      background-color: $color-white;
+      color: $blue-700;
+      text-decoration: none;
+    }
+
+    &[class*="__btn"] {
+      @extend .text-16;
+      @extend .text-bold;
+    }
+  }
+}

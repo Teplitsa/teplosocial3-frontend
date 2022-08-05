@@ -1,0 +1,95 @@
+@import "../../assets/sass/base/fonts";
+@import "../../assets/sass/base/presets";
+@import "../../assets/sass/base/typography";
+@import "../../assets/sass/helpers/mixins";
+
+@import "bootstrap/scss/_functions";
+@import "bootstrap/scss/_variables";
+@import "bootstrap/scss/_mixins";
+@import "bootstrap/scss/mixins/_breakpoints";
+
+@import "../../assets/sass/helpers/responsive-design-mixins";
+@import "../../inclusive-components/typography/body/Text.module.scss";
+@import "../../inclusive-components/A11y-common.module.scss";
+
+.metaBar {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+
+  @include text-sm-bold;
+  text-transform: uppercase;
+
+  & > a {
+    @include text-sm-bold;
+    @include a-underline;
+    text-transform: uppercase;
+    color: $color-white;
+
+    @include media-breakpoint-up(md) {
+      @include text-lg;
+    }
+  }
+}
+
+.metaInfo {
+  display: grid;
+  gap: 10px;
+  align-items: center;
+
+  @include screen-from(sm) {
+    grid-template-columns: repeat(3, auto);
+  }
+}
+
+.metaItem {
+  display: flex;
+  align-items: center;
+
+  @extend .text-caps-mod;
+
+  & > img {
+    margin-right: 6px;
+
+    @include media-breakpoint-up(md) {
+      width: 16px;
+      height: 16px;
+    }
+  }
+}
+
+.question {
+  margin-left: 8px;
+  display: none;
+
+  img {
+    cursor: pointer;
+
+    @include media-breakpoint-up(md) {
+      width: 24px;
+      height: 24px;
+    }
+  }
+
+  div[class*="Tooltip_tooltip__content__"] {
+    width: 40vh;
+
+    @include media-breakpoint-down(md) {
+      left: -15vh;
+    }
+  }
+}
+
+.connectedType {
+  border: 1px solid $ui-000;
+  padding: 4px 10px;
+  color: $ui-000;
+  border-radius: 4px;
+
+  @extend .focusable-white;
+
+  &:hover,
+  &:focus {
+    text-decoration: none;
+  }
+}

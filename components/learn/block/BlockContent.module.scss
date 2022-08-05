@@ -1,0 +1,243 @@
+@import "../../../assets/sass/base/fonts";
+@import "../../../assets/sass/base/presets";
+@import "../../../assets/sass/base/typography";
+@import "../../../assets/sass/helpers/mixins";
+@import "../../../assets/sass/components/learn-content";
+@import "../../../inclusive-components/typography/body/Text.module.scss";
+
+@import "bootstrap/scss/_functions";
+@import "bootstrap/scss/_variables";
+@import "bootstrap/scss/_mixins";
+@import "bootstrap/scss/mixins/_breakpoints";
+
+.block {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 60px 20px 128px 20px;
+
+  & > div {
+    width: 100%;
+    max-width: $desktop-content-width;
+
+    &[class*="_actions_"] {
+      width: 100%;
+      // max-width: 626px;
+      justify-content: flex-end;
+      flex-direction: row-reverse;
+
+      button {
+        margin-right: 30px;
+      }
+    }
+  }
+}
+
+.blockTitle {
+  h1 {
+    margin-top: 0px;
+    margin-bottom: 0px;
+    @include text-h;
+  }
+}
+
+.content {
+  max-width: $desktop-content-width;
+  @include text-lg-block-content;
+  margin-top: 20px;
+
+  & > * {
+    margin-top: 32px;
+  }
+
+  & > *:first-child {
+    margin-top: 0px;
+  }
+
+  a {
+    color: $color-blue;
+  }
+
+  figure {
+    margin-left: 0px;
+    margin-right: 0px;
+  }
+
+  img {
+    width: 100%;
+    height: unset;
+  }
+
+  ol {
+    padding-left: 20px;
+  }
+
+  ul {
+    padding-left: 20px;
+    list-style-type: disc;
+  }
+
+  li {
+    margin-top: 16px;
+
+    img {
+      vertical-align: top;
+    }
+  }
+
+  blockquote {
+    border-left: 5px solid $color-blue;
+    font-weight: 700;
+    padding-left: 25px;
+    margin-left: 0px;
+    margin-right: 0px;
+
+    @include media-breakpoint-up(md) {
+      margin-left: auto;
+      margin-right: auto;
+      max-width: 629px;
+    }
+
+    & > p {
+      margin-top: 0px;
+      margin-bottom: 0px;
+    }
+  }
+
+  h1 {
+    @include text-h;
+    font-size: 32px;
+    line-height: 37px;
+    margin-bottom: -8px;
+  }
+
+  h2 {
+    @include text-h;
+    font-size: 28px;
+    line-height: 33px;
+    margin-bottom: -16px;
+  }
+
+  h3 {
+    @include text-h;
+    font-size: 24px;
+    line-height: 29px;
+    margin-top: 24px;
+    margin-bottom: -24px;
+  }
+
+  h4 {
+    @include text-h;
+    font-size: 20px;
+    line-height: 24px;
+    margin-top: 12px;
+    margin-bottom: -28px;
+  }
+
+  /*iframe {
+    }*/
+
+  p {
+    margin-bottom: 16px;
+
+    &:last-child {
+      margin-bottom: 0px;
+    }
+
+    img {
+      display: block;
+      margin: 0 auto;
+    }
+  }
+
+  div[class^="ld-video"] {
+    display: flex;
+    justify-content: center;
+  }
+
+  figure[class*="wp-block-embed"] {
+    display: grid;
+    margin: 40px 0 14px;
+
+    [class*="wp-block-embed__wrapper"] {
+      position: relative;
+      padding-top: 56.25%;
+
+      & > :only-child {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+      }
+    }
+
+    figcaption {
+      margin: 20px 0 0;
+      @extend .text-14;
+
+      &,
+      & a {
+        color: $ui-700;
+      }
+    }
+  }
+}
+
+.actionsLoader {
+  display: flex;
+  justify-content: center;
+
+  /*& > *[class^=Loader_loader__] {
+    }*/
+}
+
+.actions {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 40px;
+
+  button[class^="Button_btn_"] {
+    max-width: 160px;
+  }
+
+  @include media-breakpoint-up(md) {
+    margin-top: 50px;
+
+    button[class^="Button_btn_"] {
+      width: 100%;
+      max-width: 294px;
+    }
+  }
+}
+
+.modalActions {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  margin-bottom: 32px;
+
+  & > *:not(:first-child) {
+    margin-top: 20px;
+  }
+
+  & > button[class*="Button_btn_primary__"] {
+    width: 80%;
+  }
+
+  & > button[class*="Button_btn_reset__"] {
+    color: $color-green-main;
+    cursor: pointer;
+  }
+}
+
+.modalText {
+  text-align: center;
+  margin-top: -20px !important;
+  @include text-xl;
+}
+
+.adaptestBanner {
+  margin-top: 30px;
+}

@@ -1,0 +1,30 @@
+@import "../../../assets/sass/base/presets";
+@import "../../../assets/sass/helpers/responsive-design-mixins";
+@import "../../../inclusive-components/form/button/Button.module.scss";
+@import "../../../inclusive-components/typography/body/Text.module.scss";
+@import "../../../inclusive-components/A11y-common.module.scss";
+
+.about-catalog {
+  margin: 30px auto 0;
+  padding: 0 20px;
+  max-width: 840px;
+
+  @include screen-from(sm) {
+    margin-top: 60px;
+  }
+
+  &__title {
+    margin: 0 0 20px;
+    @extend .text-bold;
+    @extend .text-32;
+  }
+
+  &__lead {
+    margin: 0 0 30px;
+    @extend .text-20;
+
+    a {
+        color: $green-700;
+    }
+  }
+}

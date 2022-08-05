@@ -1,0 +1,62 @@
+@import "../../../assets/sass/base/presets";
+@import "../../typography/body/Text.module.scss";
+@import "../../A11y-common.module.scss";
+
+.textarea {
+  order: 2;
+  flex-grow: 10;
+  border-style: none;
+  padding: 0;
+  @extend .text-16;
+  color: $color-black;
+  caret-color: $color-green-gradient-start;
+  @extend .focusless;
+
+  &::placeholder {
+    color: $gray-graphite;
+  }
+
+  &-label {
+    display: flex;
+    flex-flow: column;
+    justify-content: stretch;
+    flex-grow: 10;
+    @extend .text-12;
+    color: $gray-graphite;
+
+    &__text {
+      order: 1;
+      opacity: 1;
+      max-height: 22px;
+      overflow: hidden;
+      transition: all 0.15s linear;
+
+      :placeholder-shown + & {
+        opacity: 0.35;
+        max-height: 1px;
+      }
+    }
+  }
+
+  &-wrapper {
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: stretch;
+    background-color: $color-white;
+    border: 1px solid $color-gray;
+    padding: 4px 16px;
+    min-height: 116px;
+    border-radius: 4px;
+    transition: all 0.15s linear;
+    box-sizing: border-box;
+    @extend .focusable-within;
+
+    &:focus-within {
+      border: 1px solid $gray-graphite;
+    }
+
+    &_has-error[class*="_has-error"] {
+      border: 1px solid $color-error;
+    }
+  }
+}

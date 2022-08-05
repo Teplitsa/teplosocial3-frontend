@@ -1,0 +1,70 @@
+@import "../../../assets/sass/base/fonts";
+@import "../../../assets/sass/base/presets";
+@import "../../../assets/sass/base/typography";
+@import "../../../assets/sass/helpers/mixins";
+
+@import "bootstrap/scss/_functions";
+@import "bootstrap/scss/_variables";
+@import "bootstrap/scss/_mixins";
+@import "bootstrap/scss/mixins/_breakpoints";
+
+@import "../../../inclusive-components/A11y-common.module.scss";
+
+.menuList {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+
+  @include media-breakpoint-up(lg) {
+    width: 205px;
+    padding-top: 6px;
+  }
+
+  & a {
+    @include text-medium;
+    @include a-underline;
+    color: $color-white;
+    display: block;
+    margin-bottom: 16px;
+
+    @extend .focusable-white;
+
+    &:hover,
+    &:focus {
+      text-decoration: none;
+    }
+  }
+}
+
+.rss {
+    display: none;
+    
+    @include media-breakpoint-up(lg) {
+        display: block;
+    }
+    
+    a {
+        @include a-underline;
+        @include text-bold;
+        line-height: 22px;
+        color: $color-white;
+        @extend .focusable-white;
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+
+        &::before {
+            content: " ";
+            background-image: url(../../../assets/img/icon-rss.svg);
+            display: inline-block;
+            width: 16px;
+            height: 16px;
+            margin-right: 6px;
+        }
+    }
+    
+    img {
+        width: 20px;
+        height: 20px;
+    }
+}

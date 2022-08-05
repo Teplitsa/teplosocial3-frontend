@@ -1,0 +1,10 @@
+@import "../../../assets/sass/base/presets";
+@import "../MainSkeleton.module.scss";
+
+.skeleton-card {
+  background: linear-gradient(271.18deg, #e9e9ed 0.98%, #efeff1 98.99%);
+  width: 100%;
+  min-height: 444px;
+
+  @extend .item-mock-alt;
+}

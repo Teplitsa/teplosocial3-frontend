@@ -1,0 +1,66 @@
+@import "../assets/sass/base/presets";
+@import "../assets/sass/helpers/responsive-design-mixins";
+@import "../inclusive-components/typography/body/Text.module.scss";
+@import "../inclusive-components/A11y-common.module.scss";
+
+.login {
+  &-btn {
+    background: url(../assets/img/guest-nav-login.svg) 0 50% no-repeat $ui-000;
+    background-size: 24px 24px;
+    padding: 5px 0 5px calc(22px + 6px);
+    font-weight: 600;
+    text-align: center;
+    color: $ui-999;
+    @extend .text-12;
+    @extend .focusable;
+
+    @include screen-from(md) {
+      background-size: 40px 40px;
+      padding: 10.5px 0 10.5px calc(40px + 8px);
+      font-weight: 700;
+      font-size: 16px;
+    }
+
+    &:hover,
+    &:focus {
+      text-decoration: none;
+    }
+
+    &__caption {
+      @extend .visually-hidden;
+    }
+  }
+}
+
+.registration {
+  &-btn {
+    background-color: $green-400;
+    background: url(../assets/img/guest-nav-registration.svg) 0 50% no-repeat $ui-000;
+    background-size: 24px 24px;
+    margin-right: 10px;
+    padding: 5px 0 5px calc(22px + 6px);
+    font-weight: 600;
+    text-align: center;
+    color: $green-700;
+
+    @extend .text-12;
+    @extend .focusable;
+
+    @include screen-from(md) {
+      background-size: 40px 40px;
+      margin-right: 20px;
+      padding: 10.5px 0 10.5px calc(40px + 8px);
+      font-weight: 700;
+      font-size: 16px;
+    }
+
+    &:hover,
+    &:focus {
+      text-decoration: none;
+    }
+
+    &__caption {
+      @extend .visually-hidden;
+    }
+  }
+}

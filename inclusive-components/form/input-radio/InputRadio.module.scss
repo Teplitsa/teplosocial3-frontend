@@ -1,0 +1,57 @@
+@import "../../../assets/sass/base/presets";
+@import "../../typography/body/Text.module.scss";
+@import "../../A11y-common.module.scss";
+
+.input-radio {
+  @extend .visually-hidden;
+
+  &-label {
+    @extend .text-16;
+    color: $color-black;
+
+    &:hover {
+      cursor: pointer;
+    }
+
+    &__text {
+      display: grid;
+      grid-auto-flow: column;
+      grid-template-columns: auto 1fr;
+      @extend .text-inherit;
+
+      &::before {
+        content: "";
+        display: block;
+        background: url("./img/input-radio.svg") 50% 50% no-repeat;
+        margin-right: 17px;
+        width: 20px;
+        height: 20px;
+        border-radius: 50%;
+        transition: all 0.15s linear;
+        outline: 4px solid transparent;
+      }
+
+      :checked + & {
+        &::before {
+          background: url("./img/input-radio_checked.svg") 50% 50% no-repeat;
+        }
+      }
+
+      :active + & {
+        &::before {
+          box-shadow: 0px 1px 3px rgba(151, 160, 189, 0.57);
+        }
+      }
+
+      :focus + & {
+        &::before {
+          @extend .focus;
+        }
+      }
+    }
+  }
+
+  &-wrapper {
+    visibility: visible;
+  }
+}

@@ -1,0 +1,96 @@
+@import "../../assets/sass/base/fonts";
+@import "../../assets/sass/base/presets";
+@import "../../assets/sass/base/typography";
+
+@import "bootstrap/scss/_functions";
+@import "bootstrap/scss/_variables";
+@import "bootstrap/scss/_mixins";
+@import "bootstrap/scss/mixins/_breakpoints";
+
+.teamDescription {
+    color: $color-black;
+    margin-top: 22px;
+    padding: 0px 20px;
+
+    @include media-breakpoint-up(md) {
+        margin-top: 44px;
+        padding: 0px 100px;
+    }
+
+    & > h1 {
+        margin: 0px;
+        @include text-h;
+
+        @include media-breakpoint-up(md) {
+            @include text-h-lg;
+        }
+    }
+
+    & > p {
+        @include text-h-xxs;
+        margin-top: 12px;
+        margin-bottom: 0px;
+
+        @include media-breakpoint-up(md) {
+            margin-top: 23px;
+            @include text-h-xs;
+        }
+    }
+}
+
+.teamMembersCarousel {
+    margin-top: 40px;
+    background: linear-gradient(92.43deg, #81E377 0.18%, #77E3BC 100%);
+    flex-grow: 1;
+    padding-bottom: 40px;
+
+    display: block;
+    
+    @include media-breakpoint-up(md) {
+        display: none;
+    }
+
+    div[class^=Carousel_carousel__top__] {
+        display: none;
+    }
+
+    button[class*=Carousel_carousel__nav-item__] {
+        &::before {
+            background-color: $color-white-opacity02;
+        }
+    }
+
+    button[class*=Carousel_carousel__nav-item_active__] {
+        &::before {
+            background-color: $color-white;
+        }
+    }
+
+    ul[class^=Carousel_carousel__item-list__] {
+        list-style-type: none;
+        margin-block-start: 0px;
+        margin-block-end: 0px;
+        margin-inline-start: 0px;
+        margin-inline-end: 0px;
+        padding-inline-start: 0px;        
+    }
+}
+
+.teamMembersTiles {
+    margin-top: 76px;
+    margin-bottom: 40px;
+    background: linear-gradient(92.43deg, #81E377 0.18%, #77E3BC 100%);
+    flex-grow: 1;
+    padding: 87px 98px 90px 98px;
+
+    display: none;
+
+    @include media-breakpoint-up(md) {
+        display: flex;
+        flex-wrap: wrap;
+    }
+
+    div[class^=TeamMemberCard_card__] {
+        width: 256px;
+    }
+}

@@ -1,0 +1,69 @@
+@import "../../assets/sass/base/fonts";
+@import "../../assets/sass/base/presets";
+@import "../../assets/sass/base/typography";
+@import "../../assets/sass/helpers/mixins";
+
+@import "bootstrap/scss/_functions";
+@import "bootstrap/scss/_variables";
+@import "bootstrap/scss/_mixins";
+@import "bootstrap/scss/mixins/_breakpoints";
+
+.modalActions {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    margin-bottom: 32px;
+
+    & > *:not(:first-child) {
+        margin-top: 20px;
+    }
+
+    & > button[class*=Button_btn_primary__] {
+        width: 80%;
+    }
+
+    & > button[class*=Button_btn_reset__] {
+        color: $color-green-main;
+        cursor: pointer;
+    }
+}
+
+.modalActionsSmallGap,
+.modalActionsCenter {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 30px;
+
+    button[class^=Button_btn_] {
+        max-width: 160px;
+    }
+
+    @include media-breakpoint-up(md) {
+        button[class^=Button_btn_] {
+            width: 100%;
+            max-width: 285px;
+        }
+    }
+}
+
+.modalActionsCenter {
+    justify-content: center;
+}
+
+.modalText {
+    text-align: center;    
+    margin-top: -20px !important;
+    @include text-xl;
+}
+
+.modalTextSlim {
+    text-align: left;
+    margin-top: 0px !important;
+    @include text-xl-rare;
+
+    a {
+        @include a-underline;
+        color: $ui-999;
+    }
+}

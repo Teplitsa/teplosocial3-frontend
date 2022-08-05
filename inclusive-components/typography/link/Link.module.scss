@@ -1,0 +1,37 @@
+@import "../../../assets/sass/base/presets";
+@import "../body/Text.module.scss";
+@import "../../A11y-common.module.scss";
+
+.link {
+  text-decoration: none;
+  color: $color-green-main-start;
+  @extend .text-inherit;
+  @extend .focusable;
+
+  &:hover {
+    text-decoration: underline;
+  }
+
+  &_underlined {
+    text-decoration: underline;
+
+    &:hover {
+      text-decoration: none;
+    }
+  }
+
+  &_bold {
+    font-weight: 700;
+  }
+
+  &_color-initial {
+    color: initial;
+  }
+
+  &_align-center {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    max-width: max-content;
+  }
+}

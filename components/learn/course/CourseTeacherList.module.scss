@@ -1,0 +1,96 @@
+@import "../../../inclusive-components/typography/article/Article.module.scss";
+@import "../../../inclusive-components/typography/body/Text.module.scss";
+@import "../../../assets/sass/helpers/responsive-design-mixins";
+@import "../../../assets/sass/base/presets";
+
+.course-teacher {
+  margin: 50px 20px 0;
+  max-width: 840px;
+
+  @include screen_from(md) {
+    margin: 50px auto 0;
+  }
+
+  &__title {
+    text-transform: uppercase;
+    color: $ui-700;
+
+    @extend .text-14;
+    @extend .text-bold;
+  }
+
+  &__list {
+    border: 1px solid $ui-100;
+    list-style-type: none;
+    margin: 0;
+    padding: 20px;
+
+    @include screen_from(md) {
+      padding: 50px;
+    }
+  }
+
+  &__item {
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+
+    @include screen_from(md) {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      column-gap: 50px;
+    }
+
+    &:not(:last-child) {
+      border-bottom: 1px solid $ui-100;
+      margin: 0 0 30px;
+      padding: 0 0 30px;
+    }
+  }
+
+  &__avatar {
+    width: 180px;
+    height: 180px;
+
+    &-wrapper {
+      background-color: $ui-100;
+
+      margin: 0 0 30px;
+      width: 180px;
+      height: 180px;
+      border-radius: 50%;
+      overflow: hidden;
+
+      @include screen_from(md) {
+        grid-column: 2;
+        grid-row: 1;
+        margin: 0;
+      }
+    }
+  }
+
+  &__entry {
+    text-align: center;
+
+    @include screen_from(md) {
+      grid-column: 1;
+      grid-row: 1;
+      text-align: left;
+    }
+  }
+
+  &__name {
+    margin: 0 0 20px;
+
+    @extend .text-32;
+    @extend .text-bold;
+  }
+
+  &__resume {
+    @extend .article;
+
+    &[class*="__resume"] {
+      @extend .text-20;
+    }
+  }
+}

@@ -1,0 +1,26 @@
+@import "../base/fonts";
+@import "../base/presets";
+@import "../base/typography";
+
+@mixin course-item-header {
+  padding: 12px 0px 12px 32px;
+  margin-left: -32px;
+  position: relative;
+}
+
+@mixin course-item-title {
+  @include a-no-hover-underline;
+  color: $color-black;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid $color-gray-light-md;
+  padding-right: 20px;
+
+  & > h2 {
+      margin: 12px 0px 0px 0px;
+      padding-right: 45px;
+      @include text-h-sm;
+      color: $color-black;
+  }    
+}

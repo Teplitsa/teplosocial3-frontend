@@ -1,0 +1,31 @@
+@import "../../../assets/sass/helpers/responsive-design-mixins";
+@import "../../page/Home.module.scss";
+@import "../../../inclusive-components/typography/article/Article.module.scss";
+@import "../../../inclusive-components/typography/body/Text.module.scss";
+
+.home-founder {
+  @extend .home-section;
+
+  &__content {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 30px;
+    justify-items: center;
+    @extend .article;
+
+    @include screen-from(sm) {
+      grid-template-columns: auto 1fr;
+      gap: 100px;
+      align-items: center;
+    }
+
+    p {
+      @extend .text-20;
+      @extend .text-bold;
+
+      @include screen-from(md) {
+        padding-right: 100px;
+      }
+    }
+  }
+}

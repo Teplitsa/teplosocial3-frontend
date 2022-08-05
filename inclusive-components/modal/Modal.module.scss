@@ -1,0 +1,176 @@
+@import "../../assets/sass/base/presets";
+@import "../../assets/sass/helpers/responsive-design-mixins";
+@import "../typography/heading/Heading.module.scss";
+@import "../typography/article/Article.module.scss";
+@import "../A11y-common.module.scss";
+
+.modal {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+  align-items: center;
+  background-color: transparent;
+  padding: 15px;
+  z-index: 888;
+  visibility: hidden;
+  transition: all 0.3s ease-in-out;
+
+  &_active {
+    visibility: visible;
+  }
+
+  &_backdrop {
+    &-dark[class*="_active"] {
+      background-color: rgba($color-black, 0.9);
+    }
+    &-medium[class*="_active"] {
+      background-color: rgba($color-black, 0.6);
+    }
+    &-light[class*="_active"] {
+      background-color: rgba($color-black, 0.3);
+    }
+  }
+
+  &__dialog {
+    position: relative;
+    background-color: $ui-000;
+    padding: 50px;
+    max-width: 100%;
+    border: 1px solid $ui-100;
+    box-shadow: 0px 4px 32px rgba(16, 16, 31, 0.12);
+
+    overflow: hidden;
+    box-sizing: border-box;
+    transform: scale(0.5);
+    opacity: 0;
+    transition: all 0.3s linear;
+    @extend .focusable;
+
+    &_primary {
+      visibility: visible;
+    }
+
+    &_danger {
+      visibility: visible;
+    }
+
+    &_warning {
+      visibility: visible;
+    }
+
+    &_active {
+      transform: none;
+      opacity: 1;
+    }
+
+    &_auto {
+      width: auto;
+      height: auto;
+    }
+    &_fullscreen {
+      width: 100%;
+      height: 100%;
+    }
+    &_lg {
+      width: 700px; // old value 800px
+    }
+    &_md {
+      width: 600px;
+    }
+    &_sm {
+      width: 450px;
+    }
+    &_xs {
+      width: 335px;
+    }
+
+    &_noCover {
+    }
+
+    &_cover {
+      border: none;
+      padding-top: 343px;
+      background-size: auto 314px;
+      background-repeat: no-repeat;
+
+      button[class*=Modal_modal__close__]::before {
+        background: url(./img/icon-modal-close_white.svg) 50% 50% no-repeat;
+      }
+      
+      *[class*=Modal_modal__title__] {
+        text-align: left;
+      }
+    }
+
+    &_alignLeft {
+      *[class*=Modal_modal__title__] {
+        text-align: left;
+      }
+    }
+
+    &_transparent {
+      background-color: transparent;
+      border-style: none;
+      padding: 60px 4px 4px;
+    }
+  }
+
+  &__content {
+    display: grid;
+    grid-template-rows: auto 1fr;
+    grid-template-columns: 100%;
+    height: 100%;
+  }
+
+  &__header {
+    margin: 0 0 30px;
+    text-align: center;
+
+    &_invisible-title {
+      margin: 0;
+    }
+  }
+
+  &__title {
+    margin: 0;
+    @extend .h4;
+
+    &_invisible {
+      @extend .visually-hidden;
+    }
+  }
+
+  &__body {
+    @extend .article;
+  }
+
+  &__close {
+    position: absolute;
+    top: 30px;
+    right: 30px;
+    cursor: pointer;
+    @extend .focusable;
+
+    &::before {
+      content: "";
+      display: block;
+      background: url(./img/icon-modal-close.svg) 50% 50% no-repeat;
+      width: 20px;
+      height: 20px;
+    }
+
+    &_transparent {
+      top: 20px;
+      right: 4px;
+
+      &::before {
+        background: url(./img/icon-modal-close_white.svg) 50% 50% no-repeat;
+      }
+    }
+  }
+}

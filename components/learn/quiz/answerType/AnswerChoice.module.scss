@@ -1,0 +1,38 @@
+@import "../../../../assets/sass/base/fonts";
+@import "../../../../assets/sass/base/presets";
+@import "../../../../assets/sass/base/typography";
+@import "../../../../assets/sass/components/learn-content";
+
+@import "bootstrap/scss/_functions";
+@import "bootstrap/scss/_variables";
+@import "bootstrap/scss/_mixins";
+@import "bootstrap/scss/mixins/_breakpoints";
+
+@mixin AnswerChiceModule__choiceOption {
+    padding: 16px;
+    border: 1px solid $ui-100;
+    border-radius: 4px;    
+
+    &:not(:first-child) {
+        margin-top: 20px;
+    }
+
+    & > div[class^=InputCheckbox_input-checkbox-wrapper__],
+    & > div[class^=InputRadio_input-radio-wrapper__] {
+        margin-top: 0px !important;
+
+        & > label > span[class^=InputCheckbox_input-checkbox-label__text__] {
+            display: grid;
+            align-items: center;
+        }
+    }
+}
+
+.choiceOption {
+    @include AnswerChiceModule__choiceOption;
+}
+
+.choiceOptionSelected {
+    @include AnswerChiceModule__choiceOption;
+    border: 1px solid $green-200;
+}

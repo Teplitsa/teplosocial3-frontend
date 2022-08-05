@@ -1,0 +1,62 @@
+@import "../../../assets/sass/base/fonts";
+@import "../../../assets/sass/base/presets";
+@import "../../../assets/sass/base/typography";
+@import "../../../assets/sass/helpers/mixins";
+
+.item {
+    @include course-index-item;
+}
+
+.itemInactive {
+    @include course-index-item;
+
+    div[class^=ModuleIndexItem_icon__] {
+        & > div {
+            background-image: url(../../../assets/img/course-timeline-new.svg);
+        }
+    }
+}
+
+.icon {
+    & > div {
+        background-image: url(../../../assets/img/course-timeline-current.svg);
+    }
+}
+
+.itemCompletedByAdaptest {
+    @include course-index-item;
+
+    div[class^=ModuleIndexItem_icon__] {
+        & > div {
+            background-image: url(../../../assets/img/course-timeline-accepted.svg);
+        }
+    }
+}
+
+.itemCompleted {
+    @include course-index-item;
+
+    div[class^=ModuleIndexItem_icon__] {
+        & > div {
+            background-image: url(../../../assets/img/course-timeline-passed.svg);
+        }
+    }
+}
+
+.blocks {
+    section[class^=Accordion_accordion__] {
+
+        button[class*=Accordion_accordion__control__] {
+            border-top: none;
+            border-bottom: none;
+        }
+
+        h4 {
+            @include text-medium;
+            color: $color-black;
+        }
+    }
+}
+
+.blockList {
+}

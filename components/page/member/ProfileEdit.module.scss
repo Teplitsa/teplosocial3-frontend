@@ -1,0 +1,27 @@
+@import "../../../assets/sass/base/fonts";
+@import "../../../assets/sass/base/presets";
+@import "../../../assets/sass/base/typography";
+
+@import "bootstrap/scss/_functions";
+@import "bootstrap/scss/_variables";
+@import "bootstrap/scss/_mixins";
+@import "bootstrap/scss/mixins/_breakpoints";
+
+.content {
+    padding-bottom: 60px;
+    max-width: 510px;
+    align-self: center;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.actions {
+    margin-top: 40px;
+    padding: 0px 40px;
+    display: flex;
+    justify-content: center;
+
+    button[class^=Button_btn__] {
+        width: 100%;
+    }
+}

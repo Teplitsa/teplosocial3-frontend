@@ -1,0 +1,79 @@
+@import "../../../assets/sass/base/presets";
+@import "../../../assets/sass/helpers/responsive-design-mixins";
+@import "../../../inclusive-components/typography/heading/Heading.module.scss";
+@import "../../../inclusive-components/typography/body/Text.module.scss";
+
+.about-hero {
+  background: url(./img/city-protection.png) 100% 100% no-repeat,
+    url(./img/ornament.svg) 100% 50% no-repeat,
+    linear-gradient($blue-700, $blue-700) 0 0 no-repeat;
+  background-size: auto 25%, 100%, auto;
+  padding: 20px;
+
+  @include screen-from(sm) {
+    background: url(./img/city-protection.png) 100% 100% no-repeat,
+      url(./img/ornament.svg) 100% 50% no-repeat,
+      linear-gradient($blue-700, $blue-700) 0 0 no-repeat;
+    background-size: auto 391px, auto 100%, auto;
+    padding: 55px 150px;
+  }
+
+  &__text {
+    display: grid;
+    row-gap: 30px;
+    color: $ui-000;
+
+    @extend .text-20;
+
+    @include screen-from(sm) {
+      max-width: 685px;
+    }
+
+    & p {
+      margin: 0;
+
+      &:not([class*="__lead"]) {
+        @include screen-from(sm) {
+          max-width: 520px;
+        }
+      }
+    }
+  }
+
+  &__lead {
+    @extend .text-bold;
+    @extend .text-32;
+  }
+
+  &__statistics {
+    display: grid;
+    grid-template-columns: none;
+    row-gap: 15px;
+    max-width: 520px;
+
+    @include screen-from(sm) {
+      grid-template-columns: repeat(2, 1fr);
+      column-gap: 30px;
+      row-gap: unset;
+    }
+
+    &-item {
+      display: flex;
+      align-items: center;
+      border-left: 6px solid $blue-200;
+      padding-left: 30px;
+      font-weight: 700;
+      font-size: 14px;
+      line-height: 1.29;
+      letter-spacing: 0.03em;
+      text-transform: uppercase;
+    }
+
+    &-value {
+      margin-right: 16px;
+      font-weight: 700;
+      font-size: 60px;
+      line-height: 1.1;
+    }
+  }
+}

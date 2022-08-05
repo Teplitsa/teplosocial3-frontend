@@ -1,0 +1,48 @@
+@import "../../../assets/sass/base/presets";
+@import "../../../assets/sass/helpers/responsive-design-mixins";
+@import "../../page/Home.module.scss";
+@import "../../../inclusive-components/form/button/Button.module.scss";
+@import "../../../inclusive-components/typography/body/Text.module.scss";
+@import "../../../inclusive-components/typography/heading/Heading.module.scss";
+@import "../../../inclusive-components/A11y-common.module.scss";
+
+.home-course-filter {
+  margin-bottom: 40px;
+  @extend .home-section;
+
+  @include screen-from(sm) {
+    margin-bottom: 80px;
+  }
+
+  &__title {
+    margin: 0 0 20px;
+    @extend .h3;
+  }
+
+  &__lead {
+    margin: 0 0 30px;
+    @extend .text-18;
+  }
+
+  &__list {
+    display: flex;
+    flex-flow: row wrap;
+    gap: 12px;
+    margin: 0 0 30px;
+    padding: 0;
+    list-style-type: none;
+  }
+
+  &__btn {
+    display: block;
+    padding: 6.5px 20px;
+
+    @extend .btn;
+    @extend .btn_default;
+
+    &[class*="__btn"] {
+      @extend .text-16;
+      @extend .text-bold;
+    }
+  }
+}

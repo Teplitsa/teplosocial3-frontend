@@ -1,0 +1,186 @@
+/** == Typography (_typography.scss) == **/
+
+$body-font-family: "PT Root UI";
+$footer-font-family: "IBM Plex Sans";
+
+// headers
+@mixin text-h-lg {
+  font-family: $body-font-family;
+  font-size: 60px;
+  line-height: 66px;
+  font-weight: 700;
+  font-style: normal;
+}
+
+@mixin text-h {
+  font-family: $body-font-family;
+  font-size: 32px;
+  line-height: 36px;
+  font-weight: 700;
+  font-style: normal;
+}
+
+@mixin text-h-rare {
+  font-family: $body-font-family;
+  font-size: 32px;
+  line-height: 46px;
+  font-weight: 400;
+  font-style: normal;
+}
+
+@mixin text-h-sm {
+  font-family: $body-font-family;
+  font-size: 22px;
+  line-height: 26px;
+  font-weight: 700;
+  font-style: normal;
+}
+
+@mixin text-h-sm20 {
+  @include text-h-sm;
+  font-size: 20px;
+}
+
+@mixin text-h-xs {
+  font-family: $body-font-family;
+  font-size: 18px;
+  line-height: 22px;
+  font-weight: 700;
+  font-style: normal;
+}
+
+@mixin text-h-xs-medium {
+  @include text-h-xs;
+  font-weight: 500;
+}
+
+@mixin text-h-xs-normal {
+  @include text-h-xs;
+  font-weight: 400;
+}
+
+@mixin text-h-xxs {
+  font-family: $body-font-family;
+  font-size: 16px;
+  line-height: 19px;
+  font-weight: 700;
+  font-style: normal;
+}
+
+// text
+@mixin text-xxl {
+  font-family: $body-font-family;
+  font-size: 23px;
+  line-height: 30px;
+  font-weight: 700;
+  font-style: normal;
+}
+
+@mixin text-xl {
+  font-family: $body-font-family;
+  font-size: 20px;
+  line-height: 24px;
+  font-weight: 500;
+  font-style: normal;
+}
+
+@mixin text-xl-rare {
+  font-family: $body-font-family;
+  font-size: 20px;
+  line-height: 30px;
+  font-weight: 400;
+  font-style: normal;
+}
+
+@mixin text-xl-rare-bold {
+  @include text-xl-rare;
+  font-weight: 700;
+}
+
+@mixin text-lg-plus {
+  @include text;
+  font-size: 18px;
+  line-height: 24px;
+  font-weight: 400;
+}
+
+@mixin text-lg-plus-bold {
+  @include text-lg-plus;
+  font-weight: 700;
+}
+
+@mixin text-lg-block-content {
+  @include text;
+  font-size: 16px;
+  line-height: 22px;
+  font-weight: 400;
+}
+
+@mixin text-lg {
+  @include text;
+  font-size: 16px;
+  line-height: 20px;
+  font-weight: 500;
+}
+
+@mixin text {
+  font-family: $body-font-family;
+  font-size: 14px;
+  line-height: 16px;
+  font-weight: 400;
+  font-style: normal;
+}
+
+@mixin text-medium {
+  @include text;
+  font-weight: 500;
+}
+
+@mixin text-bold {
+  @include text;
+  font-weight: 700;
+}
+
+@mixin text-sm-bold {
+  font-family: $body-font-family;
+  font-size: 12px;
+  line-height: 14px;
+  font-weight: 700;
+  font-style: normal;
+}
+
+@mixin text-xs-bold {
+  font-family: $body-font-family;
+  font-size: 10px;
+  line-height: 12px;
+  font-weight: 700;
+  font-style: normal;
+}
+
+@mixin text-footer {
+  font-family: $footer-font-family;
+  font-size: 11px;
+  line-height: 16px;
+  font-weight: 500;
+  font-style: normal;
+}
+
+// captions
+@mixin participant-points {
+  @include text-lg;
+  font-weight: 700;
+}
+
+@mixin caption-progress {
+  font-family: $body-font-family;
+  font-size: 12px;
+  line-height: 14px;
+  font-weight: 500;
+  font-style: normal;
+}
+
+// headers
+@mixin task-subtitle {
+}
+
+// Context information

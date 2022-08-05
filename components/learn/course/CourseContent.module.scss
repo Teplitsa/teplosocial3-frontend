@@ -1,0 +1,70 @@
+@import "../../../assets/sass/base/fonts";
+@import "../../../assets/sass/base/presets";
+@import "../../../assets/sass/base/typography";
+@import "../../../assets/sass/components/learn-content";
+
+@import "bootstrap/scss/_functions";
+@import "bootstrap/scss/_variables";
+@import "bootstrap/scss/_mixins";
+@import "bootstrap/scss/mixins/_breakpoints";
+
+@import "../../../inclusive-components/typography/body/Text.module.scss";
+
+.content {
+  padding: 0px;
+  @include text;
+
+  color: $color-black;
+
+  display: flex;
+  justify-content: center;
+}
+
+.contentInner {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 20px;
+  background-color: $green-blue-light;
+
+  @include media-breakpoint-up(md) {
+    max-width: $desktop-content-width;
+    padding: 50px;
+  }
+}
+
+.listTitle {
+  margin: 0;
+  width: 100%;
+  color: $ui-999;
+
+  @extend .text-32;
+  @extend .text-bold;
+
+  @include media-breakpoint-up(md) {
+    max-width: $desktop-content-width;
+  }
+}
+
+.list {
+  margin-top: 30px;
+}
+
+.startAction {
+  margin-top: 40px;
+  margin-right: 32px;
+  display: flex;
+  justify-content: center;
+
+  @include media-breakpoint-up(md) {
+    margin-top: 68px;
+  }
+
+  & > button {
+    width: 100%;
+    max-width: 610px;
+  }
+}
+
+.adaptestBanner {
+  margin-top: 10px;
+}

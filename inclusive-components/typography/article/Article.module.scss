@@ -1,0 +1,27 @@
+@import "../body/Text.module.scss";
+@import "../../../assets/sass/helpers/responsive-design-mixins";
+
+.article {
+  @extend .text-16;
+  color: $color-black;
+
+  @include screen-from(sm) {
+    font-size: 18px;
+  }
+
+  p {
+    margin: 0 0 32px;
+
+    @include screen-from(sm) {
+      margin: 0 0 24px;
+    }
+
+    &:last-child {
+      margin: 0;
+    }
+  }
+
+  p:empty {
+    display: none;
+  }
+}

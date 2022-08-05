@@ -1,0 +1,75 @@
+@import "../../../assets/sass/base/fonts";
+@import "../../../assets/sass/base/presets";
+@import "../../../assets/sass/base/typography";
+
+@import "bootstrap/scss/_functions";
+@import "bootstrap/scss/_variables";
+@import "bootstrap/scss/_mixins";
+@import "bootstrap/scss/mixins/_breakpoints";
+
+.header {
+    padding: 14px 20px 20px 20px;
+    @include text-lg;
+
+    color: $color-white;
+    background: $blue-700;
+    display: flex;
+    justify-content: center;
+
+    @include media-breakpoint-up(md) {
+        padding-top: 40px;
+        padding-bottom: 40px;
+    }
+}
+
+.headerInner {
+    width: 100%;
+
+    @include media-breakpoint-up(md) {
+        max-width: $desktop-content-width;
+    }
+
+    & > a > h2 {
+        @include text-h-sm;
+        color: $color-white;
+        text-decoration: none;
+
+        @include media-breakpoint-up(md) {
+            margin: 0px;
+            @include text-h;
+        }
+    }
+
+    & > a:hover {
+        text-decoration: none;
+    }
+}
+
+.courseIndexBar {
+    margin-top: 20px;
+
+    @include media-breakpoint-up(md) {
+        margin-top: 20px;
+    }
+}
+
+.courseProgress {
+    margin-top: 20px;
+    padding-top: 6px;
+
+    div[class^=ProgressBar_progress__bar__] {
+        background-color: rgba(255, 255, 255, 0.4);
+    }
+
+    div[class^=ProgressBar_progress__value__] {
+        background-color: $green-200;
+        background-image: unset;
+    }
+
+    div[class^=ProgressBar_progress__text__] {
+        @include text-sm-bold;
+        margin-top: 12px;
+        color: $color-white;
+        text-transform: uppercase;
+    }
+}

@@ -1,0 +1,32 @@
+@import "../../../../assets/sass/base/presets";
+@import "../../../../assets/sass/helpers/responsive-design-mixins";
+
+.login-page {
+  background: url(../img/ornament.svg) 0 0 repeat-x $color-blue;
+  max-width: none;
+  margin: 0;
+  box-shadow: none;
+
+  @include screen-from(sm) {
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: center;
+    align-items: center;
+    padding: 50px 0;
+  }
+
+  &__content {
+    background-color: $color-white;
+    padding: 40px;
+    box-sizing: border-box;
+
+    @include screen-from(sm) {
+      padding: 40px 98px;
+      min-width: 626px;
+    }
+  }
+
+  &__logo {
+    margin-bottom: 40px;
+  }
+}

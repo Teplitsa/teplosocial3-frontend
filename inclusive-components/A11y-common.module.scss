@@ -1,0 +1,63 @@
+@import "../assets/sass/base/presets";
+
+.focus {
+  outline: 4px solid rgba($color-blue, 0.35);
+}
+
+.focus-white {
+  outline: 4px solid rgba($color-white, 0.65);
+}
+
+.focusable {
+  outline: 4px solid transparent;
+
+  &:active {
+    @extend .focus;
+  }
+  &:focus {
+    @extend .focus;
+  }
+}
+
+.focusable-white {
+  outline: 4px solid transparent;
+
+  &:active {
+    @extend .focus-white;
+  }
+  &:focus {
+    @extend .focus-white;
+  }
+}
+
+.focusable-within {
+  outline: 4px solid transparent;
+
+  &:focus-within {
+    @extend .focus;
+  }
+}
+
+.focusless {
+  outline-style: none;
+
+  &:active {
+    outline-style: none;
+  }
+  &:focus {
+    outline-style: none;
+  }
+}
+
+.visually {
+  &-hidden {
+    position: absolute;
+    left: -100vw;
+    border: 0;
+    padding: 0;
+    width: 1px;
+    height: 1px;
+    clip: rect(1px, 1px, 1px, 1px);
+    overflow: hidden;
+  }
+}

@@ -1,0 +1,65 @@
+@import "../../../assets/sass/base/presets";
+@import "../../../assets/sass/helpers/responsive-design-mixins";
+@import "../../page/Home.module.scss";
+@import "../../../inclusive-components/typography/heading/Heading.module.scss";
+@import "../../../inclusive-components/typography/body/Text.module.scss";
+@import "../../../inclusive-components/A11y-common.module.scss";
+
+.home-stats {
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
+  margin-bottom: 40px;
+  @extend .home-section;
+
+  @include screen-from(sm) {
+    margin-bottom: 80px;
+  }
+
+  &__title {
+    @extend .visually-hidden;
+  }
+
+  &__list {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    column-gap: 15px;
+    row-gap: 30px;
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+
+    @include screen-from(sm) {
+      grid-template-columns: repeat(4, 1fr);
+      grid-template-rows: 1fr;
+      column-gap: 30px;
+    }
+  }
+
+  &__item {
+    display: grid;
+    gap: 10px;
+    border-left: 6px solid $color-blue;
+    padding-left: 16px;
+
+    @include screen-from(sm) {
+      gap: 16px;
+      padding-left: 30px;
+    }
+
+    &-value {
+      @extend .h1;
+    }
+
+    &-title {
+      @extend .text-caps-mod;
+      @extend .text-bold;
+
+      @include screen-from(sm) {
+        line-height: 1.2857;
+        font-size: 14px;
+      }
+    }
+  }
+}

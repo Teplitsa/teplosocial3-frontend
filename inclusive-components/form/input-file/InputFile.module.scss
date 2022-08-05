@@ -1,0 +1,100 @@
+@import "../../../assets/sass/base/presets";
+@import "../../typography/body/Text.module.scss";
+@import "../../A11y-common.module.scss";
+
+.input {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  width: 100%;
+  height: 100%;
+  border-style: none;
+  padding: 0;
+  color: $color-black;
+  caret-color: $color-green-gradient-start;
+  flex-grow: 10;
+  @extend .text-16;
+  @extend .focusless;
+  background: url("./img/paper-clip.svg") 100% 50% no-repeat;
+  cursor: pointer;
+  pointer-events: none;
+  background-color: $color-white;
+  display: flex;
+  align-items: center;
+
+  &_text {
+    order: 2;
+  }
+
+  &-label {
+    display: flex;
+    flex-flow: column;
+    justify-content: center;
+    flex-grow: 10;
+    @extend .text-12;
+    color: $gray-graphite;
+
+    &__text {
+      order: 1;
+      opacity: 1;
+      max-height: 22px;
+      overflow: hidden;
+      transition: all 0.15s linear;
+
+      :placeholder-shown + & {
+        opacity: 0.35;
+        max-height: 1px;
+      }
+    }
+  }
+
+  &-wrapper {
+    display: flex;
+    flex-flow: row;
+    align-items: stretch;
+    background-color: $color-white;
+    border: 1px solid $color-gray;
+    padding: 0 15px;
+    height: 52px;
+    border-radius: 4px;
+    transition: all 0.15s linear;
+    box-sizing: border-box;
+    @extend .focusable-within;
+
+    &:focus-within {
+      border: 1px solid $gray-graphite;
+    }
+
+    &::after {
+      content: "";
+      display: block;
+      background: url("./img/input-error.svg") 50% 50% no-repeat;
+      min-width: 0;
+      min-height: 18px;
+      opacity: 0;
+      transition: opacity 0.15s linear, min-width 0.15s step-end;
+    }
+
+    &_has-error[class*="_has-error"] {
+      border: 1px solid $color-error;
+
+      &::after {
+        min-width: 18px;
+        opacity: 1;
+        transition: opacity 0.15s linear, min-width 0.15s step-start;
+      }
+    }
+  }
+}
+
+.fileInputContainer {
+  position: relative;
+  width: 100%;
+  cursor: pointer;
+
+  input[type=file] {
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+  }
+}

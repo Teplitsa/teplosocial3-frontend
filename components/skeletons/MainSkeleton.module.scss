@@ -1,0 +1,57 @@
+@import "../../assets/sass/base/presets";
+
+@keyframes item-mock {
+  from {
+    background: linear-gradient(
+          270deg,
+          $color-gray-light,
+          rgba($color-white, 0.5) 50%,
+          $color-gray-light 100%
+        ) -100% 50% no-repeat,
+      linear-gradient($color-gray-light, $color-gray-light) 50% 50% no-repeat;
+    background-size: 50% 100%, 100% 100%;
+  }
+  to {
+    background: linear-gradient(
+          270deg,
+          $color-gray-light,
+          rgba($color-white, 0.5) 50%,
+          $color-gray-light 100%
+        )
+        200% 50% no-repeat,
+      linear-gradient($color-gray-light, $color-gray-light) 50% 50% no-repeat;
+    background-size: 50% 100%, 100% 100%;
+  }
+}
+
+@keyframes item-mock-alt {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0.5;
+  }
+}
+
+.item-mock {
+  will-change: background-position;
+  animation: 1s ease-out 0s infinite;
+  animation-name: item-mock;
+}
+
+.item-mock-alt {
+  will-change: opacity;
+  animation: 1s ease-out 0s infinite;
+  animation-name: item-mock-alt;
+}
+
+.skeleton-main {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: auto 1fr auto;
+  margin: 0;
+  max-width: none;
+  min-height: 100vh;
+  box-shadow: none;
+  overflow: visible;
+}

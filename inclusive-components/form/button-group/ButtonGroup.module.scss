@@ -1,0 +1,11 @@
+@import "../../../assets/sass/helpers/responsive-design-mixins";
+
+.btn-group {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 15px;
+
+  @include screen-from(sm) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}

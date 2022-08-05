@@ -1,0 +1,68 @@
+@import "../../../assets/sass/base/fonts";
+@import "../../../assets/sass/base/presets";
+@import "../../../assets/sass/base/typography";
+@import "../../../assets/sass/helpers/mixins";
+
+@import "../../../inclusive-components/A11y-common.module.scss";
+
+.item {
+  margin-top: 0px;
+  padding: 0px 0px 0px 0px;
+  display: flex;
+  justify-content: flex-start;
+  position: relative;
+  @include text;
+  color: $color-black;
+
+  &:last-child {
+    div[class*="_content_"] {
+      border-left: none;
+      height: 26px;
+
+      p {
+        display: none;
+      }
+    }
+  }
+}
+
+.icon {
+  top: -8px;
+  left: 0px;
+  position: absolute;
+  background-color: $green-blue-light;
+  padding: 8px 0px;
+  width: 26px;
+  height: 26px;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  border-left: 2px solid $color-blue;
+  padding: 0px 0px 18px 33px;
+  margin-left: 13px;
+
+  &Link {
+    display: block;
+    margin: 1px 0px 0px;
+    padding-right: 45px;
+    padding: 2px 45px 20px 0px;
+
+    & > a {
+      color: $color-black;
+
+      @extend .focusable;
+
+      @include text-h-xxs;
+      @include a-no-hover-underline;
+    }
+  }
+
+  & > p {
+    margin: 0px;
+    padding-right: 20px;
+    @include text;
+  }
+}

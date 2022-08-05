@@ -1,0 +1,35 @@
+@import "../../assets/sass/helpers/responsive-design-mixins";
+@import "../../assets/sass/base/presets";
+@import "../typography/body/Text.module.scss";
+
+.form {
+  display: grid;
+  grid-template-columns: 1fr;
+  row-gap: 20px;
+
+  &_gap-30px {
+    row-gap: 30px;
+  }
+
+  &__footer {
+    @extend .text-14;
+    text-align: center;
+    color: $gray-graphite;
+
+    @include screen-from(sm) {
+      font-size: 16px;
+    }
+
+    &-links {
+      display: flex;
+      flex-flow: row nowrap;
+      justify-content: space-between;
+      margin: 32px 0 0;
+      padding: 0;
+      list-style-type: none;
+    }
+    &-text {
+      margin-bottom: 30px;
+    }
+  }
+}

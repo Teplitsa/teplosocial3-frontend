@@ -1,0 +1,177 @@
+@import "../../../assets/sass/base/presets";
+@import "../../../assets/sass/helpers/responsive-design-mixins";
+@import "../../../assets/sass/helpers/effects";
+@import "../../../inclusive-components/form/button/Button.module.scss";
+@import "../../../inclusive-components/typography/body/Text.module.scss";
+@import "../../../inclusive-components/typography/heading/Heading.module.scss";
+@import "../../../inclusive-components/A11y-common.module.scss";
+
+.catalog-course-filter {
+  margin: 0 0 50px;
+
+  @include screen-from(lg) {
+    margin-left: auto;
+    margin-right: auto;
+    width: 1140px;
+    max-width: 100%;
+  }
+
+  &__title {
+    margin: 0 0 40px;
+    text-align: center;
+    @extend .h5;
+
+    @include screen-from(sm) {
+      font-size: 32px;
+    }
+  }
+
+  &__search {
+    visibility: visible;
+
+    &-combobox {
+      position: relative;
+    }
+  }
+
+  &__list {
+    display: flex;
+    flex-flow: row wrap;
+    gap: 12px;
+    margin: 0 0 30px;
+    padding: 0;
+    list-style-type: none;
+  }
+
+  &__btn {
+    padding: 6.5px 20px;
+
+    @extend .btn;
+    @extend .btn_default;
+
+    &[class*="__btn"] {
+      @extend .text-16;
+      @extend .text-bold;
+    }
+
+    &_active {
+      &,
+      &:hover,
+      &:active,
+      &:focus {
+        background: linear-gradient($green-400, $green-400);
+        border-color: $green-400;
+      }
+    }
+  }
+}
+
+.quick-results {
+  position: absolute;
+  top: calc(52px + 4px);
+  right: 0;
+  bottom: auto;
+  left: 0;
+  background-color: $ui-000;
+  border: 1px solid $green-200;
+  box-shadow: 0px 4px 32px rgba(16, 16, 31, 0.12);
+  border-radius: 4px;
+  z-index: 99;
+
+  @extend .effect-card-shadow;
+
+  &__list {
+    margin: 0;
+    padding: 10px 30px;
+    list-style-type: none;
+  }
+
+  &__entity {
+    min-height: 66px;
+    box-sizing: border-box;
+
+    &:not(:first-child) {
+      border-top: 1px solid $ui-100;
+    }
+
+    &-link {
+      display: block;
+      padding: 20px 0;
+      border-radius: 4px;
+
+      @extend .focusable;
+
+      @include screen-from(sm) {
+        display: flex;
+        align-items: center;
+      }
+
+      &:hover,
+      &:focus {
+        text-decoration: none;
+      }
+    }
+
+    &-name {
+      margin-right: 6px;
+      color: $ui-300;
+
+      @extend .h5;
+    }
+
+    &-title {
+      color: $ui-999;
+
+      @extend .h5;
+    }
+
+    &-duration {
+      display: flex;
+      align-items: center;
+      margin-top: 10px;
+      margin-left: auto;
+      color: $ui-999;
+
+      @extend .text-caps-mod;
+
+      @include screen-from(sm) {
+        margin-top: 0;
+      }
+
+      &::before {
+        content: "";
+        display: block;
+        background: url(./img/clock.svg) 50% 50% no-repeat;
+        margin: 0 6px 0 0;
+        width: 16px;
+        height: 16px;
+      }
+    }
+
+    &-track {
+      display: inline-block;
+      background-color: $ui-000;
+      margin-top: 10px;
+      padding: 4px 10px;
+      border: 1px solid $ui-200;
+      color: $ui-999;
+      border-radius: 4px;
+
+      @extend .text-caps-mod;
+
+      @include screen-from(sm) {
+        margin-top: 0;
+        margin-left: 20px;
+      }
+
+      &-caption {
+        @extend .visually-hidden;
+      }
+    }
+  }
+
+  &__mark {
+    background-color: transparent;
+    color: $green-700;
+  }
+}

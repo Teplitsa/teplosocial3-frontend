@@ -1,0 +1,15 @@
+@import "../../../../assets/sass/base/presets";
+@import "../../../../assets/sass/helpers/responsive-design-mixins";
+
+.message {
+  // text-align: center;
+  margin-bottom: 32px;
+  text-align: center;
+}
+
+.loginForm {
+
+  div[class^=Form_form__footer__] {
+    display: none;
+  }
+}

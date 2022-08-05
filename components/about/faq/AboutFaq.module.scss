@@ -1,0 +1,73 @@
+@import "../../../assets/sass/helpers/responsive-design-mixins";
+@import "../../../inclusive-components/typography/body/Text.module.scss";
+
+.about-faq {
+  background-color: $green-050;
+  margin: 30px auto 0;
+  padding: 20px 20px 10px;
+  max-width: 840px;
+  box-sizing: border-box;
+
+  @include screen-from(sm) {
+    margin-top: 60px;
+    padding: 50px 50px 40px;
+  }
+
+  &__title {
+    margin: 0 0 15px;
+    @extend .text-bold;
+    @extend .text-32;
+  }
+
+  [class*="accordion__item"] {
+    &:not(:last-child) {
+      margin-bottom: 0;
+    }
+
+    &:first-child {
+      [class*="accordion__control_"] {
+        border-top-style: none;
+      }
+    }
+
+    [class*="accordion__control_"] {
+      border-top-color: $ui-100;
+      border-bottom-style: none;
+      padding: 10px 0;
+      box-sizing: border-box;
+    }
+
+    [class*="ccordion__control-text"] {
+      column-gap: 15px;
+
+      &::after {
+        align-self: center;
+        margin: 0 5px 0 0;
+      }
+    }
+  }
+
+  &__item {
+    &-title {
+      @extend .text-bold;
+      @extend .text-20;
+    }
+
+    &-text {
+      padding: 5px 0 20px;
+      @extend .text-16;
+
+      p {
+        margin: 0;
+
+        &:not(:last-child) {
+          margin-bottom: 10px;
+        }
+      }
+
+      a {
+        color: $green-700;
+      }
+    }
+  }
+}

@@ -1,0 +1,85 @@
+@import "../../../assets/sass/base/presets";
+@import "../../../assets/sass/helpers/responsive-design-mixins";
+@import "../../page/Home.module.scss";
+@import "../../../inclusive-components/typography/heading/Heading.module.scss";
+@import "../../../inclusive-components/typography/body/Text.module.scss";
+@import "../../../inclusive-components/A11y-common.module.scss";
+
+.home-tracks {
+  margin-bottom: 40px;
+  @extend .home-section;
+
+  @include screen-from(sm) {
+    margin-bottom: 80px;
+  }
+
+  &__header {
+    display: grid;
+  }
+
+  &__title {
+    margin: 0 0 20px;
+    @extend .h3;
+
+    @include screen-from(md) {
+      grid-column-start: 1;
+      grid-column-end: 2;
+      grid-row-start: 1;
+      grid-row-end: 1;
+    }
+  }
+
+  &__lead {
+    margin: 0 0 30px;
+    @extend .text-18;
+
+    @include screen-from(md) {
+      grid-column-start: 1;
+      grid-column-end: 1;
+      grid-row-start: 2;
+      grid-row-end: 2;
+    }
+  }
+
+  &__all-tracks {
+    margin: 0 0 30px;
+    @extend .text-18;
+    @extend .text-bold;
+
+    @include screen-from(md) {
+      display: flex;
+      justify-content: flex-end;
+      align-items: flex-end;
+      grid-column-start: 2;
+      grid-column-end: 2;
+      grid-row-start: 2;
+      grid-row-end: 2;
+    }
+
+    &-link {
+      background: url(./img/right-arrow.svg) 100% 50% no-repeat;
+      padding-right: calc(10px + 18px);
+      color: $green-700;
+    }
+  }
+
+  &__list {
+    display: grid;
+    gap: 30px;
+    margin: 0 0 30px;
+    padding: 0;
+    list-style-type: none;
+
+    @include screen-from(sm) {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    @include screen-from(md) {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+
+  &__item {
+    display: flex;
+  }
+}

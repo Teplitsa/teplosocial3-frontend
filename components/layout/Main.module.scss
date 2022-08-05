@@ -1,0 +1,9 @@
+.site-container {
+  display: flex;
+  flex-flow: column nowrap;
+  min-height: 100vh;
+
+  > :nth-child(2) {
+    flex-grow: 10;
+  }
+}

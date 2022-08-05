@@ -1,0 +1,39 @@
+@import "../../../assets/sass/helpers/responsive-design-mixins";
+
+$h1-font-size: 60px;
+$h2-font-size: 50px;
+$h3-font-size: 40px;
+$h4-font-size: 24px;
+$h5-font-size: 20px;
+$h6-font-size: 18px;
+
+.h1 {
+  font: 700 $h3-font-size/1.1 "PT Root UI", sans-serif;
+
+  @include screen-from(sm) {
+    font-size: $h1-font-size;
+  }
+}
+.h2 {
+  font: 700 32px/1.178 "PT Root UI", sans-serif;
+}
+.h3 {
+  font: 700 $h4-font-size/1.2 "PT Root UI", sans-serif;
+
+  @include screen-from(sm) {
+    font-size: $h3-font-size;
+  }
+}
+.h4 {
+  font: 700 $h5-font-size/1.178 "PT Root UI", sans-serif;
+
+  @include screen-from(sm) {
+    font-size: $h4-font-size;
+  }
+}
+.h5 {
+  font: 700 20px/1.3 "PT Root UI", sans-serif;
+}
+.h6 {
+  font: 700 18px/1.178 "PT Root UI", sans-serif;
+}

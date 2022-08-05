@@ -1,0 +1,53 @@
+@import "../../../assets/sass/base/presets";
+@import "../../../assets/sass/helpers/responsive-design-mixins";
+@import "../../../inclusive-components/typography/body/Text.module.scss";
+@import "../../../inclusive-components/typography/article/Article.module.scss";
+@import "../../../inclusive-components/A11y-common.module.scss";
+
+.course-description {
+  display: grid;
+  row-gap: 50px;
+  margin: 0 auto;
+  padding: 30px 20px 25px;
+
+  @include screen-from(md) {
+    padding: 60px 20px 50px;
+    max-width: $desktop-content-width;
+  }
+
+  &__title {
+    @extend .visually-hidden;
+  }
+
+  &__subtitle {
+    margin: 0 0 10px;
+    text-transform: uppercase;
+    color: $green-700;
+
+    @extend .text-14;
+  }
+
+  &__lead {
+    @extend .article;
+
+    &[class*="__lead"] {
+      @extend .text-32;
+    }
+  }
+
+  &__additional-info {
+    display: grid;
+    row-gap: 30px;
+
+    @extend .text-20;
+
+    p {
+      margin: 0;
+    }
+  }
+
+  &__audience,
+  &__result {
+    visibility: visible;
+  }
+}

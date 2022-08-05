@@ -1,0 +1,72 @@
+@import "../../../assets/sass/base/fonts";
+@import "../../../assets/sass/base/presets";
+@import "../../../assets/sass/base/typography";
+@import "../../../assets/sass/helpers/mixins";
+
+@import "bootstrap/scss/_functions";
+@import "bootstrap/scss/_variables";
+@import "bootstrap/scss/_mixins";
+@import "bootstrap/scss/mixins/_breakpoints";
+
+@import "../../../inclusive-components/A11y-common.module.scss";
+
+.licence {
+  margin-top: 8px;
+  flex-basis: 100%;
+  border-top: 1px solid $blue-050;
+  display: flex;
+  flex-direction: column;
+  opacity: 0.8;
+  width: 100%;
+
+  @include media-breakpoint-up(lg) {
+    flex-direction: row;
+    justify-content: space-between;
+  }
+
+  & > div {
+    margin-top: 20px;
+
+    &:last-child {
+      @include media-breakpoint-up(lg) {
+        text-align: right;
+      }
+    }
+  }
+
+  p {
+    @include text-medium;
+    line-height: 22px;
+    text-align: left;
+    color: $color-white;
+    padding: 0px;
+    margin: 0px 0px 4px 0px;
+
+    &:last-child {
+      margin-bottom: 0px;
+    }
+
+    @include media-breakpoint-up(lg) {
+      text-align: left;
+    }
+
+    a {
+      color: $color-white;
+      @extend .focusable-white;
+    }
+  }
+}
+
+.licenceText {
+  order: -1;
+
+  @include media-breakpoint-up(lg) {
+    order: 3;
+  }
+}
+
+.designStudio {
+  &Caption {
+    @extend .visually-hidden;
+  }
+}

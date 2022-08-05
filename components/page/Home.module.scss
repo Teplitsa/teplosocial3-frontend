@@ -1,0 +1,44 @@
+@import "../../assets/sass/base/presets";
+@import "../../assets/sass/helpers/responsive-design-mixins";
+@import "../../inclusive-components/typography/link/Link.module.scss";
+@import "../../inclusive-components/typography/body/Text.module.scss";
+@import "../../inclusive-components/typography/heading/Heading.module.scss";
+@import "../../inclusive-components/A11y-common.module.scss";
+
+.home {
+  margin: 0;
+  padding: 0 0 60px;
+  width: 100%;
+  max-width: none;
+  box-shadow: none;
+  overflow: unset;
+
+  @include screen-from(sm) {
+    padding: 0 0 100px;
+  }
+
+  &_dashboard {
+    @include screen-from(sm) {
+      padding: 0;
+    }
+  }
+
+  &-section {
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 20px;
+    padding-right: 20px;
+    max-width: 1140px;
+
+    &_narrow {
+      padding: 0;
+      max-width: 746px;
+    }
+  }
+
+  &__title {
+    &_dashboard {
+      @extend .visually-hidden;
+    }
+  }
+}

@@ -1,0 +1,302 @@
+/** == Mixins (_mixins.scss) == **/
+
+@mixin no-outline {
+  outline: 0 !important;
+  -webkit-appearance: none;
+  box-shadow: none;
+  -moz-box-shadow: none;
+  -webkit-box-shadow: none;
+}
+
+@mixin a-no-hover-underline {
+  text-decoration: none;
+
+  &:active,
+  &:focus {
+    text-decoration: none;
+  }
+
+  &:hover {
+    text-decoration: none;
+  }
+}
+
+@mixin a-hover-underline {
+  text-decoration: none;
+
+  &:active,
+  &:focus {
+    text-decoration: underline;
+  }
+
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+@mixin a-underline {
+  text-decoration: underline;
+
+  &:active,
+  &:focus {
+    text-decoration: none;
+  }
+
+  &:hover {
+    text-decoration: none;
+  }
+}
+
+@mixin solid-underline($color: transparent) {
+  @include a-no-hover-underline;
+  border-bottom-width: 1px;
+  border-bottom-style: solid;
+  border-bottom-color: $color;
+
+  &:hover {
+    border-bottom-color: transparent;
+  }
+}
+
+@mixin dashed-underline($color: transparent) {
+  @include solid-underline($color);
+  border-bottom-style: dashed;    
+}
+
+@mixin hover-underline($color: transparent) {
+  border-bottom-color: transparent;
+
+  &:hover {
+    border-bottom-color: $color;
+  }
+}
+
+// buttons
+@mixin disabled-primary-button {
+  // background: $color-main;
+  opacity: 0.5;
+}
+
+@mixin button-primary {
+  @include text-sm;
+  @include a-no-hover-underline;
+  color: $color-white;
+  display: inline-block;
+  text-align: center;
+  box-sizing: border-box;
+  padding: 8px;
+  border-radius: 12px;
+  box-shadow: inset -1px -1px 1px rgba(0, 89, 56, 0.53);
+
+  &.disabled {
+    @include disabled-primary-button;
+  }
+}
+
+// icons
+@mixin pic-small {
+  width: 20px;
+  height: 20px;
+  border-radius: 4px;
+}
+
+/**
+ * Screen
+ */
+@mixin screen-from($from) {
+  @if (map-has-key($breakpoints, $from)) {
+    $size: map-get($breakpoints, $from);
+    @media (min-width: $size) {
+      @content;
+    }
+  }
+}
+@mixin screen-to($to) {
+  @if (map-has-key($breakpoints, $to)) {
+    $size: map-get($breakpoints, $to);
+    @media (max-width: $size - 1px) {
+      @content;
+    }
+  }
+}
+@mixin screen($screen_from) {
+  @if (map-has-key($breakpoints, $screen_from)) {
+    $size_from: map-get($breakpoints, $screen_from);
+    $screens: map-keys($breakpoints);
+    $screen_from_index: index($screens, $screen_from);
+    @if ($screen_from_index == length($screens)) {
+      @media (min-width: $size_from) {
+        @content;
+      }
+    } @else {
+      $screen_to_index: $screen_from_index + 1;
+      $screen_to: nth($screens, $screen_to_index);
+      $size_to: map-get($breakpoints, $screen_to) - 1px;
+      @media (min-width: $size_from) and (max-width: $size_to) {
+        @content;
+      }
+    }
+  }
+}
+
+@mixin placeholder-color($color) {
+  &::-webkit-input-placeholder { /* WebKit browsers */
+      color: $color;
+  }
+  &:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+      color: $color;
+  }
+  &::-moz-placeholder { /* Mozilla Firefox 19+ */
+      color: $color;
+  }
+  &:-ms-input-placeholder { /* Internet Explorer 10+ */
+      color: $color;
+  }
+}
+
+// test
+@mixin test-tps {
+  color:maroon;
+}
+
+// course index
+@mixin course-index-item {
+  margin-top: 0px;
+  padding: 0px 0px 0px 0px;
+  display: flex;
+  justify-content: flex-start;
+  position: relative;
+  @include text;
+  color: $color-black;
+
+  &[class^=ModuleIndexItem_item__],
+  &[class^=ModuleIndexItem_itemCurrent__],
+  &[class^=ModuleIndexItem_itemCompleted__],
+  &[class^=ModuleIndexItem_itemCompletedByAdaptest__],
+  &[class^=ModuleIndexItem_itemInactive__] {
+    display: block;
+    width: 100%;
+    overflow: visible;
+
+    &:not(:last-child) {
+      &:after {
+        content: " ";
+        width: 100%;
+        border-bottom: 1px solid $ui-100;
+        display: block;
+        margin-bottom: 24px;
+      }
+    }
+  
+  }
+
+  &:last-child {
+      div[class^=BlockIndexItem_content__] {
+      }
+
+      section[class^=Accordion_accordion__item__] {
+
+        &:not([class*=expanded]) {
+        }
+
+        &[class*=expanded] {
+          margin-bottom: 20px;
+
+          div[class^=Accordion_accordion__content__] {
+            
+            & > div:last-child {
+              div[class^=BlockIndexItem_content__] {
+                padding-bottom: 0px;
+                height: 16px;
+              }
+            }
+          }
+        }
+      }
+  }
+
+  div[class^=BlockIndexItem_icon__], 
+  div[class^=ModuleIndexItem_icon__] {
+      top: -3px;
+      left: -5px;
+      position: absolute;
+      background-color: $color-white;
+  
+      & > div {
+          width: 24px;
+          height: 24px;
+          border-radius: 24px;
+          margin-left: 7px;
+      }
+  }
+
+  div[class^=BlockIndexItem_icon__] {
+    & > div {
+      margin-left: 0px;
+    }
+  }
+
+  div[class^=BlockIndexItem_content__],
+  section[class^=Accordion_accordion__item__] {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+
+    & > h5 {
+      margin: 0px;
+    }
+
+    span[class^=Accordion_accordion__control-text__] {
+      &:after {
+      }
+    }
+  }
+
+  // block
+  div[class^=BlockIndexItem_content__] {
+    padding: 0px 0px 26px 0px;
+    margin-left: -1px;
+
+    & > a {
+      @include a-no-hover-underline;
+      color: $color-black;
+
+      & > h5 {
+        margin-bottom: 0px;
+        margin-top: -3px;
+        margin-left: 37px; // text left margin
+        @include text-lg-block-content;
+      }
+    }
+  }
+
+  // module
+  section[class^=Accordion_accordion__item__] {
+    margin-left: 7px;
+    overflow: visible;
+
+    div[class^=Accordion_accordion__content__] {
+      overflow: visible;
+    }
+
+    button[class^=Button_btn__] {
+      width: 100%;
+      border-bottom: none;
+      border-top: none;
+      min-height: unset;
+      padding-left: 37px; // text left margin
+    }
+
+    &[class*=expanded] {
+      & > h5 {
+        padding-bottom: 24px;
+      }
+    }
+
+    & > h5 {
+      padding-bottom: 20px;
+      margin-top: -2px;
+      @include text-h-xs;
+    }
+  }
+}

@@ -1,0 +1,63 @@
+@import "../../../assets/sass/base/presets";
+@import "../../../assets/sass/helpers/responsive-design-mixins";
+@import "../../page/Home.module.scss";
+@import "../../../inclusive-components/typography/heading/Heading.module.scss";
+@import "../../../inclusive-components/typography/body/Text.module.scss";
+@import "../../../inclusive-components/A11y-common.module.scss";
+
+.dashboard-points {
+  margin-top: 40px;
+  margin-bottom: 40px;
+  @extend .home-section;
+
+  @include screen-from(sm) {
+    margin-top: 80px;
+    margin-bottom: 80px;
+  }
+
+  &__header {
+    display: grid;
+  }
+
+  &__title {
+    margin: 0 0 20px;
+    @extend .h3;
+
+    @include screen-from(md) {
+      grid-column-start: 1;
+      grid-column-end: 2;
+      grid-row-start: 1;
+      grid-row-end: 1;
+    }
+  }
+
+  &__lead {
+    margin: 0 0 30px;
+    @extend .text-18;
+
+    @include screen-from(md) {
+      grid-column-start: 1;
+      grid-column-end: 1;
+      grid-row-start: 2;
+      grid-row-end: 2;
+      padding-right: 30px;
+      max-width: 928px;
+    }
+  }
+
+  &__total {
+    margin: 0 0 30px;
+    @extend .text-18;
+    @extend .text-bold;
+
+    @include screen-from(md) {
+      display: flex;
+      justify-content: flex-end;
+      align-items: flex-end;
+      grid-column-start: 2;
+      grid-column-end: 2;
+      grid-row-start: 2;
+      grid-row-end: 2;
+    }
+  }
+}

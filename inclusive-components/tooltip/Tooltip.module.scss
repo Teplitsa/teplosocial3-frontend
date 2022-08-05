@@ -1,0 +1,64 @@
+@import "../../assets/sass/base/presets";
+@import "../typography/article/Article.module.scss";
+@import "../typography/body/Text.module.scss";
+@import "../A11y-common.module.scss";
+
+.tooltip {
+  visibility: visible;
+
+  &__link {
+    border-bottom: dashed 1px $ui-999;
+    text-decoration: none;
+    cursor: pointer;
+    user-select: none;
+
+    @extend .focusable;
+  }
+
+  &__content {
+    position: absolute;
+    top: calc(100% + 10px);
+    left: 0;
+    background: url(./img/icon-info.svg) 10px 12px no-repeat $ui-000;
+    border: 1px solid $ui-100;
+    padding: 10px 10px 10px 36px;
+    width: 316px;
+    max-height: 0;
+    color: $ui-700;
+    overflow-x: hidden;
+    overflow-y: auto;
+    opacity: 0;
+    visibility: hidden;
+    border-radius: 4px;
+    overflow: hidden;
+    box-shadow: 0px 2px 4px $color-gray;
+    box-sizing: border-box;
+    transition: max-height 0.15s step-end, opacity 0.15s linear,
+      visibility 0.15s step-end;
+    box-shadow: 0px 4px 32px rgba(16, 16, 31, 0.12);
+    z-index: 10;
+
+    @extend .article;
+    @extend .text-14;
+
+    &_active {
+      max-height: 100vh;
+      opacity: 1;
+      visibility: visible;
+      transition: max-height 0.15s step-start, opacity 0.15s linear,
+        visibility 0.15s step-start;
+    }
+
+    &-wrapper {
+      visibility: visible;
+    }
+  }
+
+  &-container {
+    position: relative;
+  }
+
+  &-shortcode-wrapper {
+    display: inline-flex;
+  }
+}

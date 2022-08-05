@@ -1,0 +1,256 @@
+@import "../../../../assets/sass/helpers/responsive-design-mixins";
+@import "../../../../assets/sass/base/presets";
+@import "../../../../inclusive-components/typography/body/Text.module.scss";
+@import "../../../../inclusive-components/A11y-common.module.scss";
+
+.header-content {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  align-items: center;
+  min-height: 50px;
+
+  @include screen-from(md) {
+    min-height: 72px;
+  }
+
+  &__align-right {
+    display: flex;
+    order: 5;
+    margin-left: auto;
+  }
+}
+
+.toggle-menu {
+  margin-right: 17px;
+  order: 1;
+
+  @include screen-from(md) {
+    display: none;
+  }
+
+  &__btn {
+    display: block;
+    background: url(../../../../assets/img/burger.svg) 50% 50% no-repeat;
+    width: 24px;
+    height: 24px;
+    cursor: pointer;
+    transition: all 0.3s linear;
+    @extend .focusable;
+
+    &_active {
+      background: url(../../../../assets/img/burger-close.svg) 50% 50% no-repeat;
+    }
+
+    &-caption {
+      @extend .visually-hidden;
+    }
+  }
+}
+
+.nav-panel {
+  flex-basis: 100%;
+  order: 6;
+  padding: 0 36px;
+  opacity: 0;
+  visibility: hidden;
+  overflow: hidden;
+  transition: all 0.3s linear;
+
+  @include screen-from(md) {
+    display: none;
+  }
+
+  &_expanded {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  &::before,
+  &::after {
+    content: "";
+    display: block;
+  }
+
+  &::before {
+    height: 40px;
+  }
+
+  &::after {
+    height: 24px;
+  }
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  order: 2;
+  min-height: 50px;
+
+  @include screen-from(md) {
+    min-height: 72px;
+  }
+
+  &__link {
+    @extend .focusable;
+  }
+
+  &__image {
+    max-height: 42px;
+  }
+
+  &__caption {
+    @extend .visually-hidden;
+  }
+}
+
+.main-menu {
+  &__list {
+    margin: 0 0 40px;
+    padding: 0;
+    list-style-type: none;
+  }
+  &__item {
+    &:not(:last-child) {
+      margin: 0 0 28px;
+    }
+  }
+  &__link {
+    color: $color-black;
+
+    @extend .text-16;
+    @extend .text-bold;
+    @extend .focusable;
+  }
+}
+
+.contact-menu {
+  &__list {
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+  }
+}
+
+.social-link {
+  display: block;
+  background: none 50% 50% no-repeat;
+  width: 32px;
+  height: 32px;
+  @extend .focusable;
+
+  &_telegram {
+    background-image: url(../../../../assets/img/social-tg-blue.svg);
+  }
+
+  &__caption {
+    @extend .visually-hidden;
+  }
+}
+
+.contact-us {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: $color-white;
+  border: 1px solid $color-blue;
+  margin: 0 0 36px;
+  padding: 18px;
+  width: 100%;
+  height: 52px;
+  font-weight: 500;
+  color: $color-blue;
+  border-radius: 4px;
+  box-sizing: border-box;
+  @extend .text-18;
+  @extend .focusable;
+
+  &:hover,
+  &:focus {
+    text-decoration: none;
+  }
+
+  &__caption {
+    @extend .visually-hidden;
+  }
+}
+
+.standalone-header-link {
+  display: none;
+
+  @include screen-from(md) {
+    display: block;
+    order: 3;
+  }
+
+  &_align-right {
+    @include screen-from(md) {
+      flex-grow: 10;
+      order: 4;
+      margin-left: auto;
+      margin-right: 20px;
+      padding-right: 20px;
+      border-right: 1px solid $ui-200;
+      text-align: right;
+    }
+  }
+
+  &_without-delimeter {
+    @include screen-from(md) {
+      display: flex;
+      border-right-style: none;
+      padding-right: 0;
+    }
+  }
+}
+
+.course-catalog-btn {
+  background: url(./img/icon-catalog.svg) 20px 50% no-repeat;
+  border: 1px solid $ui-200;
+  margin-left: 40px;
+  padding: 9.5px 20px 9.5px 50px;
+  color: $ui-999;
+  border-radius: 4px;
+
+  @extend .text-16;
+  @extend .text-bold;
+  @extend .focusable;
+
+  &:hover,
+  &:focus {
+    text-decoration: none;
+  }
+}
+
+.telegram-chat-btn {
+  display: inline-block;
+  background: url(./img/icon-telegram_32x32.svg) 0 50% no-repeat;
+  background-size: 40px 40px;
+  padding: 8px 0 8px 48px;
+  line-height: 24px;
+  color: $color-black;
+  @extend .text-16;
+  @extend .text-bold;
+  @extend .focusable;
+
+  &:hover,
+  &:focus {
+    text-decoration: none;
+  }
+
+  &_without-caption {
+    display: block;
+    padding: 0 0 0 24px;
+    min-height: 24px;
+
+    @include screen-from(md) {
+      margin-left: auto;
+      padding: 0 0 0 40px;
+      min-height: 40px;
+    }
+  }
+
+  &__caption {
+    @extend .visually-hidden;
+  }
+}

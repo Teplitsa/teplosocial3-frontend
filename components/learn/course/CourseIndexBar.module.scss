@@ -1,0 +1,49 @@
+@import "../../../assets/sass/base/fonts";
+@import "../../../assets/sass/base/presets";
+@import "../../../assets/sass/base/typography";
+
+@mixin courseIndexBarModule__bar {
+    @include text-h-xs;
+    color: $color-white;
+    background-color: $blue-700;
+    border: 1px solid $color-white;
+    border-radius: 4px;
+    padding: 0px 16px;
+    height: 52px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+}
+
+.bar {
+    @include courseIndexBarModule__bar;
+}
+
+.barOpen {
+    @include courseIndexBarModule__bar;
+    background-color: $color-white;
+    color: $color-black;
+    border-bottom-right-radius: 0px;
+    border-bottom-left-radius: 0px;
+    border-bottom: 1px solid $ui-100;
+}
+
+.indexWrapper {
+    position: relative;
+}
+
+.indexContent {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    background-color: $color-white;
+    border-radius: 4px;
+    box-shadow: 0px 4px 32px rgba(16, 16, 31, 0.12);
+    z-index: 10;
+}
+
+.indexListWrapper {
+    padding: 24px 24px 0px 24px;
+}

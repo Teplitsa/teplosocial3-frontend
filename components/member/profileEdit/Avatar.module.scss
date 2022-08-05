@@ -1,0 +1,63 @@
+@import "../../../assets/sass/base/fonts";
+@import "../../../assets/sass/base/presets";
+@import "../../../assets/sass/base/typography";
+
+.header {
+    padding: 50px 0px 0px 0px;
+    background-color: $color-white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.fileInputContainer {
+    position: relative;
+    width: 133px;
+    height: 133px;
+    cursor: pointer;
+
+    input[type=file] {
+        width: 100%;
+        height: 100%;
+        cursor: pointer;
+    }
+}
+
+.avatarWrapper {
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    width: 133px;
+    height: 133px;
+    background-color: $color-white;
+    pointer-events: none;
+}
+
+.avatar {
+    width: 133px;
+    height: 133px;
+    border-radius: 200px;
+    overflow: hidden;
+    pointer-events: none;
+}
+
+.avatarImage {
+    max-width: 133px;
+    max-height: 133px;
+}
+
+.cameraIcon {
+    position: absolute;
+    left: calc(50% - 24.5px);
+    top: calc(50% - 24.5px);
+    width: 49px;
+    height: 49px;
+}
+
+.noAvatar {
+    width: 133px;
+    height: 133px;
+    border-radius: 200px;
+    background-color: $color-blue;
+}

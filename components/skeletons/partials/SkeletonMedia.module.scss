@@ -1,0 +1,7 @@
+@import "../../../assets/sass/base/presets";
+@import "../MainSkeleton.module.scss";
+
+.skeleton-media {
+  background-color: $color-gray-light;
+  @extend .item-mock-alt;
+}

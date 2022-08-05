@@ -1,0 +1,27 @@
+@import "../../assets/sass/base/fonts";
+@import "../../assets/sass/base/presets";
+@import "../../assets/sass/base/typography";
+
+.container {
+    margin-top: 16px;
+
+    div[class^=ProgressBar_progress__text__] {
+        margin-top: 16px;
+        margin-bottom: 16px;
+        @include caption-progress;
+    }
+}
+
+.link {
+    @include text-bold;
+    color: $color-black;
+    display: flex;
+    align-items: center;
+
+    img {
+        margin-right: 4px;
+    }
+
+    span {
+    }
+}

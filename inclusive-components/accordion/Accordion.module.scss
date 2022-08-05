@@ -1,0 +1,74 @@
+@import "../../assets/sass/base/presets";
+@import "../A11y-common.module.scss";
+
+.accordion {
+  visibility: visible;
+  &__item {
+    overflow: hidden;
+    transition: all 0.3s linear;
+
+    &:not(:last-child) {
+      margin-bottom: 20px;
+    }
+
+    &_active {
+      max-height: max-content;
+    }
+  }
+  &__title {
+    margin: 0;
+    &_active {
+      visibility: visible;
+    }
+  }
+  &__control {
+    width: 100%;
+    min-height: 50px;
+
+    &[class*="__control"] {
+      cursor: pointer;
+    }
+
+    &[aria-expanded] {
+      border-top: 1px solid $color-gray;
+      border-bottom: 1px solid $color-gray;
+    }
+
+    &_active {
+      [class*="-text"]::after {
+        background: url(./img/icon-minus_green_18x18.svg) 50% 50% no-repeat;
+      }
+    }
+
+    &-text {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      line-height: 1.27;
+
+      &::after {
+        content: "";
+        display: block;
+        align-self: end;
+        background: url(./img/icon-plus_green_18x18.svg) 50% 50% no-repeat;
+        margin-right: 21px;
+        width: 18px;
+        height: 18px;
+        transition: background 0.3s linear;
+      }
+
+      :focus > &::after {
+        @extend .focus;
+      }
+    }
+  }
+  &__content {
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s linear;
+
+    &_active {
+      opacity: 1;
+      visibility: visible;
+    }
+  }
+}

@@ -1,0 +1,76 @@
+/** == Settings and variables (_presets.scss)  == **/
+
+$base: 8px;
+$content-width: 1144px;
+$content-width-wizard: 1440px;
+$breakpoints: (
+  xs: 0,
+  sm: 768px,
+  md: 992px,
+  lg: 1200px,
+  xl: 1600px,
+);
+
+$desktop-content-wrapper-width: 1138px;
+$desktop-content-width: 840px;
+
+$color-white: #ffffff;
+$color-white-opacity02: rgba(255, 255, 255, 0.2);
+$color-black: #000000;
+$color-black-opacity04: rgba(0, 0, 0, 0.4);
+$color-black-opacity01: rgba(0, 0, 0, 0.1);
+$color-blue: #2f59e7;
+$color-green-main-start: #1ea013;
+$color-green-main-stop: #06a616;
+$color-green-main: $color-green-main-start;
+$color-green-gradient-start: #81e377;
+$color-green-gradient-stop: #77e3bc;
+$color-gray: #c4c4c4;
+$gray-graphite: #9a9a9a;
+$color-gray-light: #efeff1;
+$color-gray-light-opacity04: rgb(239, 239, 241, 0.4);
+$color-gray-light2: #fcfcfe;
+$color-gray-light-border: #c4c4c4;
+$color-gray-light-md: rgba(21, 21, 56, 0.2);
+$color-error: #d33d5d;
+$color-warning: #fab400;
+$color-pink-light: #ffdde3;
+
+$color-gray-dark-xl: #322e28;
+$color-gray-dark-lg-001: #474f62;
+$color-gray-dark-lg: #575552;
+$color-gray-dark-md-001: #897e76;
+$color-gray-dark-md: #81766f;
+// $color-gray: #bab5ab;
+$color-gray-light-sm: #e3eaed;
+// $color-gray-light-md: #e6dfd1;
+$color-gray-light-lg: #f3efe7;
+$color-gray-light-xl: #fbf8f4;
+
+/** Color styles **/
+
+$ui-000: #ffffff;
+$ui-050: #fcfcfe;
+$ui-100: #efeff1;
+$ui-200: #c4c4c4;
+$ui-300: #9a9a9a;
+$ui-700: #595959;
+$ui-999: #000000;
+$green-blue-light: #f2fcf5;
+
+$green-050: #f2fcf5;
+$green-200: #8de7a4;
+$green-400: #6fe78d; // TO DO: Надо уточнить название
+$green-700: #009b27;
+$green-gradient: #81e377;
+
+$blue-050: #f6f8fe;
+$blue-200: #c8d2f4;
+
+$blue-700: #1845de;
+$blue-900: #0e42da; // TO DO: Надо уточнить название
+
+$yellow-700: #fab400;
+$red-700: #d33d5d;
+
+// «»

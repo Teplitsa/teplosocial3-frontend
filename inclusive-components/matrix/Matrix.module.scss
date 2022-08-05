@@ -1,0 +1,170 @@
+@import "../../assets/sass/base/presets";
+@import "../../assets/sass/helpers/responsive-design-mixins";
+@import "../typography/body/Text.module.scss";
+@import "../A11y-common.module.scss";
+
+@keyframes slideUp {
+  from {
+    z-index: 1;
+    transform: translate(0, calc(100% + 20px));
+  }
+  to {
+    z-index: auto;
+    transform: none;
+  }
+}
+
+@keyframes slideDown {
+  from {
+    z-index: 1;
+    transform: translate(0, calc(-100% - 20px));
+  }
+  to {
+    z-index: auto;
+    transform: none;
+  }
+}
+
+.matrix {
+  display: flex;
+  flex-flow: row;
+  flex-wrap: wrap;
+  margin-bottom: 0;
+
+  @include screen-from(sm) {
+    gap: 20px;
+    margin-bottom: 30px;
+  }
+
+  &-term {
+    display: grid;
+    align-items: center;
+    margin-bottom: 10px;
+    width: 100%;
+    border: 1px solid $color-gray;
+    padding: 16px;
+    border-radius: 4px;
+    box-sizing: border-box;
+
+    @extend .text-16;
+
+    @include screen-from(sm) {
+      margin-bottom: 0;
+      width: calc(100% - 246px - 20px);
+    }
+  }
+
+  &-definition {
+    position: relative;
+    display: grid;
+    align-items: center;
+    background: url(./img/drug.svg) 16px 50% no-repeat $ui-000;
+    border: 1px solid $color-gray;
+    padding: 16px 16px 16px 44px;
+    border-radius: 4px;
+    cursor: url(./img/cursor.svg) 12 12, pointer;
+    user-select: none;
+    box-sizing: border-box;
+    transform: none;
+    transition: all 0.15s linear, transform 0.15s ease-in-out;
+
+    @extend .text-16;
+
+    @include screen-from(sm) {
+      padding: 31px 16px 31px 54px;
+    }
+
+    &::before {
+      content: "";
+      display: block;
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      width: 4px;
+      border-left: 4px solid transparent;
+      border-radius: 4px 0 0 4px;
+      transition: all 0.15s linear;
+      box-sizing: border-box;
+
+      @include screen-from(sm) {
+        width: 8px;
+        border-left: 8px solid transparent;
+      }
+    }
+
+    &_animated {
+      &-up {
+        animation: slideUp 0.15s 1 ease-in-out;
+      }
+      &-down {
+        animation: slideDown 0.15s 1 ease-in-out;
+      }
+    }
+
+    &_selected {
+      background: url(./img/drug.svg) 16px 50% no-repeat $green-050;
+      border: 1px solid $green-700;
+
+      &::before {
+        border-color: $green-700;
+      }
+    }
+
+    &_active {
+      position: absolute;
+      background: url(./img/drug.svg) 16px 50% no-repeat $green-050;
+      border: 1px solid $green-700;
+
+      &:not([class*="_touchable"]) {
+        width: 100%;
+        z-index: -1;
+        transform: translate(-100vw, 0);
+      }
+
+      &[class*="_touchable"] {
+        position: fixed;
+        z-index: 10;
+        transition: none;
+      }
+    }
+    &_disabled {
+      background: none 16px 50% no-repeat $ui-100;
+      border: 1px dashed $ui-300;
+      color: transparent;
+    }
+    &_touchable {
+      visibility: visible;
+    }
+
+    &-container {
+      position: relative;
+      margin-bottom: 30px;
+      width: 100%;
+      border-radius: 4px;
+      box-sizing: border-box;
+
+      @include screen-from(sm) {
+        margin-bottom: 0;
+        width: 246px;
+      }
+
+      &::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        background-color: $ui-100;
+        border: 1px dashed $ui-300;
+        width: 100%;
+        height: 100%;
+        border-radius: 4px;
+        box-sizing: border-box;
+      }
+
+      @include screen-from(sm) {
+        display: grid;
+        align-self: stretch;
+      }
+    }
+  }
+}

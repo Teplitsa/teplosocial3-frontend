@@ -1,0 +1,119 @@
+@import "../../../assets/sass/base/fonts";
+@import "../../../assets/sass/base/presets";
+@import "../../../assets/sass/base/typography";
+@import "../../../assets/sass/helpers/mixins";
+@import "../../../assets/sass/components/learn-content";
+
+@import "bootstrap/scss/_functions";
+@import "bootstrap/scss/_variables";
+@import "bootstrap/scss/_mixins";
+@import "bootstrap/scss/mixins/_breakpoints";
+
+.item {
+    margin-top: 20px;
+    padding: 0px 0px 0px 0px;
+    @include text;
+
+    color: $color-black;
+
+    div[class*=Accordion_ArrowControlTheme_accordion__] {
+        h2[class*=Accordion_ArrowControlTheme_accordion__title__] {
+            border-bottom: 1px solid $color-gray-light-border;
+            position: relative;
+
+            @include media-breakpoint-up(md) {
+                display: flex;
+                justify-content: center;
+                width: 100%;
+            }
+        }
+
+        button[class*=Button_btn__][class*=Accordion_ArrowControlTheme_accordion__control__] {    
+            @include course-item-header;
+            flex-wrap: wrap;
+            background: none;
+            position: unset;
+
+            @include media-breakpoint-up(md) {
+                width: 100%;
+                max-width: $desktop-content-width;
+                margin-left: 0px;
+                padding-left: 0px;
+            }
+
+            &:before {
+                left: -40px;
+                // right: -40px;
+            }
+
+            div[class^=ModuleListItem_meta__] {
+                flex-basis: 100%;
+                margin-bottom: 12px;
+            }
+        }
+
+        div[class*=Accordion_ArrowControlTheme_accordion__content__] {
+            @include media-breakpoint-up(md) {
+                width: 100%;
+                max-width: $desktop-content-width;
+            }
+        }
+    }
+
+    section[class*=Accordion_ArrowControlTheme_accordion__item__] {
+        @include media-breakpoint-up(md) {
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            align-items: center;
+        }            
+
+        div[class^=ModuleListItem_meta__] {
+            img[class*=metaIconDark] {
+                display: none;
+            }
+
+            img[class*=metaIconLight] {
+                display: inline;
+            }
+        }
+
+        &[class*=expanded] {
+            h2[class*=Accordion_ArrowControlTheme_accordion__title__] {
+                border-bottom: 1px solid transparent;
+            }
+    
+            div[class^=ModuleListItem_meta__] {
+                *[class*=metaItem] {
+                    color: $color-black;
+                }
+
+                img[class*=metaIconDark] {
+                    display: inline;
+                }
+
+                img[class*=metaIconLight] {
+                    display: none;
+                }
+            }
+        }
+    }    
+
+}
+
+.headerOpen {
+    @include course-item-header;
+}
+
+.title {
+    @include course-item-title;
+}
+
+.titleOpen {
+    @include course-item-title;
+    border-bottom: 1px solid transparent;
+}
+
+.modules {
+    padding-top: 4px;
+}
