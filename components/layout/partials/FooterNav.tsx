@@ -18,11 +18,11 @@ const FooterNav: React.FunctionComponent = (): ReactElement => {
         </Link>
         */}
       </nav>
-      <div className={styles.rss}>
+      {/* <div className={styles.rss}>
         <a href="/feed/" target="_blank">
           RSS-канал
         </a>
-      </div>
+      </div> */}
     </div>
   );
 };

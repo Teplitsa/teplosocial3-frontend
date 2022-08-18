@@ -11,52 +11,52 @@
 @import "../../../inclusive-components/A11y-common.module.scss";
 
 .container {
-    @include media-breakpoint-up(lg) {
-        width: 310px;
-    }
+  @include media-breakpoint-up(lg) {
+    width: 310px;
+  }
 }
 
 .contact {
-    @include text-xxl;
+  @include text-xxl;
+  color: $color-white;
+
+  a {
+    @include a-underline;
+    @extend .focusable-white;
     color: $color-white;
-    
-    a {
-        @include a-underline;
-        @extend .focusable-white;
-        color: $color-white;
-    }
+  }
 }
 
 .rss {
-    margin-top: 22px;
-    display: block;
-    
-    @include media-breakpoint-up(lg) {
-        display: none;
-    }
-    
-    a {
-        @include a-underline;
-        @include text-bold;
-        line-height: 22px;
-        color: $color-white;
-        @extend .focusable-white;
-        display: flex;
-        align-items: center;
-        justify-content: flex-start;
+  margin-top: 22px;
+  display: block;
 
-        &::before {
-            content: " ";
-            background-image: url(../../../assets/img/icon-rss.svg);
-            display: inline-block;
-            width: 16px;
-            height: 16px;
-            margin-right: 6px;
-        }
+  // @include media-breakpoint-up(lg) {
+  //     display: none;
+  // }
+
+  a {
+    @include a-underline;
+    @include text-bold;
+    line-height: 22px;
+    color: $color-white;
+    @extend .focusable-white;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+
+    &::before {
+      content: " ";
+      background-image: url(../../../assets/img/icon-rss.svg);
+      display: inline-block;
+      width: 16px;
+      height: 16px;
+      margin-right: 6px;
     }
-    
-    img {
-        width: 20px;
-        height: 20px;
-    }
+  }
+
+  img {
+    width: 20px;
+    height: 20px;
+  }
 }
