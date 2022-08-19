@@ -23,8 +23,7 @@
 
   @include media-breakpoint-up(lg) {
     margin-top: 0px;
-    margin-left: 54px;
-    margin-right: 54px;
+    margin-left: 82px;
     width: calc(100% - 625px);
   }
 }
@@ -52,7 +51,7 @@
     flex-flow: row wrap;
     grid-row-gap: 17px;
     gap: 17px;
-    margin: 0 0 30px;
+    margin: 6px 0 30px;
     padding: 0;
     list-style-type: none;
   }

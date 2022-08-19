@@ -11,7 +11,7 @@
 @import "../../../inclusive-components/A11y-common.module.scss";
 
 .licence {
-  margin-top: 8px;
+  margin-top: 10px;
   flex-basis: 100%;
   border-top: 1px solid $blue-050;
   display: flex;
@@ -25,7 +25,7 @@
   }
 
   & > div {
-    margin-top: 20px;
+    margin-top: 19px;
 
     &:last-child {
       @include media-breakpoint-up(lg) {
@@ -40,7 +40,7 @@
     text-align: left;
     color: $color-white;
     padding: 0px;
-    margin: 0px 0px 4px 0px;
+    margin: 0px 0px 2px 0px;
 
     &:last-child {
       margin-bottom: 0px;

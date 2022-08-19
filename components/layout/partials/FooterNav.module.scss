@@ -16,7 +16,7 @@
   justify-content: flex-start;
 
   @include media-breakpoint-up(lg) {
-    width: 205px;
+    width: 204px;
     padding-top: 6px;
   }
 
@@ -37,34 +37,34 @@
 }
 
 .rss {
-    display: none;
-    
-    @include media-breakpoint-up(lg) {
-        display: block;
-    }
-    
-    a {
-        @include a-underline;
-        @include text-bold;
-        line-height: 22px;
-        color: $color-white;
-        @extend .focusable-white;
-        display: flex;
-        align-items: center;
-        justify-content: flex-start;
+  display: none;
 
-        &::before {
-            content: " ";
-            background-image: url(../../../assets/img/icon-rss.svg);
-            display: inline-block;
-            width: 16px;
-            height: 16px;
-            margin-right: 6px;
-        }
+  @include media-breakpoint-up(lg) {
+    display: block;
+  }
+
+  a {
+    @include a-underline;
+    @include text-bold;
+    line-height: 22px;
+    color: $color-white;
+    @extend .focusable-white;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+
+    &::before {
+      content: " ";
+      background-image: url(../../../assets/img/icon-rss.svg);
+      display: inline-block;
+      width: 16px;
+      height: 16px;
+      margin-right: 6px;
     }
-    
-    img {
-        width: 20px;
-        height: 20px;
-    }
+  }
+
+  img {
+    width: 20px;
+    height: 20px;
+  }
 }
