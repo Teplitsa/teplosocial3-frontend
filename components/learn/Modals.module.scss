@@ -9,61 +9,77 @@
 @import "bootstrap/scss/mixins/_breakpoints";
 
 .modalActions {
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: center;
-    margin-bottom: 32px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  margin-bottom: 32px;
 
-    & > *:not(:first-child) {
-        margin-top: 20px;
-    }
+  & > *:not(:first-child) {
+    margin-top: 20px;
+  }
 
-    & > button[class*=Button_btn_primary__] {
-        width: 80%;
-    }
+  & > button[class*="Button_btn_primary__"] {
+    width: 80%;
+  }
 
-    & > button[class*=Button_btn_reset__] {
-        color: $color-green-main;
-        cursor: pointer;
-    }
+  & > button[class*="Button_btn_reset__"] {
+    color: $color-green-main;
+    cursor: pointer;
+  }
 }
 
 .modalActionsSmallGap,
 .modalActionsCenter {
-    display: flex;
-    justify-content: space-between;
-    margin-top: 30px;
+  display: flex;
+  justify-content: space-between;
+  margin-top: 30px;
 
-    button[class^=Button_btn_] {
-        max-width: 160px;
-    }
+  button[class^="Button_btn_"] {
+    max-width: 160px;
+  }
 
-    @include media-breakpoint-up(md) {
-        button[class^=Button_btn_] {
-            width: 100%;
-            max-width: 285px;
-        }
+  @include media-breakpoint-up(md) {
+    button[class^="Button_btn_"] {
+      width: 100%;
+      max-width: 285px;
     }
+  }
 }
 
 .modalActionsCenter {
-    justify-content: center;
+  justify-content: center;
 }
 
 .modalText {
-    text-align: center;    
-    margin-top: -20px !important;
-    @include text-xl;
+  text-align: center;
+  margin-top: -20px !important;
+  @include text-xl;
 }
 
 .modalTextSlim {
-    text-align: left;
-    margin-top: 0px !important;
-    @include text-xl-rare;
+  text-align: left;
+  margin-top: 0px !important;
+  @include text-xl-rare;
 
-    a {
-        @include a-underline;
-        color: $ui-999;
-    }
+  a {
+    @include a-underline;
+    color: $ui-999;
+  }
+}
+
+.modalLogin {
+  display: block;
+  margin-top: 21px;
+  text-align: center;
+  font-size: 20px;
+  text-decoration: none;
+  color: $color-black;
+  &:hover {
+    text-decoration: none;
+  }
+  span {
+    color: $green-700;
+    cursor: pointer;
+  }
 }

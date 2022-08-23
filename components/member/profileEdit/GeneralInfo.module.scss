@@ -3,17 +3,18 @@
 @import "../../../assets/sass/base/typography";
 
 .content {
-    padding: 32px 40px 0px 40px;
+  padding: 21px 15px 0px 15px;
 
-    div[class^=InputText_input-wrapper__] {
-        &:not(:first-child) {
-            margin-top: 20px;
-        }
+  div[class^="InputText_input-wrapper__"] {
+    &:not(:first-child) {
+      margin-top: 24px;
     }
+  }
 
-    div[class^=TextArea_textarea-wrapper__] {
-        &:not(:first-child) {
-            margin-top: 20px;
-        }
+  div[class^="TextArea_textarea-wrapper__"] {
+    &:not(:first-child) {
+      margin-top: 24px;
+      min-height: 111px;
     }
+  }
 }

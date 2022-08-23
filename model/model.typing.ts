@@ -224,6 +224,7 @@ export interface IProfileThunks {
       file: File;
       profile: IProfileState;
       doneCallback: (params?: IDoneCallbackParams) => void;
+      failCallback?: (params?: IDoneCallbackParams) => void;
     }
   >;
   updateProfileRequest: Thunk<

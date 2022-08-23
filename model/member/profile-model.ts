@@ -8,9 +8,14 @@ import {
   IProfileActions,
   IProfileThunks,
   IFetchResult,
-  IUserState
+  IUserState,
 } from "../model.typing";
-import { stripTags, getAjaxUrl, getRestApiUrl, tokenFetch } from "../../utilities/utilities";
+import {
+  stripTags,
+  getAjaxUrl,
+  getRestApiUrl,
+  tokenFetch,
+} from "../../utilities/utilities";
 import { userInitialState } from "../base/user-model";
 
 export const profileState: IProfileState = {
@@ -43,20 +48,20 @@ const profileThunks: IProfileThunks = {
   uploadUserAvatarRequest: thunk(
     async (
       actions,
-      { profile, file, doneCallback },
+      { profile, file, doneCallback, failCallback },
       { getStoreState }
     ) => {
       if (!file) return;
 
       const formData = new FormData();
-      formData.append( 'file', file );
-      formData.append( 'title', file.name );
+      formData.append("file", file);
+      formData.append("title", file.name);
 
       try {
         const result = await tokenFetch(getRestApiUrl(`/wp/v2/media`), {
           method: "post",
           // headers: {"Content-Type": "application/json"},
-          headers: {"X-WP-Nonce": profile.fileUploadNonce},
+          headers: { "X-WP-Nonce": profile.fileUploadNonce },
           body: formData,
         });
 
@@ -64,7 +69,7 @@ const profileThunks: IProfileThunks = {
           // console.log("profile updated ok");
           const data = await result.json();
           // console.log("upload result data:", data);
-          doneCallback({...data});
+          doneCallback({ ...data });
         } else {
           const { code: errorCode, message: errorMessage } = await (<
             Promise<{
@@ -76,29 +81,29 @@ const profileThunks: IProfileThunks = {
           console.error("errorCode:", errorCode);
 
           // doneCallback({error: stripTags(errorMessage)});
-          doneCallback({error: "При обновлении профиля произошла ошибка!"});
+          doneCallback({ error: "При обновлении профиля произошла ошибка!" });
+          failCallback();
         }
-
       } catch (error) {
-        doneCallback({error: "При обновлении профиля произошла ошибка!"});
+        doneCallback({ error: "При обновлении профиля произошла ошибка!" });
+        failCallback();
         console.error(error);
       }
     }
   ),
   updateProfileRequest: thunk(
-    async (
-      actions,
-      { profile, formData, doneCallback },
-      { getStoreState }
-    ) => {
+    async (actions, { profile, formData, doneCallback }, { getStoreState }) => {
       if (!formData) return;
 
       try {
-        const result = await tokenFetch(getRestApiUrl(`/tps/v1/user/update-profile`), {
-          method: "post",
-          headers: {"Content-Type": "application/json"},
-          body: JSON.stringify(formData),
-        });
+        const result = await tokenFetch(
+          getRestApiUrl(`/tps/v1/user/update-profile`),
+          {
+            method: "post",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(formData),
+          }
+        );
 
         if (result.ok) {
           // console.log("profile updated ok");
@@ -114,27 +119,25 @@ const profileThunks: IProfileThunks = {
           console.error("errorCode:", errorCode);
 
           // doneCallback({error: stripTags(errorMessage)});
-          doneCallback({error: "При обновлении профиля произошла ошибка!"});
+          doneCallback({ error: "При обновлении профиля произошла ошибка!" });
         }
-
       } catch (error) {
-        doneCallback({error: "При обновлении профиля произошла ошибка!"});
+        doneCallback({ error: "При обновлении профиля произошла ошибка!" });
         console.error(error);
       }
     }
   ),
   loadProfileRequest: thunk(
-    async (
-      actions,
-      { profile, doneCallback },
-      { getStoreState }
-    ) => {
+    async (actions, { profile, doneCallback }, { getStoreState }) => {
       try {
-        const {error: loadProfileError, data: freshProfile} = await requestProfile(profile.slug)
-        doneCallback(!loadProfileError ? {freshProfile} : {error: loadProfileError});
+        const { error: loadProfileError, data: freshProfile } =
+          await requestProfile(profile.slug);
+        doneCallback(
+          !loadProfileError ? { freshProfile } : { error: loadProfileError }
+        );
       } catch (error) {
         console.error(error);
-        doneCallback({error: "При обновлении профиля произошла ошибка!"});
+        doneCallback({ error: "При обновлении профиля произошла ошибка!" });
       }
     }
   ),
@@ -146,11 +149,11 @@ export async function requestProfile(slug) {
 
   try {
     let url = new URL(getRestApiUrl(`/wp/v2/users`));
-    url.search = new URLSearchParams({slug}).toString();
+    url.search = new URLSearchParams({ slug }).toString();
 
     const response = await tokenFetch(url);
 
-    if(!response.ok) {
+    if (!response.ok) {
       ({ message: error } = await response.json());
     } else {
       const responseData = await response.json();
@@ -162,15 +165,15 @@ export async function requestProfile(slug) {
   }
 
   // console.log("requestProfile data:", data);
-  return {error, data: data as IProfileState};
+  return { error, data: data as IProfileState };
 }
 
 export function getFullName(state: IUserState) {
   let fullNameParts = [];
-  if(_.trim(state.firstName)) {
+  if (_.trim(state.firstName)) {
     fullNameParts.push(state.firstName);
   }
-  if(_.trim(state.lastName)) {
+  if (_.trim(state.lastName)) {
     fullNameParts.push(state.lastName);
   }
   return fullNameParts.join(" ");

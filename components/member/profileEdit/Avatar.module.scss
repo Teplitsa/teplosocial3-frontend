@@ -1,63 +1,89 @@
 @import "../../../assets/sass/base/fonts";
 @import "../../../assets/sass/base/presets";
 @import "../../../assets/sass/base/typography";
+@import "../../../inclusive-components/typography/body/Text.module.scss";
 
 .header {
-    padding: 50px 0px 0px 0px;
-    background-color: $color-white;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: flex-start;
+  padding: 63px 16px 0px 16px;
+  background-color: $color-white;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
 }
 
 .fileInputContainer {
-    position: relative;
-    width: 133px;
-    height: 133px;
-    cursor: pointer;
+  flex-basis: 80px;
+  position: relative;
+  display: flex;
+  width: 80px;
+  height: 80px;
+  cursor: pointer;
 
-    input[type=file] {
-        width: 100%;
-        height: 100%;
-        cursor: pointer;
-    }
+  input[type="file"] {
+    width: 80px;
+    height: 80px;
+    cursor: pointer;
+  }
+}
+
+.uploadInfo {
+  padding-left: 9px;
+  h5 {
+    @extend .text-18;
+    padding-top: 3px;
+    margin: 0;
+    color: $blue-700;
+  }
+  p {
+    @extend .text-20;
+    padding-top: 2px;
+    margin: 0px;
+    line-height: 20px;
+    color: $ui-700;
+  }
+  .error {
+    color: $color-error;
+  }
 }
 
 .avatarWrapper {
-    position: absolute;
-    left: 0px;
-    top: 0px;
-    width: 133px;
-    height: 133px;
-    background-color: $color-white;
-    pointer-events: none;
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  width: 80px;
+  height: 80px;
+  background-color: $color-white;
+  pointer-events: none;
 }
 
 .avatar {
-    width: 133px;
-    height: 133px;
-    border-radius: 200px;
-    overflow: hidden;
-    pointer-events: none;
+  width: 80px;
+  height: 80px;
+  border-radius: 200px;
+  overflow: hidden;
+  pointer-events: none;
 }
 
 .avatarImage {
-    max-width: 133px;
-    max-height: 133px;
+  max-width: 80px;
+  max-height: 80px;
 }
 
 .cameraIcon {
-    position: absolute;
-    left: calc(50% - 24.5px);
-    top: calc(50% - 24.5px);
-    width: 49px;
-    height: 49px;
+  position: absolute;
+  left: calc(50% - 24.5px);
+  top: calc(50% - 24.5px);
+  width: 49px;
+  height: 49px;
+  color: red;
 }
 
 .noAvatar {
-    width: 133px;
-    height: 133px;
-    border-radius: 200px;
-    background-color: $color-blue;
+  width: 76px;
+  height: 76px;
+  background: #f6f8fe;
+  border-radius: 200px;
+  border: 2px solid $blue-200;
+  // background-color: $color-blue;
 }
