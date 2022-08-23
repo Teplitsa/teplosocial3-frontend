@@ -115,7 +115,11 @@ const SocialLinks: React.FunctionComponent<{
         onChange={handleUrlChange}
       />
 
-      <a className={styles.howToLink}>
+      <a
+        href="https://telegram.org/faq#q-what-are-usernames-how-do-i-get-one"
+        target="_blank"
+        className={styles.howToLink}
+      >
         Как заменить номер телефона на имя пользователя в Телеграме?
       </a>
 
