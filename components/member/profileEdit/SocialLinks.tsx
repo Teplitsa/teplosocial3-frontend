@@ -1,23 +1,20 @@
 import {
+  Fragment,
   ReactElement,
   useState,
-  useRef,
   useEffect,
   useLayoutEffect,
 } from "react";
-import { useRouter } from "next/router";
-import * as _ from "lodash";
-import Link from "next/link";
+import useIsomorphicLayoutEffect from "../../../custom-hooks/use-isomorphic-layout-effect";
 
 import { ISocailLink } from "../../../model/model.typing";
-import { useStoreActions } from "../../../model/helpers/hooks";
 import InclusiveComponents from "../../../inclusive-components/inclusive-components";
 
 import styles from "./SocialLinks.module.scss";
 
-import imageTrash from "../../../assets/img/trash.svg";
+// import imageTrash from "../../../assets/img/trash.svg";
 
-const { InputText, InputCheckbox, Button } = InclusiveComponents;
+const { InputText /* InputCheckbox, Button */ } = InclusiveComponents;
 
 const emptyLinkState: ISocailLink = {
   url: "",
@@ -29,16 +26,18 @@ const SocialLinks: React.FunctionComponent<{
   formData;
   setFormData;
 }> = ({ formData, setFormData }): ReactElement => {
-  const inputSocialLinkRef = useRef<HTMLInputElement>(null);
+  const [socialLinks, setSocailLinks] = useState([]);
 
-  const [socialLinks, setSocailLinks] = useState([{ ...emptyLinkState }]);
+  useIsomorphicLayoutEffect(() => {
+    if (!formData) return;
 
-  useEffect(() => {
-    if (!formData) {
-      return;
-    }
-
-    setSocailLinks(formData.social_links);
+    setSocailLinks(
+      formData.social_links.findIndex(
+        (socialLink: ISocailLink | undefined) => socialLink?.type === "telegram"
+      ) !== -1
+        ? formData.social_links
+        : [...formData.social_links, { ...emptyLinkState }]
+    );
   }, [formData]);
 
   function handleUrlChange(event) {
@@ -51,19 +50,19 @@ const SocialLinks: React.FunctionComponent<{
     setFormData({ ...formData });
   }
 
-  function handleMustHideChange(event) {
-    const linkIndex = event.currentTarget.dataset.index;
-    formData["social_links"] = [...socialLinks];
-    formData["social_links"][linkIndex]["mustHide"] =
-      event.currentTarget.checked;
-    setFormData({ ...formData });
-  }
+  // function handleMustHideChange(event) {
+  //   const linkIndex = event.currentTarget.dataset.index;
+  //   formData["social_links"] = [...socialLinks];
+  //   formData["social_links"][linkIndex]["mustHide"] =
+  //     event.currentTarget.checked;
+  //   setFormData({ ...formData });
+  // }
 
-  useLayoutEffect(() => {
-    if (socialLinks.length < 1) {
-      socialLinks.push({ ...emptyLinkState });
-    }
-  });
+  // useLayoutEffect(() => {
+  //   if (socialLinks.length < 1) {
+  //     socialLinks.push({ ...emptyLinkState });
+  //   }
+  // });
 
   return (
     <div className={styles.content}>
@@ -103,25 +102,32 @@ const SocialLinks: React.FunctionComponent<{
         );
       })} */}
 
-      <InputText
-        label="Никнейм или номер телефона в Телеграме"
-        type="nickname"
-        name="social_link[]"
-        data-index={0}
-        value={socialLinks[0]?.url}
-        placeholder="Никнейм или номер телефона в Телеграме"
-        required={false}
-        autoComplete="on"
-        onChange={handleUrlChange}
-      />
+      {socialLinks.map(({ url, type }, i) => {
+        return type === "telegram" ? (
+          <Fragment key={`KeySocialLink${i}`}>
+            <InputText
+              label="Никнейм или номер телефона в Телеграме"
+              type="text"
+              pattern="@\w+|[+0-9\s]{9,15}"
+              name="social_link[]"
+              data-index={i}
+              value={url}
+              placeholder="Никнейм или номер телефона в Телеграме"
+              required={false}
+              autoComplete="on"
+              onChange={handleUrlChange}
+            />
 
-      <a
-        href="https://telegram.org/faq#q-what-are-usernames-how-do-i-get-one"
-        target="_blank"
-        className={styles.howToLink}
-      >
-        Как заменить номер телефона на имя пользователя в Телеграме?
-      </a>
+            <a
+              href="https://telegram.org/faq#q-what-are-usernames-how-do-i-get-one"
+              target="_blank"
+              className={styles.howToLink}
+            >
+              Как заменить номер телефона на имя пользователя в Телеграме?
+            </a>
+          </Fragment>
+        ) : null;
+      })}
 
       {/* <div className={styles.action}>
         <Button
