@@ -84,7 +84,7 @@ const ProfileEdit: React.FunctionComponent = (): ReactElement => {
     const messages = {
       first_name: "Введите имя.",
       last_name: "Введите фамилию.",
-      "social_link[]": "Неверный формат URL.",
+      "social_link[]": "Неверный формат ссылки на социальную сеть.",
     };
     let isValid: {
       first_name?: boolean | undefined;

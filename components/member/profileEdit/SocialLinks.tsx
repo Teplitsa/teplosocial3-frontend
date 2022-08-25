@@ -1,10 +1,4 @@
-import {
-  Fragment,
-  ReactElement,
-  useState,
-  useEffect,
-  useLayoutEffect,
-} from "react";
+import { Fragment, ReactElement, useState, ChangeEvent } from "react";
 import useIsomorphicLayoutEffect from "../../../custom-hooks/use-isomorphic-layout-effect";
 
 import { ISocailLink } from "../../../model/model.typing";
@@ -16,7 +10,7 @@ import styles from "./SocialLinks.module.scss";
 
 const { InputText /* InputCheckbox, Button */ } = InclusiveComponents;
 
-const emptyLinkState: ISocailLink = {
+const emptyTelegramLinkState: ISocailLink = {
   url: "",
   type: "telegram",
   mustHide: false,
@@ -36,17 +30,31 @@ const SocialLinks: React.FunctionComponent<{
         (socialLink: ISocailLink | undefined) => socialLink?.type === "telegram"
       ) !== -1
         ? formData.social_links
-        : [...formData.social_links, { ...emptyLinkState }]
+        : [...formData.social_links, { ...emptyTelegramLinkState }]
     );
   }, [formData]);
 
-  function handleUrlChange(event) {
+  function handleTelegramLinkInput(event: ChangeEvent<HTMLInputElement>) {
     const linkIndex = event.currentTarget.dataset.index;
     const value = event.currentTarget.value;
 
-    formData["social_links"] = [...socialLinks];
-    formData["social_links"][linkIndex]["url"] = value;
-    formData["social_links"][linkIndex]["type"] = "telegram";
+    if (/^@/.test(value) || value === "") return;
+
+    setSocailLinks((prevSocailLinks) => {
+      const newSocailLinks = [...prevSocailLinks];
+      newSocailLinks[linkIndex].url = `@${value}`;
+
+      return newSocailLinks;
+    });
+  }
+
+  function handleLinkChange(event: ChangeEvent<HTMLInputElement>) {
+    const linkIndex = event.currentTarget.dataset.index;
+    const value = event.currentTarget.value;
+
+    formData.social_links = [...socialLinks];
+    formData.social_links[linkIndex].url = value;
+
     setFormData({ ...formData });
   }
 
@@ -60,7 +68,7 @@ const SocialLinks: React.FunctionComponent<{
 
   // useLayoutEffect(() => {
   //   if (socialLinks.length < 1) {
-  //     socialLinks.push({ ...emptyLinkState });
+  //     socialLinks.push({ ...emptyTelegramLinkState });
   //   }
   // });
 
@@ -106,16 +114,17 @@ const SocialLinks: React.FunctionComponent<{
         return type === "telegram" ? (
           <Fragment key={`KeySocialLink${i}`}>
             <InputText
-              label="Никнейм или номер телефона в Телеграме"
+              label="Ник в телеграме"
               type="text"
-              pattern="@\w+|[+0-9\s]{9,15}"
+              pattern="@[_a-zA-z0-9]+"
               name="social_link[]"
               data-index={i}
               value={url}
-              placeholder="Никнейм или номер телефона в Телеграме"
+              placeholder="Ник в телеграме"
               required={false}
               autoComplete="on"
-              onChange={handleUrlChange}
+              onChange={handleLinkChange}
+              onInput={handleTelegramLinkInput}
             />
 
             <a
@@ -135,7 +144,7 @@ const SocialLinks: React.FunctionComponent<{
           type="button"
           name="add_social_link"
           onClick={() => {
-            socialLinks.push({ ...emptyLinkState });
+            socialLinks.push({ ...emptyTelegramLinkState });
             setSocailLinks([...socialLinks]);
           }}
         >
