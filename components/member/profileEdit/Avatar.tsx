@@ -10,7 +10,8 @@ import InclusiveComponents from "../../../inclusive-components/inclusive-compone
 
 import styles from "./Avatar.module.scss";
 
-import imageCamera from "../../../assets/img/camera-blue.svg";
+import imageCamera from "../../../assets/img/camera.svg";
+import imageCameraBlue from "../../../assets/img/camera-blue.svg";
 
 const { SnackbarContext } = InclusiveComponents;
 
@@ -89,10 +90,17 @@ const Avatar: React.FunctionComponent<{
     setTimeout(() => setFailedUploading(false), 5000);
   }
 
+  console.log();
   return (
     <div className={styles.header}>
       {!!profile.avatar && (
-        <div className={styles.fileInputContainer}>
+        <div
+          className={
+            !profile.avatar
+              ? styles.fileInputContainer
+              : styles.fileInputContainerBig
+          }
+        >
           <input
             type="file"
             onChange={(event) => {
@@ -106,25 +114,40 @@ const Avatar: React.FunctionComponent<{
               });
             }}
           />
-          <div className={styles.avatarWrapper}>
-            <div className={styles.avatar}>
+          <div
+            className={
+              !profile.avatar ? styles.avatarWrapper : styles.avatarWrapperBig
+            }
+          >
+            <div className={!profile.avatar ? styles.avatar : styles.avatarBig}>
               {isUploadingImage && <Loader />}
               {!isUploadingImage && (
                 <>
                   {!!profile.avatar ? (
-                    <img
-                      className={styles.avatarImage}
-                      src={profile.avatar}
-                      alt={`Фото профиля ${profileUtils.getFullName(
-                        profile as IUserState
-                      )}!`}
-                    />
+                    <>
+                      <img
+                        className={
+                          !profile.avatar
+                            ? styles.avatarImage
+                            : styles.avatarImageBig
+                        }
+                        src={profile.avatar}
+                        alt={`Фото профиля ${profileUtils.getFullName(
+                          profile as IUserState
+                        )}!`}
+                      />
+                      <img
+                        className={styles.cameraIcon}
+                        src={imageCamera}
+                        alt=""
+                      />
+                    </>
                   ) : (
                     <>
                       <div className={styles.noAvatar}></div>
                       <img
                         className={styles.cameraIcon}
-                        src={imageCamera}
+                        src={imageCameraBlue}
                         alt=""
                       />
                     </>
@@ -135,19 +158,22 @@ const Avatar: React.FunctionComponent<{
           </div>
         </div>
       )}
-      <div className={styles.uploadInfo}>
-        <h5>Загрузите фото профиля</h5>
-        {hasFailedUploading ? (
-          <p className={styles.error}>
-            Эту фотографию мы загрузить не можем. Попробуйте другую в формате
-            JPEG, PNG, GIF не более 2 MB
-          </p>
-        ) : (
-          <p>
-            Можно загрузить файл формата JPEG, PNG, GIF и размером не более 2 MB
-          </p>
-        )}
-      </div>
+      {!profile.avatar && (
+        <div className={styles.uploadInfo}>
+          <h5>Загрузите фото профиля</h5>
+          {hasFailedUploading ? (
+            <p className={styles.mistake}>
+              Эту фотографию мы загрузить не можем. Попробуйте другую в формате
+              JPEG, PNG, GIF не более 2 MB
+            </p>
+          ) : (
+            <p>
+              Можно загрузить файл формата JPEG, PNG, GIF и размером не более 2
+              MB
+            </p>
+          )}
+        </div>
+      )}
     </div>
   );
 };

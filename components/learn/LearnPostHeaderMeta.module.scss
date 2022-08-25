@@ -36,6 +36,7 @@
   display: grid;
   gap: 10px;
   align-items: center;
+  position: absolute;
 
   @include screen-from(sm) {
     grid-template-columns: repeat(3, auto);
