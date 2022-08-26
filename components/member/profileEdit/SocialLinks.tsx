@@ -116,7 +116,7 @@ const SocialLinks: React.FunctionComponent<{
             <InputText
               label="Ник в телеграме"
               type="text"
-              pattern="@[_a-zA-z0-9]+"
+              pattern="@[_a-zA-Z0-9]+"
               name="social_link[]"
               data-index={i}
               value={url}
