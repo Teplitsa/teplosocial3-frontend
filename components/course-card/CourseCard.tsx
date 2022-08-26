@@ -14,6 +14,7 @@ import {
 import { getMediaData, IMediaData } from "../../utilities/media";
 import { ICourseCard } from "../../model/model.typing";
 import styles from "./CourseCard.module.scss";
+import HintTooltip from "components/HintTooltip";
 
 const { ProgressBar } = InclusiveComponents;
 
@@ -45,6 +46,7 @@ const CourseCard: React.FunctionComponent<ICourseCard> = ({
   const router = useRouter();
 
   const [media, setMedia] = useState<IMediaData>(null);
+  const [showHint, setShowHint] = useState(false);
 
   switch (template) {
     case "default":
@@ -162,7 +164,11 @@ const CourseCard: React.FunctionComponent<ICourseCard> = ({
               <a className={styles["course-card__track"]}>{trackTitle}</a>
             </Link>
           )}
-          <span className={styles["course-card__duration"]}>
+          <span
+            className={styles["course-card__duration"]}
+            onMouseEnter={() => setShowHint(true)}
+            onMouseLeave={() => setShowHint(false)}
+          >
             {durationComponents.hours > 0 ? `${durationComponents.hours} ` : ""}
             {durationComponents.hours > 0 &&
               getDeclension({
@@ -182,6 +188,7 @@ const CourseCard: React.FunctionComponent<ICourseCard> = ({
                 caseTwoThreeFourItems: "минуты",
                 restCases: "минут",
               })}
+            {showHint && <HintTooltip />}
           </span>
         </div>
         {(certificates?.horizontal || certificates?.vertical) && (
