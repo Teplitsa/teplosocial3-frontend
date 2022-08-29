@@ -37,10 +37,11 @@
   gap: 10px;
   align-items: center;
   position: absolute;
+  grid-template-columns: repeat(3, auto);
 
-  @include screen-from(sm) {
-    grid-template-columns: repeat(3, auto);
-  }
+  // @include screen-from(sm) {
+  //   grid-template-columns: repeat(3, auto);
+  // }
 }
 
 .metaItem {

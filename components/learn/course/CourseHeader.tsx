@@ -38,10 +38,7 @@ const CourseHeader: React.FunctionComponent<{
   return (
     <div className={styles.header}>
       <div className={styles.headerInner}>
-        <LearnPostHeaderMeta
-          post={course}
-          connectedType={course.track}
-        />
+        <LearnPostHeaderMeta post={course} connectedType={course.track} />
 
         <div className={styles.headerTextWithAction}>
           <div className={styles.headerTextBlock}>
@@ -59,30 +56,43 @@ const CourseHeader: React.FunctionComponent<{
               {courseStartLoading && <Loader />}
 
               {!courseStartLoading && (
-                <Button
-                  className={convertObjectToClassName({
-                    btn_primary: true,
-                    [styles.headerActionBlockBtn]: true,
-                  })}
-                  aria-label={`${startWord} обучение по курсу «${course.title.rendered}»`}
-                  onClick={() => {
-                    if(!session.isLoggedIn) {
-                      router.push(`/blocks/${course.nextBlockSlug}`);
-                    }
-                    else if (alternativeCourseStartingCallback) {
-                      alternativeCourseStartingCallback();
-                    } else {
-                      setCourseStartLoading(true);
-                      startCourseByUser({
-                        course,
-                        user,
-                        doneCallback: courseStartedCallback,
-                      });
-                    }
-                  }}
-                >
-                  {`${startWord} обучение`}
-                </Button>
+                <>
+                  <Button
+                    className={convertObjectToClassName({
+                      btn_primary: course.isCompleted ? false : true,
+                      btn_default: course.isCompleted ? true : false,
+                      [styles.headerActionBlockBtn]: course.isCompleted
+                        ? false
+                        : true,
+                      [styles.headerActionBlockRepeatBtn]: course.isCompleted
+                        ? true
+                        : false,
+                    })}
+                    aria-label={`${startWord} обучение по курсу «${course.title.rendered}»`}
+                    onClick={() => {
+                      if (!session.isLoggedIn) {
+                        router.push(`/blocks/${course.nextBlockSlug}`);
+                      } else if (alternativeCourseStartingCallback) {
+                        alternativeCourseStartingCallback();
+                      } else {
+                        setCourseStartLoading(true);
+                        startCourseByUser({
+                          course,
+                          user,
+                          doneCallback: courseStartedCallback,
+                        });
+                      }
+                    }}
+                  >
+                    {course.isCompleted && <span></span>}
+                    {course.isCompleted
+                      ? "Пройти заново"
+                      : `${startWord} обучение`}
+                  </Button>
+                  <span className={styles.timehint}>
+                    * Примерное время на освоение материалов курса
+                  </span>
+                </>
               )}
             </div>
           )}

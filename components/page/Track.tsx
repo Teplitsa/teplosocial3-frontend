@@ -8,29 +8,42 @@ import TrackContent from "../learn/track/TrackContent";
 
 const Track: React.FunctionComponent = (): ReactElement => {
   const router = useRouter();
-  const track = useStoreState(state => state.components.trackPage.track);
+  const track = useStoreState((state) => state.components.trackPage.track);
   const [trackStartLoading, setTrackStartLoading] = useState(false);
 
-  if(track === null) {
-    return
+  if (track === null) {
+    return;
   }
 
   return (
     <>
-      <TrackHeader {...{track, trackStartLoading, setTrackStartLoading, trackStartedCallback}} />
-      <TrackContent {...{track, trackStartLoading, setTrackStartLoading, trackStartedCallback}} />
+      <TrackHeader
+        {...{
+          track,
+          trackStartLoading,
+          setTrackStartLoading,
+          trackStartedCallback,
+        }}
+      />
+      <TrackContent
+        {...{
+          track,
+          trackStartLoading,
+          setTrackStartLoading,
+          trackStartedCallback,
+        }}
+      />
     </>
   );
 
   function trackStartedCallback(params) {
-    if(params) {
-      router.push("/blocks/" + params.startBlockSlug);
-    }
-    else {
+    if (params) {
+      // router.push("/blocks/" + params.startBlockSlug);
+      router.push("/adaptest-intro/" + params.startCourseSlug);
+    } else {
       setTrackStartLoading(false);
     }
   }
-
 };
 
 export default Track;

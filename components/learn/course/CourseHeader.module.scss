@@ -8,8 +8,9 @@
 @import "bootstrap/scss/mixins/_breakpoints";
 
 @import "../../../inclusive-components/A11y-common.module.scss";
-
+@import "../../../inclusive-components/typography/body/Text.module.scss";
 .header {
+  position: relative;
   padding: 20px;
   @include text-lg;
 
@@ -59,5 +60,36 @@
     text-align: center;
 
     @extend .focusable-white;
+  }
+
+  &RepeatBtn {
+    width: 337px;
+    max-width: 100%;
+    text-align: center;
+
+    @extend .focusable-white;
+
+    span {
+      background: url(../../../assets/img/repeat.svg) 0 50% no-repeat $ui-000;
+      background-size: 18px 18px;
+      padding: 5px 0 5px calc(22px + 6px);
+      font-weight: 600;
+      text-align: center;
+      color: $ui-999;
+    }
+  }
+}
+
+.timehint {
+  position: absolute;
+  left: 20px;
+  bottom: 86px;
+  @extend .text-10;
+  color: $color-gray;
+
+  @include screen-from(sm) {
+    left: initial;
+    right: 80px;
+    bottom: 80px;
   }
 }

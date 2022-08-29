@@ -63,6 +63,7 @@ const LearnPostHeaderMeta: React.FunctionComponent<{
                 caseTwoThreeFourItems: "минуты",
                 restCases: "минут",
               })}
+            *
           </span>
         </span>
 
