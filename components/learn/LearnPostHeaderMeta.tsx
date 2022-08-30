@@ -1,4 +1,4 @@
-import { ReactElement } from "react";
+import { ReactElement, useState } from "react";
 import Link from "next/link";
 
 import { ILearnPostState } from "../../model/model.typing";
@@ -14,6 +14,7 @@ import styles from "./LearnPostHeaderMeta.module.scss";
 import imageClock from "../../assets/img/clock-white.svg";
 import imageHexagon from "../../assets/img/t-hexagon-white.svg";
 import imageQuestion from "../../assets/img/question-rounded.svg";
+import HintTooltip from "components/HintTooltip";
 
 const { Button, Tooltip } = InclusiveComponents;
 
@@ -29,6 +30,7 @@ const LearnPostHeaderMeta: React.FunctionComponent<{
     hours: Math.floor(post.duration / 60),
     minutes: post.duration % 60,
   };
+  const [showHint, setShowHint] = useState(false);
 
   return (
     <div className={styles.metaBar}>
@@ -43,7 +45,11 @@ const LearnPostHeaderMeta: React.FunctionComponent<{
 
         <span className={styles.metaItem}>
           <img src={imageClock} alt="" />
-          <span>
+          <span
+            className={styles.onHover}
+            onMouseEnter={() => setShowHint(true)}
+            onMouseLeave={() => setShowHint(false)}
+          >
             {durationComponents.hours > 0 ? `${durationComponents.hours} ` : ""}
             {durationComponents.hours > 0 &&
               getDeclension({
@@ -63,7 +69,7 @@ const LearnPostHeaderMeta: React.FunctionComponent<{
                 caseTwoThreeFourItems: "минуты",
                 restCases: "минут",
               })}
-            *
+            {showHint && <HintTooltip />}
           </span>
         </span>
 

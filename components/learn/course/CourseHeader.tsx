@@ -89,9 +89,6 @@ const CourseHeader: React.FunctionComponent<{
                       ? "Пройти заново"
                       : `${startWord} обучение`}
                   </Button>
-                  <span className={styles.timehint}>
-                    * Примерное время на освоение материалов курса
-                  </span>
                 </>
               )}
             </div>

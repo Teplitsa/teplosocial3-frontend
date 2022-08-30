@@ -79,17 +79,3 @@
     }
   }
 }
-
-.timehint {
-  position: absolute;
-  left: 20px;
-  bottom: 86px;
-  @extend .text-10;
-  color: $color-gray;
-
-  @include screen-from(sm) {
-    left: initial;
-    right: 80px;
-    bottom: 80px;
-  }
-}
