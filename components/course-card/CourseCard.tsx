@@ -15,6 +15,7 @@ import { getMediaData, IMediaData } from "../../utilities/media";
 import { ICourseCard } from "../../model/model.typing";
 import styles from "./CourseCard.module.scss";
 import HintTooltip from "components/HintTooltip";
+import { roundDownMinutes } from "utilities/roundDownMinutes";
 
 const { ProgressBar } = InclusiveComponents;
 
@@ -38,7 +39,7 @@ const CourseCard: React.FunctionComponent<ICourseCard> = ({
   let cover: string = null;
   const durationComponents = {
     hours: Math.floor(duration / 60),
-    minutes: duration % 60,
+    minutes: roundDownMinutes(duration),
   };
 
   const courseCardRef = useRef<HTMLDivElement>(null);

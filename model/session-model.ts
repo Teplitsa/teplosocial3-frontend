@@ -129,10 +129,16 @@ const sessionThunks: ISessionThunks = {
             }>
           >result.json());
 
-          // console.error("errorCode:", errorCode);
           // console.error("set session isLoaded on fail");
-
-          errorCallbackFn(stripTags(errorMessage));
+          if (errorCode === "existing_user_email") {
+            errorCallbackFn(
+              stripTags(
+                "Такой пользователь существует — скорее всего, вы уже зарегистрированы. Чтобы войти на платформу, нажмите кнопку «У меня уже есть аккаунт»."
+              )
+            );
+          } else {
+            errorCallbackFn(stripTags(errorMessage));
+          }
         }
       } catch (error) {
         console.error(error);

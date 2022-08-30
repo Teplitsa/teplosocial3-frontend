@@ -15,6 +15,7 @@ import imageClock from "../../assets/img/clock-white.svg";
 import imageHexagon from "../../assets/img/t-hexagon-white.svg";
 import imageQuestion from "../../assets/img/question-rounded.svg";
 import HintTooltip from "components/HintTooltip";
+import { roundDownMinutes } from "utilities/roundDownMinutes";
 
 const { Button, Tooltip } = InclusiveComponents;
 
@@ -28,7 +29,7 @@ const LearnPostHeaderMeta: React.FunctionComponent<{
 }> = ({ post, aboutLink = null, connectedType = null }): ReactElement => {
   const durationComponents = {
     hours: Math.floor(post.duration / 60),
-    minutes: post.duration % 60,
+    minutes: roundDownMinutes(post.duration),
   };
   const [showHint, setShowHint] = useState(false);
 
