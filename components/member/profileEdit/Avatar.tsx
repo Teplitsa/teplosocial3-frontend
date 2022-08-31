@@ -90,13 +90,12 @@ const Avatar: React.FunctionComponent<{
     setTimeout(() => setFailedUploading(false), 5000);
   }
 
-  console.log();
   return (
     <div className={styles.header}>
       {!!profile.avatar && (
         <div
           className={
-            !profile.avatar
+            !profile.avatarFile
               ? styles.fileInputContainer
               : styles.fileInputContainerBig
           }
@@ -116,14 +115,18 @@ const Avatar: React.FunctionComponent<{
           />
           <div
             className={
-              !profile.avatar ? styles.avatarWrapper : styles.avatarWrapperBig
+              !profile.avatarFile
+                ? styles.avatarWrapper
+                : styles.avatarWrapperBig
             }
           >
-            <div className={!profile.avatar ? styles.avatar : styles.avatarBig}>
+            <div
+              className={!profile.avatarFile ? styles.avatar : styles.avatarBig}
+            >
               {isUploadingImage && <Loader />}
               {!isUploadingImage && (
                 <>
-                  {!!profile.avatar ? (
+                  {!!profile.avatarFile ? (
                     <>
                       <img
                         className={
@@ -158,7 +161,7 @@ const Avatar: React.FunctionComponent<{
           </div>
         </div>
       )}
-      {!profile.avatar && (
+      {!profile.avatarFile && (
         <div className={styles.uploadInfo}>
           <h5>Загрузите фото профиля</h5>
           {hasFailedUploading ? (
