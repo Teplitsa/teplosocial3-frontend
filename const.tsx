@@ -14,9 +14,9 @@ export const TEPLO_LOCAL_STORAGE = {
   MODULE_PASSING_STATE: {
     name: "tps-module-passing",
   },
-}
+};
 
 export const TEPLO_CONTACTS = {
   EMAIL: "help@te-st.ru",
-  TELEGRAM: "https://t.me/+6_qRtGg6pWphMGNi",
+  TELEGRAM: "https://t.me/+40Ak0QQlmh9jYjNi",
 };

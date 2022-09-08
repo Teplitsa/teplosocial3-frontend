@@ -25,6 +25,7 @@ const { Button, SnackbarContext } = InclusiveComponents;
 
 const ProfileEdit: React.FunctionComponent = (): ReactElement => {
   const router = useRouter();
+  const user = useStoreState((state) => state.session.user);
   const { dispatch: snackbarDispatch } = useContext(SnackbarContext);
 
   const profile = useStoreState(
@@ -223,6 +224,7 @@ const ProfileEdit: React.FunctionComponent = (): ReactElement => {
               ],
             },
           });
+          setTimeout(() => router.push(`/members/${user.slug}`), 1000);
           return;
         }
       },
