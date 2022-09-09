@@ -16,6 +16,7 @@ import InclusiveComponents from "../../../inclusive-components/inclusive-compone
 import Loader from "../../Loader";
 import Quiz from "../quiz/Quiz";
 import Task from "../task/Task";
+import * as modals from "../Modals";
 
 import styles from "./BlockContent.module.scss";
 
@@ -94,7 +95,11 @@ const BlockActions: React.FunctionComponent<{
               className="btn_secondary"
               aria-label={`Перейти к следующему блоку`}
               onClick={() => {
-                router.push(`/blocks/${block.nextBlockSlug}`);
+                modals.registerToContinueModal({
+                  modalDispatch,
+                  router,
+                  onClose: null,
+                });
               }}
             >
               Дальше

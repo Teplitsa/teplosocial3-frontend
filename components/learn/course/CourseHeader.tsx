@@ -35,6 +35,7 @@ const CourseHeader: React.FunctionComponent<{
 
   const startWord = course.isStarted ? "Продолжить" : "Начать";
 
+  console.log("COURSE", course);
   return (
     <div className={styles.header}>
       <div className={styles.headerInner}>
@@ -51,45 +52,64 @@ const CourseHeader: React.FunctionComponent<{
             )}
           </div>
 
-          {!course.isCompleted && (
+          {!course.isCompleted ? (
             <div className={styles.headerActionBlock}>
               {courseStartLoading && <Loader />}
-
               {!courseStartLoading && (
-                <>
-                  <Button
-                    className={convertObjectToClassName({
-                      btn_primary: course.isCompleted ? false : true,
-                      btn_default: course.isCompleted ? true : false,
-                      [styles.headerActionBlockBtn]: course.isCompleted
-                        ? false
-                        : true,
-                      [styles.headerActionBlockRepeatBtn]: course.isCompleted
-                        ? true
-                        : false,
-                    })}
-                    aria-label={`${startWord} обучение по курсу «${course.title.rendered}»`}
-                    onClick={() => {
-                      if (!session.isLoggedIn) {
-                        router.push(`/blocks/${course.nextBlockSlug}`);
-                      } else if (alternativeCourseStartingCallback) {
-                        alternativeCourseStartingCallback();
-                      } else {
-                        setCourseStartLoading(true);
-                        startCourseByUser({
-                          course,
-                          user,
-                          doneCallback: courseStartedCallback,
-                        });
-                      }
-                    }}
-                  >
-                    {course.isCompleted && <span></span>}
-                    {course.isCompleted
-                      ? "Пройти заново"
-                      : `${startWord} обучение`}
-                  </Button>
-                </>
+                <Button
+                  className={convertObjectToClassName({
+                    btn_primary: course.isCompleted ? false : true,
+                    btn_default: course.isCompleted ? true : false,
+                    [styles.headerActionBlockBtn]: course.isCompleted
+                      ? false
+                      : true,
+                    [styles.headerActionBlockRepeatBtn]: course.isCompleted
+                      ? true
+                      : false,
+                  })}
+                  aria-label={`${startWord} обучение по курсу «${course.title.rendered}»`}
+                  onClick={() => {
+                    if (!session.isLoggedIn) {
+                      router.push(`/blocks/${course.nextBlockSlug}`);
+                    } else if (alternativeCourseStartingCallback) {
+                      alternativeCourseStartingCallback();
+                    } else {
+                      setCourseStartLoading(true);
+                      startCourseByUser({
+                        course,
+                        user,
+                        doneCallback: courseStartedCallback,
+                      });
+                    }
+                  }}
+                >
+                  {startWord} обучение
+                </Button>
+              )}
+            </div>
+          ) : (
+            <div className={styles.headerActionBlock}>
+              {courseStartLoading && <Loader />}
+              {!courseStartLoading && (
+                <Button
+                  className={convertObjectToClassName({
+                    btn_primary: course.isCompleted ? false : true,
+                    btn_default: course.isCompleted ? true : false,
+                    [styles.headerActionBlockBtn]: course.isCompleted
+                      ? false
+                      : true,
+                    [styles.headerActionBlockRepeatBtn]: course.isCompleted
+                      ? true
+                      : false,
+                  })}
+                  aria-label={`${startWord} обучение по курсу «${course.title.rendered}»`}
+                  onClick={() => {
+                    router.push(`/adaptest-intro/${course.slug}`);
+                  }}
+                >
+                  <span></span>
+                  Пройти заново
+                </Button>
               )}
             </div>
           )}

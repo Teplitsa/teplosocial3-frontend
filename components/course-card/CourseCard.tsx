@@ -229,63 +229,67 @@ const CourseCard: React.FunctionComponent<ICourseCard> = ({
             dangerouslySetInnerHTML={{ __html: teaser }}
           />
         )}
-        {!(certificates?.horizontal || certificates?.vertical) &&
-          (isCompleted || progress) && (
-            <div className={styles["course-card__progress"]}>
-              {progress && (
-                <ProgressBar
-                  {...{
-                    valueNow: Number.parseInt(progress),
-                    valueText: `Прогресс обучения ${progress}`,
-                    label: "Прогресс обучения",
-                    visibleText: `Пройдено ${progress}`,
-                    footerAlign: "center",
-                  }}
-                />
-              )}
-              {isCompleted && (
-                <ProgressBar
-                  {...{
-                    valueNow: 100,
-                    valueText: `Прогресс обучения ${progress}`,
-                    label: "Прогресс обучения",
-                    visibleText: null,
-                    footerAlign: "center",
-                    disabled: true,
-                  }}
-                >
-                  <span
-                    className={convertObjectToClassName({
-                      [styles["course-card__progress-caption"]]: true,
-                      [styles["course-card__progress-caption_completed"]]:
-                        Boolean(
-                          styles["course-card__progress-caption_completed"]
-                        ),
-                    })}
+
+        <div>
+          {!(certificates?.horizontal || certificates?.vertical) &&
+            (isCompleted || progress) && (
+              <div className={styles["course-card__progress"]}>
+                {progress && (
+                  <ProgressBar
+                    {...{
+                      valueNow: Number.parseInt(progress),
+                      valueText: `Прогресс обучения ${progress}`,
+                      label: "Прогресс обучения",
+                      visibleText: `Пройдено ${progress}`,
+                      footerAlign: "center",
+                    }}
+                  />
+                )}
+                {isCompleted && (
+                  <ProgressBar
+                    {...{
+                      valueNow: 100,
+                      valueText: `Прогресс обучения ${progress}`,
+                      label: "Прогресс обучения",
+                      visibleText: null,
+                      footerAlign: "center",
+                      disabled: true,
+                    }}
                   >
-                    "Курс пройден!"
-                  </span>
-                </ProgressBar>
-              )}
-            </div>
-          )}
-        <Link href={url}>
-          <a
-            className={convertObjectToClassName({
-              [styles["course-card__action"]]: true,
-              [styles["course-card__action_uninvolved"]]:
-                !progress &&
-                !isCompleted &&
-                Boolean(styles["course-card__action_uninvolved"]),
-              [styles["course-card__action_progress"]]:
-                progress && Boolean(styles["course-card__action_progress"]),
-              [styles["course-card__action_completed"]]:
-                isCompleted && Boolean(styles["course-card__action_completed"]),
-            })}
-          >
-            {btnText}
-          </a>
-        </Link>
+                    <span
+                      className={convertObjectToClassName({
+                        [styles["course-card__progress-caption"]]: true,
+                        [styles["course-card__progress-caption_completed"]]:
+                          Boolean(
+                            styles["course-card__progress-caption_completed"]
+                          ),
+                      })}
+                    >
+                      "Курс пройден!"
+                    </span>
+                  </ProgressBar>
+                )}
+              </div>
+            )}
+          <Link href={url}>
+            <a
+              className={convertObjectToClassName({
+                [styles["course-card__action"]]: true,
+                [styles["course-card__action_uninvolved"]]:
+                  !progress &&
+                  !isCompleted &&
+                  Boolean(styles["course-card__action_uninvolved"]),
+                [styles["course-card__action_progress"]]:
+                  progress && Boolean(styles["course-card__action_progress"]),
+                [styles["course-card__action_completed"]]:
+                  isCompleted &&
+                  Boolean(styles["course-card__action_completed"]),
+              })}
+            >
+              {btnText}
+            </a>
+          </Link>
+        </div>
       </div>
     </div>
   );
