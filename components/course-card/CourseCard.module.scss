@@ -6,6 +6,12 @@
 @import "../../inclusive-components/typography/body/Text.module.scss";
 @import "../../inclusive-components/form/button/Button.module.scss";
 
+.alignFlex {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+}
 .course-card {
   display: grid;
   grid-template-rows: auto 1fr;

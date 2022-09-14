@@ -159,6 +159,7 @@ const CourseCard: React.FunctionComponent<ICourseCard> = ({
             />
           )}
         </div>
+
         <div className={styles["course-card__meta"]}>
           {!!trackId && (
             <Link href={`/tracks/${trackSlug}`}>
@@ -192,6 +193,7 @@ const CourseCard: React.FunctionComponent<ICourseCard> = ({
             {showHint && <HintTooltip />}
           </span>
         </div>
+
         {(certificates?.horizontal || certificates?.vertical) && (
           <ul className={styles["course-card__certificate-list"]}>
             {certificates?.horizontal && (
@@ -223,6 +225,7 @@ const CourseCard: React.FunctionComponent<ICourseCard> = ({
             )}
           </ul>
         )}
+
         {!(certificates?.horizontal || certificates?.vertical) && teaser && (
           <div
             className={styles["course-card__resume"]}
@@ -230,7 +233,7 @@ const CourseCard: React.FunctionComponent<ICourseCard> = ({
           />
         )}
 
-        <div>
+        <div className={styles.alignFlex}>
           {!(certificates?.horizontal || certificates?.vertical) &&
             (isCompleted || progress) && (
               <div className={styles["course-card__progress"]}>
@@ -271,6 +274,7 @@ const CourseCard: React.FunctionComponent<ICourseCard> = ({
                 )}
               </div>
             )}
+
           <Link href={url}>
             <a
               className={convertObjectToClassName({

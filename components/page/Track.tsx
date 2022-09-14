@@ -14,7 +14,6 @@ const Track: React.FunctionComponent = (): ReactElement => {
   if (track === null) {
     return;
   }
-
   return (
     <>
       <TrackHeader

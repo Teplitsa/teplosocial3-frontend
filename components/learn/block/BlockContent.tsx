@@ -341,7 +341,7 @@ const BlockContent: React.FunctionComponent<{ block: IBlockState }> = ({
           <>
             <p className={stylesModal.modalText}>
               Мы проверим ваше задание и напишем вам
-              <br />в течение 24 часов!
+              <br />в ближайшее время!
             </p>
             <div className={stylesModal.modalActions}>
               <Button
