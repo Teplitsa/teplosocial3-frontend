@@ -35,7 +35,6 @@ const CourseHeader: React.FunctionComponent<{
 
   const startWord = course.isStarted ? "Продолжить" : "Начать";
 
-  console.log("COURSE", course);
   return (
     <div className={styles.header}>
       <div className={styles.headerInner}>

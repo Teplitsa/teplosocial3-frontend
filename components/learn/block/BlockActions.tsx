@@ -95,11 +95,7 @@ const BlockActions: React.FunctionComponent<{
               className="btn_secondary"
               aria-label={`Перейти к следующему блоку`}
               onClick={() => {
-                modals.registerToContinueModal({
-                  modalDispatch,
-                  router,
-                  onClose: null,
-                });
+                router.push(`/blocks/${block.nextBlockSlug}`);
               }}
             >
               Дальше
@@ -116,7 +112,11 @@ const BlockActions: React.FunctionComponent<{
               }
               onClick={() => {
                 if (!session.isLoggedIn) {
-                  router.push(`/auth/registration`);
+                  modals.registerToContinueModal({
+                    modalDispatch,
+                    router,
+                    onClose: null,
+                  });
                 } else {
                   router.push(`/courses/${block.courseSlug}`);
                 }

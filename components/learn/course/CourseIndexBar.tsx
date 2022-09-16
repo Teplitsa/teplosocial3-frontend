@@ -42,8 +42,6 @@ const CourseIndexBar: React.FunctionComponent<{ course: ICourseState }> = ({
     );
   }
 
-  console.log("ccc", course);
-
   return (
     <div className={styles.indexWrapper}>
       {isCourseIndexOpen ? (
