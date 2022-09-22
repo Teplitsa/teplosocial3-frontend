@@ -81,7 +81,7 @@ const Quiz: React.FunctionComponent<{
     : "";
   const userPoints = _.get(
     quiz,
-    `checkedAnswers.${quiz.answeredQuestions?.at(0)}.p`,
+    `checkedAnswers.${(quiz.answeredQuestions ?? [])[0]}.p`,
     null
   );
 
