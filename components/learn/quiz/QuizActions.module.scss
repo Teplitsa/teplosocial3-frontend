@@ -1,3 +1,4 @@
+@import "../../../assets/sass/helpers/responsive-design-mixins";
 @import "../../../assets/sass/base/fonts";
 @import "../../../assets/sass/base/presets";
 @import "../../../assets/sass/base/typography";
@@ -30,6 +31,24 @@
 
     button[class^="Button_btn_"] {
       width: 300px;
+    }
+  }
+}
+
+.single-action {
+  margin-top: 30px;
+
+  @include screen-from(sm) {
+    margin-top: 50px;
+  }
+
+  &__btn {
+    margin: 0 auto;
+    width: 300px;
+    max-width: 300px;
+
+    @include screen-from(sm) {
+      margin: 0;
     }
   }
 }

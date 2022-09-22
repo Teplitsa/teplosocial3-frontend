@@ -9,30 +9,36 @@
 @import "bootstrap/scss/mixins/_breakpoints";
 
 @mixin AnswerChiceModule__choiceOption {
-    padding: 16px;
-    border: 1px solid $ui-100;
-    border-radius: 4px;    
+  padding: 16px;
+  border: 1px solid $ui-100;
+  border-radius: 4px;
 
-    &:not(:first-child) {
-        margin-top: 20px;
+  &:not(:first-child) {
+    margin-top: 20px;
+  }
+
+  & > div[class^="InputCheckbox_input-checkbox-wrapper__"],
+  & > div[class^="InputRadio_input-radio-wrapper__"] {
+    margin-top: 0px !important;
+
+    & > label > span[class^="InputCheckbox_input-checkbox-label__text__"] {
+      display: grid;
+      align-items: center;
     }
-
-    & > div[class^=InputCheckbox_input-checkbox-wrapper__],
-    & > div[class^=InputRadio_input-radio-wrapper__] {
-        margin-top: 0px !important;
-
-        & > label > span[class^=InputCheckbox_input-checkbox-label__text__] {
-            display: grid;
-            align-items: center;
-        }
-    }
+  }
 }
 
 .choiceOption {
-    @include AnswerChiceModule__choiceOption;
+  @include AnswerChiceModule__choiceOption;
 }
 
 .choiceOptionSelected {
+  @include AnswerChiceModule__choiceOption;
+  border: 1px solid $green-200;
+
+  &_fullfilled {
     @include AnswerChiceModule__choiceOption;
+    background-color: $green-050;
     border: 1px solid $green-200;
+  }
 }
