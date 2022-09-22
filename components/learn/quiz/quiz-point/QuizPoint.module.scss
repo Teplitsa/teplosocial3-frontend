@@ -1,0 +1,14 @@
+@import "../../../../assets/sass/base/presets";
+@import "../../../../inclusive-components/typography/body/Text.module.scss";
+
+.point {
+  background: url(./img/lightning.svg) 10px 50% no-repeat $ui-050;
+  border: 1px solid $ui-100;
+  margin-bottom: 20px;
+  padding: 12px 26px 12px 50px;
+  border-radius: 4px;
+  box-sizing: border-box;
+
+  @extend .text-14;
+}
+

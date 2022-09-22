@@ -1068,7 +1068,17 @@ export type IQuizCheckedAnswer = {
 };
 export interface IQuizModel extends IQuizState, IQuizActions, IQuizThunks {}
 
+export type QuizType = "normal" | "adaptest" | "quiz" | "checklist";
+
+export type QuizTypeChecklistSettings = {
+  interval_title: string;
+  points_needed: string;
+  description: string;
+}
+
 export interface IQuizState extends IPostState {
+  quizType: QuizType;
+  quizTypeRelatedSettings: Array<QuizTypeChecklistSettings>;
   activeQuestionIndex: number;
   questions: Array<IQuestionState>;
   userAnswers: {

@@ -1,29 +1,25 @@
-import {
-  ReactElement,
-  useEffect,
-  useContext,
-  useRef,
-  useState,
-  MouseEvent,
-} from "react";
+import { ReactElement, useEffect, useState } from "react";
 import Link from "next/link";
-import { useRouter } from "next/router";
 import * as _ from "lodash";
 import { useStoreActions, useStoreState } from "../../../model/helpers/hooks";
 
-import { IBlockState, IQuizState } from "../../../model/model.typing";
+import { QuizTypeChecklistSettings } from "../../../model/model.typing";
 
 import Loader from "../../Loader";
 import QuizProgress from "./QuizProgress";
 import QuizActions from "./QuizActions";
+import QuizDisclaimer from "./QuizDisclaimer";
+import QuizPoint from "./quiz-point/QuizPoint";
+import QuizCheckListResult from "./QuizCheckListResult";
 import AnswerSingle from "./answerType/AnswerSingle";
 import AnswerMultiple from "./answerType/AnswerMultiple";
 import AnswerMatrix from "./answerType/AnswerMatrix";
 import AnswerEssayText from "./answerType/AnswerEssayText";
 import AnswerEssayUpload from "./answerType/AnswerEssayUpload";
 
+import { getDeclension } from "../../../utilities/utilities";
+
 import styles from "./Quiz.module.scss";
-import stylesBlock from "../block/BlockContent.module.scss";
 
 const Quiz: React.FunctionComponent<{
   completeBlockDoneCallback;
@@ -34,6 +30,12 @@ const Quiz: React.FunctionComponent<{
 }): ReactElement => {
   const user = useStoreState((state) => state.session.user);
   const quiz = useStoreState((state) => state.components.blockPage.quiz);
+  const quizType = useStoreState(
+    (state) => state.components.blockPage.quiz.quizType
+  );
+  const quizTypeRelatedSettings = useStoreState(
+    (state) => state.components.blockPage.quiz.quizTypeRelatedSettings ?? []
+  );
   const initQuizPassingState = useStoreActions(
     (actions) => actions.components.blockPage.quiz.initPassingState
   );
@@ -66,6 +68,21 @@ const Quiz: React.FunctionComponent<{
   });
   const moduleListCompletedByAdaptest = useStoreState(
     (state) => state.components.blockPage.course.moduleListCompletedByAdaptest
+  );
+  const quizLabel =
+    (quizType === "checklist" && "Чеклист") || (quizType === "quiz" && "Квиз");
+  const disclaimerMessage = ["checklist"].includes(quizType)
+    ? "Это не соревнование «кто наберет больше баллов». Может быть, вы не согласитесь с какими-то утверждениями, потому что у вас есть собственная практика, rоторая работает для вас эффективнее. И это нормально. Отнеситесь к упражнению как к чеклисту, который обращает ваше внимание на разные аспекты, связанные с темой паролей. Итак, поехали."
+    : "";
+  const pointText = ["checklist", "quiz"].includes(quizType)
+    ? (quizType === "checklist" &&
+        "В этом вопросе может быть больше одного варианта ответа") ||
+      "В этом вопросе может быть только один вариант ответа"
+    : "";
+  const userPoints = _.get(
+    quiz,
+    `checkedAnswers.${quiz.answeredQuestions?.at(0)}.p`,
+    null
   );
 
   useEffect(() => {
@@ -101,9 +118,15 @@ const Quiz: React.FunctionComponent<{
         )}
 
       <div className={styles.block}>
-        <div className={styles.title}>
-          <h2 dangerouslySetInnerHTML={{ __html: quiz.title.rendered }} />
-        </div>
+        {!["checklist", "quiz"].includes(quiz.quizType) && (
+          <div className={styles.title}>
+            <h2 dangerouslySetInnerHTML={{ __html: quiz.title.rendered }} />
+          </div>
+        )}
+
+        {["checklist", "quiz"].includes(quiz.quizType) && (
+          <div className={styles.quizLabel}>{quizLabel}</div>
+        )}
 
         {!(isQuizCompleted || block.isCompleted) && (
           <>
@@ -114,6 +137,14 @@ const Quiz: React.FunctionComponent<{
               />
             )}
           </>
+        )}
+
+        {!(isQuizCompleted || block.isCompleted) && disclaimerMessage && (
+          <QuizDisclaimer {...{ message: disclaimerMessage }} />
+        )}
+
+        {!(isQuizCompleted || block.isCompleted) && pointText && (
+          <QuizPoint {...{ text: pointText }} />
         )}
 
         {actionStartLoading && (
@@ -248,7 +279,7 @@ const Quiz: React.FunctionComponent<{
               </div>
             )}
 
-            {!quiz.isAdaptest && (
+            {["normal"].includes(quiz.quizType) && (
               <>
                 <h4>
                   Верные ответы {quiz.questions.length - wrongAnswersCount} из{" "}
@@ -262,6 +293,68 @@ const Quiz: React.FunctionComponent<{
                 )}
               </>
             )}
+
+            {["quiz"].includes(quiz.quizType) && (
+              <>
+                <h2 className={styles.resultTitle}>
+                  У вас {quiz.questions.length - wrongAnswersCount}{" "}
+                  {getDeclension({
+                    count: quiz.questions.length - wrongAnswersCount,
+                    caseOneItem: "правильный ответ",
+                    caseTwoThreeFourItems: "правильных ответа",
+                    restCases: "правильных ответов",
+                  })}
+                </h2>
+                <div className={styles.resultDescription}>
+                  Это не проверочный тест и количество правильных ответов не
+                  влияет на получение сертификата. Вы можете перепройти квиз в
+                  любой момент, чтобы вспомнить материал.
+                </div>
+              </>
+            )}
+
+            {["checklist"].includes(quiz.quizType) && (
+              <>
+                <h2 className={styles.resultTitle}>
+                  Сколько вы набрали баллов
+                </h2>
+                {(quizTypeRelatedSettings as Array<QuizTypeChecklistSettings>)
+                  .sort(
+                    // Descending sort
+                    (
+                      { points_needed: points_1 },
+                      { points_needed: points_2 }
+                    ) => {
+                      return Number(points_2) - Number(points_1);
+                    }
+                  )
+                  .map(
+                    (
+                      (isActiveDefined) =>
+                      ({
+                        interval_title: title,
+                        points_needed: points,
+                        description,
+                      }) =>
+                        (
+                          <QuizCheckListResult
+                            {...{
+                              title,
+                              description,
+                              isActive:
+                                Object.is(userPoints, null) ||
+                                isActiveDefined === true
+                                  ? false
+                                  : userPoints >= Number(points)
+                                  ? (isActiveDefined = true)
+                                  : false,
+                            }}
+                          />
+                        )
+                    )(false)
+                  )}
+              </>
+            )}
           </>
         )}
 
@@ -269,9 +362,25 @@ const Quiz: React.FunctionComponent<{
           !!question &&
           !(isQuizCompleted || block.isCompleted) && (
             <div>
-              {question.answerType === "multiple" && <AnswerMultiple />}
+              {question.answerType === "multiple" && (
+                <AnswerMultiple
+                  {...{
+                    style: ["checklist", "quiz"].includes(quiz.quizType)
+                      ? "fullfilledBox"
+                      : "borderedBox",
+                  }}
+                />
+              )}
               {question.answerType === "matrix_sort_answer" && <AnswerMatrix />}
-              {question.answerType === "single" && <AnswerSingle />}
+              {question.answerType === "single" && (
+                <AnswerSingle
+                  {...{
+                    style: ["checklist", "quiz"].includes(quiz.quizType)
+                      ? "fullfilledBox"
+                      : "borderedBox",
+                  }}
+                />
+              )}
               {question.answerType === "essay" &&
                 _.get(question, "answerData.0.gradedType") === "text" && (
                   <AnswerEssayText />

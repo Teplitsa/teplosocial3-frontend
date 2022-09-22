@@ -1,0 +1,46 @@
+@import "../../../assets/sass/base/presets";
+@import "../../../inclusive-components/typography/body/Text.module.scss";
+
+.checklist-result {
+  position: relative;
+  background-color: $ui-000;
+  border: 1px solid $ui-100;
+  padding: 16px 16px 16px 36px;
+  border-radius: 4px;
+  box-sizing: border-box;
+
+  &:not(:last-child) {
+    margin-bottom: 20px;
+  }
+
+  &_active {
+    background-color: $green-050;
+    border: 1px solid $green-200;
+  }
+
+  &__label {
+    position: absolute;
+    top: 0;
+    left: 27px;
+    background-color: $ui-000;
+    border: 1px solid $green-200;
+    padding: 4px 10px;
+    color: $green-700;
+    transform: translate(0, -50%);
+    border-radius: 4px;
+    box-sizing: border-box;
+
+    @extend .text-caps-mod;
+  }
+
+  &__title {
+    margin: 0 0 10px;
+
+    @extend .text-20;
+    @extend .text-bold;
+  }
+
+  &__description {
+    @extend .text-20;
+  }
+}

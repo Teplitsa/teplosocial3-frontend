@@ -6,8 +6,7 @@ import {
   IQuizActions,
   IQuizThunks,
   IQuizCheckedAnswer,
-  IPageState,
-  IStoreModel,
+  QuizType,
 } from "../model.typing";
 import { learnPostInitialState } from "../base/learn-post-model";
 import * as utils from "../../utilities/utilities";
@@ -25,6 +24,7 @@ const passingState = {
 
 export const quizState: IQuizState = {
   ..._.cloneDeep(learnPostInitialState),
+  quizType: "normal",
   nonce: "",
   quizProId: 0,
   questions: [],
@@ -37,7 +37,6 @@ export const quizState: IQuizState = {
 
 export const quizActions: IQuizActions = {
   initializeState: action((prevState) => {
-    // console.log("quizActions.initializeState...");
     if (!_.isEmpty(prevState)) {
       Object.assign(prevState, quizState);
     }
@@ -50,7 +49,6 @@ export const quizActions: IQuizActions = {
     });
   }),
   setState: action((prevState, newState) => {
-    // console.log("setState: ", newState);
     Object.assign(prevState, newState);
   }),
   activeQuestion: computed((state: any) => {
@@ -120,7 +118,7 @@ export const quizActions: IQuizActions = {
         q.id,
         null
       ) as IQuizCheckedAnswer;
-      if (checkedAnswer && isAnswerWrong(checkedAnswer)) {
+      if (checkedAnswer && isAnswerWrong(checkedAnswer, state.quizType)) {
         counter += 1;
       }
       return counter;
@@ -203,7 +201,6 @@ export const quizThunks: IQuizThunks = {
 
       try {
         const answers2Check = getQuizUserAnswersToCheck(quiz);
-        // console.log("answers2Check:", answers2Check);
 
         let url = utils.getAjaxUrl("ld_adv_quiz_pro_ajax");
         const formData = utils.JSONToFormData({
@@ -230,8 +227,8 @@ export const quizThunks: IQuizThunks = {
 
           actions.setCheckedAnswers(data);
 
-          const answersResult = ldCheckedAnswersToAnswersResult(data);
-          // console.log("answersResult:", answersResult);
+          const answersResult = ldCheckedAnswersToAnswersResult(data, quiz);
+
           actions.setUserAnswersResult(answersResult);
 
           doneCallback(data);
@@ -253,7 +250,6 @@ export const quizThunks: IQuizThunks = {
 
       try {
         const resultsToCompleteQuiz = getQuizUserResults(quiz);
-        // console.log("completeQuizByUser results:", resultsToCompleteQuiz)
 
         let url = utils.getAjaxUrl("wp_pro_quiz_completed_quiz");
         const formData = utils.JSONToFormData({
@@ -289,7 +285,6 @@ export const quizThunks: IQuizThunks = {
   ),
   requestBySlug: thunk(async (actions, { slug }) => {
     const { error, data } = await requestQuizBySlug(slug);
-    // console.log("data: ", data);
 
     if (!error) {
       actions.setState(data as IQuizState);
@@ -321,7 +316,6 @@ export async function requestQuizForBlock(blockSlug, options = {}) {
     error = "Ошибка!";
   }
 
-  // console.log("data:", data);
   return { error, data: data as IQuizState };
 }
 
@@ -332,7 +326,6 @@ export async function requestQuizBySlug(slug, options = {}) {
   try {
     let url = new URL(utils.getRestApiUrl(`/ldlms/v1/sfwd-quiz`));
     url.search = new URLSearchParams({ slug }).toString();
-    // console.log("requestQuizBySlug url:", url);
 
     const response = await utils.tokenFetch(url, options);
 
@@ -340,6 +333,7 @@ export async function requestQuizBySlug(slug, options = {}) {
       ({ message: error } = await response.json());
     } else {
       const responseData = await response.json();
+
       data = _.get(responseData, "0", {});
     }
   } catch (error) {
@@ -347,17 +341,12 @@ export async function requestQuizBySlug(slug, options = {}) {
     error = "Ошибка!";
   }
 
-  // console.log("data:", data);
   return { error, data: data as IQuizState };
 }
 
 function getQuizUserAnswersToCheck(quiz: IQuizState) {
   const answersToCheck = quiz.questions.reduce((answersToCheck, q) => {
     const questionId = q.id;
-
-    // console.log("questionId:", questionId);
-    // console.log("is matrix:", q.answerType === "matrix_sort_answer");
-    // console.log("quiz.userAnswers:", _.get(quiz.userAnswers, `${questionId}`, null));
 
     let response: any = "";
     if (q.answerType === "essay") {
@@ -391,7 +380,6 @@ function getQuizUserAnswersToCheck(quiz: IQuizState) {
     return answersToCheck;
   }, {});
 
-  // console.log("answersToCheck:", answersToCheck);
   return answersToCheck;
 }
 
@@ -450,28 +438,39 @@ function getQuizUserResults(quiz: IQuizState) {
   return results;
 }
 
-function ldCheckedAnswersToAnswersResult(checkedAnswers) {
+function ldCheckedAnswersToAnswersResult(
+  checkedAnswers: { [key: number]: IQuizCheckedAnswer },
+  quiz: IQuizState
+) {
   let answersResult = {};
   for (let answerId in checkedAnswers) {
-    const checkedAnswer = checkedAnswers[answerId] as IQuizCheckedAnswer;
-    answersResult[answerId] = !isAnswerWrong(checkedAnswer);
+    const checkedAnswer = checkedAnswers[answerId];
+    answersResult[answerId] = !isAnswerWrong(checkedAnswer, quiz.quizType);
   }
   return answersResult;
 }
 
-function isAnswerNeedToBeGraded(checkedAnswer) {
+function isAnswerNeedToBeGraded(checkedAnswer: IQuizCheckedAnswer) {
   return (
     _.get(checkedAnswer, "e.type") === "essay" &&
     _.get(checkedAnswer, "e.graded_status") === "not_graded"
   );
 }
 
-function isAnswerWrong(checkedAnswer) {
-  return !checkedAnswer.c && !isAnswerNeedToBeGraded(checkedAnswer);
+function isAnswerWrong(checkedAnswer: IQuizCheckedAnswer, quizType: QuizType) {
+  return (
+    !checkedAnswer.c &&
+    !isAnswerNeedToBeGraded(checkedAnswer) &&
+    !isUngradedQuizType(quizType)
+  );
 }
 
-function isAnswerCorrect(checkedAnswer) {
+function isAnswerCorrect(checkedAnswer: IQuizCheckedAnswer) {
   return !!checkedAnswer.c;
+}
+
+function isUngradedQuizType(quizType: QuizType) {
+  return ["checklist", "quiz"].includes(quizType);
 }
 
 const quizModel: IQuizModel = { ...quizState, ...quizActions, ...quizThunks };

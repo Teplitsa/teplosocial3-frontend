@@ -1,0 +1,16 @@
+@import "../../../assets/sass/base/presets";
+@import "../../../inclusive-components/typography/body/Text.module.scss";
+
+.disclaimer {
+  background-color: $blue-050;
+  margin-bottom: 20px;
+  padding: 30px;
+  box-sizing: border-box;
+
+  @extend .text-16;
+
+  &__title {
+    margin-right: 5px;
+    @extend .text-bold;
+  }
+}
