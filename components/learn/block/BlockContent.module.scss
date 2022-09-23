@@ -67,7 +67,7 @@
     max-width: 100%;
   }
 
-  & .size-full {
+  [class*="size-full"] {
     width: 100%;
     height: unset;
   }
