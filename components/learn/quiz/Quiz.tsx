@@ -79,9 +79,10 @@ const Quiz: React.FunctionComponent<{
   );
   const quizLabel =
     (quizType === "checklist" && "Чеклист") || (quizType === "quiz" && "Квиз");
-  const disclaimerMessage = ["checklist"].includes(quizType)
-    ? "Это не соревнование «кто наберет больше баллов». Может быть, вы не согласитесь с какими-то утверждениями, потому что у вас есть собственная практика, rоторая работает для вас эффективнее. И это нормально. Отнеситесь к упражнению как к чеклисту, который обращает ваше внимание на разные аспекты, связанные с темой паролей. Итак, поехали."
-    : "";
+  // const disclaimerMessage = ["checklist"].includes(quizType)
+  //   ? "Это не соревнование «кто наберет больше баллов». Может быть, вы не согласитесь с какими-то утверждениями, потому что у вас есть собственная практика, которая работает для вас эффективнее. И это нормально. Отнеситесь к упражнению как к чеклисту, который обращает ваше внимание на разные аспекты, связанные с темой паролей. Итак, поехали."
+  //   : "";
+  const disclaimerMessage = "";
   const pointText = ["checklist", "quiz"].includes(quizType)
     ? (quizType === "checklist" &&
         "В этом вопросе может быть больше одного варианта ответа") ||
@@ -344,13 +345,17 @@ const Quiz: React.FunctionComponent<{
                   .map(
                     (
                       (isActiveDefined) =>
-                      ({
-                        interval_title: title,
-                        points_needed: points,
-                        description,
-                      }) =>
+                      (
+                        {
+                          interval_title: title,
+                          points_needed: points,
+                          description,
+                        },
+                        i
+                      ) =>
                         (
                           <QuizCheckListResult
+                            key={`QuizCheckListResult-${i}`}
                             {...{
                               title,
                               description,
@@ -441,9 +446,8 @@ const Quiz: React.FunctionComponent<{
                     [styles.answerCommentHavingError]:
                       answerComment.type === "error",
                   })}
-                >
-                  {answerComment.message}
-                </div>
+                  dangerouslySetInnerHTML={{ __html: answerComment.message }}
+                />
               )}
             </div>
           )}
