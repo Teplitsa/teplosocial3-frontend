@@ -17,7 +17,10 @@ import AnswerMatrix from "./answerType/AnswerMatrix";
 import AnswerEssayText from "./answerType/AnswerEssayText";
 import AnswerEssayUpload from "./answerType/AnswerEssayUpload";
 
-import { getDeclension } from "../../../utilities/utilities";
+import {
+  getDeclension,
+  convertObjectToClassName,
+} from "../../../utilities/utilities";
 
 import styles from "./Quiz.module.scss";
 
@@ -28,6 +31,11 @@ const Quiz: React.FunctionComponent<{
   completeBlockDoneCallback,
   setActionStartLoadingBlock,
 }): ReactElement => {
+  const [isActionsDisabled, setIsActionsDisabled] = useState<boolean>(false);
+  const [answerComment, setAnswerComment] = useState<{
+    type?: "success" | "error";
+    message?: string;
+  }>({});
   const user = useStoreState((state) => state.session.user);
   const quiz = useStoreState((state) => state.components.blockPage.quiz);
   const quizType = useStoreState(
@@ -100,6 +108,11 @@ const Quiz: React.FunctionComponent<{
   useEffect(() => {
     setActionStartLoading(false);
   }, [moduleListCompletedByAdaptest]);
+
+  useEffect(() => {
+    setIsActionsDisabled(["quiz"].includes(quiz.quizType));
+    setAnswerComment({});
+  }, [question]);
 
   if (!question) {
     return null;
@@ -378,6 +391,35 @@ const Quiz: React.FunctionComponent<{
                     style: ["checklist", "quiz"].includes(quiz.quizType)
                       ? "fullfilledBox"
                       : "borderedBox",
+                    onAfterChange: ["quiz"].includes(quiz.quizType)
+                      ? ({ setErrorIndexes, selectedIndexes }) => {
+                          if (typeof selectedIndexes[0] === "undefined") return;
+
+                          const answer =
+                            question.answerData[selectedIndexes[0]];
+
+                          if (typeof answer === "undefined") return;
+
+                          const { incorrectMsg, correctMsg } = question;
+                          const { correct } = answer;
+
+                          if (correct) {
+                            setErrorIndexes([]);
+                            setAnswerComment({
+                              type: "success",
+                              message: correctMsg,
+                            });
+                          } else {
+                            setErrorIndexes([selectedIndexes[0]]);
+                            setAnswerComment({
+                              type: "error",
+                              message: incorrectMsg,
+                            });
+                          }
+
+                          setIsActionsDisabled(false);
+                        }
+                      : undefined,
                   }}
                 />
               )}
@@ -389,6 +431,20 @@ const Quiz: React.FunctionComponent<{
                 _.get(question, "answerData.0.gradedType") === "upload" && (
                   <AnswerEssayUpload />
                 )}
+
+              {["quiz"].includes(quiz.quizType) && answerComment.message && (
+                <div
+                  className={convertObjectToClassName({
+                    [styles.answerComment]: true,
+                    [styles.answerCommentSuccess]:
+                      answerComment.type === "success",
+                    [styles.answerCommentHavingError]:
+                      answerComment.type === "error",
+                  })}
+                >
+                  {answerComment.message}
+                </div>
+              )}
             </div>
           )}
       </div>
@@ -398,6 +454,7 @@ const Quiz: React.FunctionComponent<{
           <QuizActions
             completeBlockDoneCallback={completeBlockDoneCallback}
             setActionStartLoadingBlock={setActionStartLoadingBlock}
+            isActionsDisabled={isActionsDisabled}
           />
         )}
     </>

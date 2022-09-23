@@ -11,9 +11,11 @@ const { Button } = InclusiveComponents;
 const QuizActions: React.FunctionComponent<{
   completeBlockDoneCallback;
   setActionStartLoadingBlock;
+  isActionsDisabled?: boolean;
 }> = ({
   completeBlockDoneCallback,
   setActionStartLoadingBlock,
+  isActionsDisabled = false,
 }): ReactElement => {
   const router = useRouter();
   const user = useStoreState((state) => state.session.user);
@@ -185,6 +187,7 @@ const QuizActions: React.FunctionComponent<{
                 })}
                 aria-label={`Ответить на вопрос ${question.title.rendered}`}
                 onClick={forwardHandler}
+                disabled={isActionsDisabled}
               >
                 {(() => {
                   let btnCaption = "Ответить";
@@ -326,7 +329,7 @@ const QuizActions: React.FunctionComponent<{
   );
 
   function quizStartedHandler(params) {
-    console.log("quizStartedHandler:", params);
+    // console.log("quizStartedHandler:", params);
   }
 
   function quizUserAnswersCheckedHandler(params) {

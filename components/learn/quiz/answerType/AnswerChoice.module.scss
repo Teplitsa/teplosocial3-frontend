@@ -30,6 +30,8 @@
 
 .choiceOption {
   @include AnswerChiceModule__choiceOption;
+
+  transition: all 0.15s linear;
 }
 
 .choiceOptionSelected {
@@ -41,4 +43,10 @@
     background-color: $green-050;
     border: 1px solid $green-200;
   }
+}
+
+.choiceOptionHavingError {
+  @include AnswerChiceModule__choiceOption;
+  background-color: $red-050;
+  border: 1px solid $red-200;
 }
