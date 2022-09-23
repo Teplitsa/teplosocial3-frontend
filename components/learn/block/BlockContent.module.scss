@@ -63,7 +63,11 @@
     margin-right: 0px;
   }
 
-  img.size-full {
+  img {
+    max-width: 100%;
+  }
+
+  .size-full {
     width: 100%;
     height: unset;
   }
