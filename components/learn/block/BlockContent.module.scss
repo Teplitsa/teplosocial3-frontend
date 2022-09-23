@@ -31,6 +31,17 @@
       }
     }
   }
+
+  img {
+    display: block;
+    margin: 0 auto 20px;
+    max-width: 100%;
+  }
+
+  [class*="size-full"] {
+    width: 100%;
+    height: unset;
+  }
 }
 
 .blockTitle {
@@ -64,6 +75,7 @@
   }
 
   img {
+    display: block;
     max-width: 100%;
   }
 
