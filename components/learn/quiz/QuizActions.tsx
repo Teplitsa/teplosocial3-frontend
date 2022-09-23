@@ -197,7 +197,9 @@ const QuizActions: React.FunctionComponent<{
                       btnCaption = "Проверить";
                       break;
                     case "quiz":
-                      btnCaption = "Следующий вопрос";
+                      btnCaption = isLastQuestion
+                        ? "Завершить"
+                        : "Следующий вопрос";
                       break;
                   }
 
