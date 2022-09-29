@@ -9,29 +9,59 @@
 @import "bootstrap/scss/mixins/_breakpoints";
 
 .content {
-    padding: 24px 0px 40px 32px;
-    @include text;
+  padding: 24px 0px 40px 32px;
+  @include text;
 
-    @include media-breakpoint-up(md) {
-        padding-left: 0px;
-    }
+  @include media-breakpoint-up(md) {
+    padding-left: 0px;
+  }
 
-    color: $color-black;
+  color: $color-black;
+}
+
+.descriptionSectionWrapper {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+.descriptionSection {
+  width: 100%;
+  display: flex;
+  max-width: 840px;
+  justify-content: flex-start;
+  flex-direction: column;
+}
+
+.descriptionTitle {
+  @include text;
+  color: $green-700;
+  text-transform: uppercase;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  margin-top: 11px;
+  margin-bottom: 11px;
+}
+
+.descriptionText {
+  @include text-xl;
+  line-height: 30px;
+  font-weight: 400;
+  margin-top: 0px;
 }
 
 .startAction {
-    margin-top: 32px;
-    margin-right: 32px;
-    display: flex;
-    justify-content: center;
+  margin-top: 32px;
+  margin-right: 32px;
+  display: flex;
+  justify-content: center;
 
-    @include media-breakpoint-up(md) {
-        margin-top: 60px;
-    }
+  @include media-breakpoint-up(md) {
+    margin-top: 60px;
+  }
 
-    & > button {
-        width: 100%;
-        max-width: 610px;
-    }
+  & > button {
+    width: 100%;
+    max-width: 610px;
+  }
 }
-

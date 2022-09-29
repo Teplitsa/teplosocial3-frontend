@@ -1,4 +1,10 @@
-import { ReactElement, useEffect, useState, MouseEvent } from "react";
+import {
+  ReactElement,
+  useEffect,
+  useState,
+  MouseEvent,
+  useLayoutEffect,
+} from "react";
 import * as _ from "lodash";
 import { useStoreState, useStoreActions } from "../../../model/helpers/hooks";
 
@@ -39,14 +45,50 @@ const TrackContent: React.FunctionComponent<{
   );
   // console.log("courseList:", courseList)
 
+  useLayoutEffect(() => {
+    let x = text;
+    if (track?.trackSettings?.description) {
+      x[0] = track?.trackSettings?.description;
+    }
+    if (track?.trackSettings?.description_common) {
+      x[1] = track?.trackSettings?.description_common;
+    }
+    setText(x);
+  }, []);
+
   useEffect(() => {
     courseList.forEach((course) => {
       requestModuleListByCourse({ course });
     });
   }, [courseList]);
 
+  const [titles] = useState([
+    "что такое трек?",
+    "о чём этот трек?",
+    "Из чего состоит трек",
+  ]);
+
+  const [text, setText] = useState([
+    "Трек — это подборка курсов, которая поможет изучить тему системно.",
+    "После прохождения курса вы станете лучше разбираться в теме.",
+    "Пройдите обучение и получите сертификат.",
+  ]);
+
   return (
     <div className={stylesTrack.content}>
+      <div className={stylesTrack.descriptionSectionWrapper}>
+        <div className={stylesTrack.descriptionSection}>
+          {titles.map((item, index) => {
+            return (
+              <div className={stylesTrack.descriptionBlock}>
+                <h3 className={stylesTrack.descriptionTitle}>{item}</h3>
+                <p className={stylesTrack.descriptionText}>{text[index]}</p>
+              </div>
+            );
+          })}
+        </div>
+      </div>
+
       <div className={styles.listTitleWrapper}>
         <span className={styles.listTitle}>Программа трека</span>
       </div>
