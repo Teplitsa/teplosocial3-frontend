@@ -24,6 +24,16 @@
   justify-content: center;
   width: 100%;
 }
+.descriptionLead {
+  @include text-h;
+  max-width: 840px;
+  display: flex;
+  justify-content: center;
+  margin-top: 36px;
+  margin-bottom: 40px;
+  line-height: 46px;
+  font-weight: 400;
+}
 
 .descriptionSection {
   width: 100%;

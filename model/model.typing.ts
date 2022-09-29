@@ -842,6 +842,7 @@ export interface ITrackModel extends ITrackState, ITrackActions, ITrackThunks {}
 export interface ITrackSettings {
   description: string;
   description_common: string;
+  description_lead: string;
 }
 
 export interface ITrackState extends ILearnPostState, ICacheable {

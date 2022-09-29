@@ -77,6 +77,13 @@ const TrackContent: React.FunctionComponent<{
   return (
     <div className={stylesTrack.content}>
       <div className={stylesTrack.descriptionSectionWrapper}>
+        {track?.trackSettings?.description_lead && (
+          <h2 className={stylesTrack.descriptionLead}>
+            {track?.trackSettings?.description_lead}
+          </h2>
+        )}
+      </div>
+      <div className={stylesTrack.descriptionSectionWrapper}>
         <div className={stylesTrack.descriptionSection}>
           {titles.map((item, index) => {
             return (
