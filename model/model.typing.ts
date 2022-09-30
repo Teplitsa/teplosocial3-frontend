@@ -549,6 +549,10 @@ export interface IDashboardPageThunks {
     IDashboardPageActions,
     { callback?: () => void }
   >;
+  trackCoursesListRequest: Thunk<
+    IDashboardPageActions,
+    { callback?: () => void; track_id: string }
+  >;
   completedCourseTooltipsRequest: Thunk<IDashboardPageActions, undefined>;
 }
 

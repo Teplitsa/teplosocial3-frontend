@@ -15,6 +15,8 @@ import InclusiveComponents from "../../../inclusive-components/inclusive-compone
 
 import styles from "../LearnPostContent.module.scss";
 import stylesTrack from "./TrackContent.module.scss";
+import CourseCard from "components/course-card/CourseCard";
+import SkeletonCardList from "components/skeletons/partials/SkeletonCardList";
 
 const { Button } = InclusiveComponents;
 
@@ -43,9 +45,17 @@ const TrackContent: React.FunctionComponent<{
   const startTrackByUser = useStoreActions(
     (actions) => actions.components.trackPage.track.startTrackByUser
   );
-  // console.log("courseList:", courseList)
+
+  const trackCourseListRequest = useStoreActions(
+    (actions) => actions.components.dashboardPage.trackCoursesListRequest
+  );
+
+  const trackCourses = useStoreState(
+    (state) => state.components.dashboardPage.completedCourses
+  );
 
   useLayoutEffect(() => {
+    trackCourseListRequest({ track_id: String(track.id) });
     let x = text;
     if (track?.trackSettings?.description) {
       x[0] = track?.trackSettings?.description;
@@ -56,11 +66,12 @@ const TrackContent: React.FunctionComponent<{
     setText(x);
   }, []);
 
-  useEffect(() => {
-    courseList.forEach((course) => {
-      requestModuleListByCourse({ course });
-    });
-  }, [courseList]);
+  // OLD IMPLEMENTATION
+  // useEffect(() => {
+  //   courseList.forEach((course) => {
+  //     requestModuleListByCourse({ course });
+  //   });
+  // }, [courseList]);
 
   const [titles] = useState([
     "что такое трек?",
@@ -96,11 +107,16 @@ const TrackContent: React.FunctionComponent<{
         </div>
       </div>
 
-      <div className={styles.listTitleWrapper}>
-        <span className={styles.listTitle}>Программа трека</span>
-      </div>
+      {trackCourses && (
+        <div className={stylesTrack.listTitleWrapper}>
+          <span className={stylesTrack.listTitle}>
+            {trackCourses?.length} курса
+          </span>
+        </div>
+      )}
 
-      <div className={styles.list}>
+      {/* OLD IMPLEMENTATION  */}
+      {/* <div className={styles.list}>
         {courseList.map((course) => {
           return (
             <CourseListItem
@@ -110,6 +126,53 @@ const TrackContent: React.FunctionComponent<{
             />
           );
         })}
+      </div> */}
+
+      <div className={stylesTrack.descriptionSectionWrapper}>
+        {(trackCourses?.length && (
+          <ul className={stylesTrack.trackCourses}>
+            {trackCourses.map(
+              ({
+                _id,
+                smallThumbnail,
+                duration,
+                title,
+                teaser,
+                slug,
+                progress,
+                isCompleted,
+                trackId,
+                trackSlug,
+                trackTitle,
+              }) => (
+                <li key={_id} className={stylesTrack["trackCourse__item"]}>
+                  <CourseCard
+                    {...{
+                      _id,
+                      slug,
+                      smallThumbnail,
+                      duration,
+                      title,
+                      teaser,
+                      progress,
+                      isCompleted,
+                      url: `/courses/${slug}`,
+                      btnText: progress
+                        ? "Продолжить"
+                        : isCompleted
+                        ? "Повторить"
+                        : "Начать обучение",
+                      template: "small-thumbnail",
+                      trackId,
+                      trackSlug,
+                      trackTitle,
+                    }}
+                  />
+                </li>
+              )
+            )}
+          </ul>
+        )) || <SkeletonCardList limit={2} />}
       </div>
 
       {session.isLoggedIn && !track.isCompleted && (

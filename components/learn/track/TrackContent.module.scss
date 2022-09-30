@@ -2,7 +2,9 @@
 @import "../../../assets/sass/base/presets";
 @import "../../../assets/sass/base/typography";
 @import "../../../assets/sass/components/learn-content";
-
+@import "../../../assets/sass/helpers/responsive-design-mixins";
+@import "../../page/Home.module.scss";
+@import "../../../inclusive-components/A11y-common.module.scss";
 @import "bootstrap/scss/_functions";
 @import "bootstrap/scss/_variables";
 @import "bootstrap/scss/_mixins";
@@ -73,5 +75,52 @@
   & > button {
     width: 100%;
     max-width: 610px;
+  }
+}
+
+.trackCourses {
+  padding-left: 0px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 40px;
+  max-width: 840px;
+}
+
+.listTitleWrapper {
+  @include media-breakpoint-up(md) {
+    display: flex;
+    justify-content: center;
+    position: relative;
+  }
+}
+
+.trackCourse {
+  margin-top: 40px;
+  margin-bottom: 40px;
+  @extend .home-section;
+
+  @include screen-from(sm) {
+    margin-top: 80px;
+    margin-bottom: 80px;
+  }
+
+  &__item {
+    display: grid;
+  }
+}
+
+.listTitle {
+  @include text-lg;
+  color: $color-black;
+
+  position: absolute;
+  top: -44px;
+  font-size: 18px;
+
+  width: 100%;
+  text-align: right;
+
+  @include media-breakpoint-up(md) {
+    max-width: $desktop-content-width;
   }
 }
