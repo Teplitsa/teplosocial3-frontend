@@ -549,6 +549,10 @@ export interface IDashboardPageThunks {
     IDashboardPageActions,
     { callback?: () => void }
   >;
+  trackCoursesListRequest: Thunk<
+    IDashboardPageActions,
+    { callback?: () => void; track_id: string }
+  >;
   completedCourseTooltipsRequest: Thunk<IDashboardPageActions, undefined>;
 }
 
@@ -839,11 +843,18 @@ export interface IProfileEditPageThunks {}
  */
 export interface ITrackModel extends ITrackState, ITrackActions, ITrackThunks {}
 
+export interface ITrackSettings {
+  description: string;
+  description_common: string;
+  description_lead: string;
+}
+
 export interface ITrackState extends ILearnPostState, ICacheable {
   teaser: string;
   thumbnail?: string;
   numberOfBlocks: number;
   numberOfCompletedBlocks: number;
+  trackSettings: ITrackSettings;
 }
 
 export interface ITrackActions extends ILearnPostActions {
@@ -1074,7 +1085,7 @@ export type QuizTypeChecklistSettings = {
   interval_title: string;
   points_needed: string;
   description: string;
-}
+};
 
 export interface IQuizState extends IPostState {
   quizType: QuizType;

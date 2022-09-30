@@ -60,6 +60,71 @@ const dashboardPageActions: IDashboardPageActions = {
 };
 
 const dashboardPageThunks: IDashboardPageThunks = {
+  trackCoursesListRequest: thunk(
+    async (
+      {
+        setCompletedCourseList,
+        updateCompletedCourseList,
+        setCompletedCourseTotal,
+      },
+      { callback, track_id },
+      { getStoreState }
+    ) => {
+      const {
+        session: {
+          token: { authToken },
+        },
+        components: {
+          dashboardPage: {
+            completedCourseFilter: { searchPhrase },
+            completedCourseSkip,
+          },
+        },
+      } = getStoreState() as IStoreModel;
+
+      try {
+        const requestUrl = new URL(
+          `${process.env.BaseUrl}/api/v1/cache/courses`
+        );
+
+        const courseListArgs = {
+          limit: "50",
+          skip: "0",
+          "filter[track_id]": String(track_id),
+        };
+
+        // if (searchPhrase.length > 0) {
+        //   courseListArgs["s"] = searchPhrase;
+        // }
+
+        requestUrl.search = new URLSearchParams(courseListArgs).toString();
+
+        const response = await fetch(requestUrl.toString(), {
+          headers: {
+            "X-Auth-Token": String(authToken),
+          },
+        });
+        const { courses, total } = await response.json();
+
+        const sortedCourses = courses.sort(function (a, b) {
+          return a.externalId - b.externalId;
+        });
+
+        if (completedCourseSkip) {
+          updateCompletedCourseList(sortedCourses ?? []);
+        } else {
+          setCompletedCourseList(sortedCourses ?? []);
+        }
+
+        setCompletedCourseTotal(total);
+
+        callback && callback();
+      } catch (error) {
+        console.error(error);
+      }
+    }
+  ),
+
   completedCourseListRequest: thunk(
     async (
       {

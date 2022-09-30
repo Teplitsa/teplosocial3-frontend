@@ -2,36 +2,125 @@
 @import "../../../assets/sass/base/presets";
 @import "../../../assets/sass/base/typography";
 @import "../../../assets/sass/components/learn-content";
-
+@import "../../../assets/sass/helpers/responsive-design-mixins";
+@import "../../page/Home.module.scss";
+@import "../../../inclusive-components/A11y-common.module.scss";
 @import "bootstrap/scss/_functions";
 @import "bootstrap/scss/_variables";
 @import "bootstrap/scss/_mixins";
 @import "bootstrap/scss/mixins/_breakpoints";
 
 .content {
-    padding: 24px 0px 40px 32px;
-    @include text;
+  padding: 24px 0px 40px 32px;
+  @include text;
 
-    @include media-breakpoint-up(md) {
-        padding-left: 0px;
-    }
+  @include media-breakpoint-up(md) {
+    padding-left: 0px;
+  }
 
-    color: $color-black;
+  color: $color-black;
+}
+
+.descriptionSectionWrapper {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+.descriptionLead {
+  @include text-h;
+  max-width: 840px;
+  display: flex;
+  justify-content: center;
+  margin-top: 36px;
+  margin-bottom: 40px;
+  line-height: 46px;
+  font-weight: 400;
+}
+
+.descriptionSection {
+  width: 100%;
+  display: flex;
+  max-width: 840px;
+  justify-content: flex-start;
+  flex-direction: column;
+}
+
+.descriptionTitle {
+  @include text;
+  color: $green-700;
+  text-transform: uppercase;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  margin-top: 11px;
+  margin-bottom: 11px;
+}
+
+.descriptionText {
+  @include text-xl;
+  line-height: 30px;
+  font-weight: 400;
+  margin-top: 0px;
 }
 
 .startAction {
-    margin-top: 32px;
-    margin-right: 32px;
-    display: flex;
-    justify-content: center;
+  margin-top: 32px;
+  margin-right: 32px;
+  display: flex;
+  justify-content: center;
 
-    @include media-breakpoint-up(md) {
-        margin-top: 60px;
-    }
+  @include media-breakpoint-up(md) {
+    margin-top: 60px;
+  }
 
-    & > button {
-        width: 100%;
-        max-width: 610px;
-    }
+  & > button {
+    width: 100%;
+    max-width: 610px;
+  }
 }
 
+.trackCourses {
+  padding-left: 0px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 40px;
+  max-width: 840px;
+}
+
+.listTitleWrapper {
+  @include media-breakpoint-up(md) {
+    display: flex;
+    justify-content: center;
+    position: relative;
+  }
+}
+
+.trackCourse {
+  margin-top: 40px;
+  margin-bottom: 40px;
+  @extend .home-section;
+
+  @include screen-from(sm) {
+    margin-top: 80px;
+    margin-bottom: 80px;
+  }
+
+  &__item {
+    display: grid;
+  }
+}
+
+.listTitle {
+  @include text-lg;
+  color: $color-black;
+
+  position: absolute;
+  top: -44px;
+  font-size: 18px;
+
+  width: 100%;
+  text-align: right;
+
+  @include media-breakpoint-up(md) {
+    max-width: $desktop-content-width;
+  }
+}

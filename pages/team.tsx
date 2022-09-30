@@ -9,7 +9,6 @@ import * as pageModel from "../model/page-model";
 import * as teamMembersModel from "../model/components/team-mebers";
 
 const TeamPage: React.FunctionComponent = (): ReactElement => {
-
   return (
     <>
       <DocumentHead />
@@ -23,11 +22,9 @@ const TeamPage: React.FunctionComponent = (): ReactElement => {
 };
 
 export const getServerSideProps: GetServerSideProps = async () => {
-  const {error, data} = await pageModel.requestPageComponentData("teampage");
-  const {
-    error: teamMembersError,
-    data: teamMembersData,
-  } = await teamMembersModel.requestTeamMembersComponentData();
+  const { error, data } = await pageModel.requestPageComponentData("teampage");
+  const { error: teamMembersError, data: teamMembersData } =
+    await teamMembersModel.requestTeamMembersComponentData();
 
   const model = {
     app: {},
@@ -36,12 +33,12 @@ export const getServerSideProps: GetServerSideProps = async () => {
       ...data,
       teamMembers: {
         items: teamMembersData,
-      }
-    }
+      },
+    },
   };
 
   return {
-    props: {...model},
+    props: { ...model },
   };
 };
 
