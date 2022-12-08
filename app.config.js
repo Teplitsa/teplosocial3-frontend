@@ -1,4 +1,4 @@
-const HostName = "teplosocial.tep";
+const HostName = "kurst.org";
 const BaseUrl = `http://${HostName}`;
 
 const appConfig = {

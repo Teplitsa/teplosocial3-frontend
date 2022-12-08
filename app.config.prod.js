@@ -1,4 +1,4 @@
-const HostName = "kurs.te-st.ru";
+const HostName = "kurst.org";
 const BaseUrl = `https://${HostName}`;
 
 const appConfig = {
