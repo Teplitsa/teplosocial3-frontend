@@ -130,8 +130,8 @@ const DashboardCourses: React.FunctionComponent = (): ReactElement => {
               Проверьте, правильно ли написано название и попробуйте снова.
               <br />
               Если вы точно проходили курс, но его здесь нет, пишите на{" "}
-              <a href="mailto:help@te-st.ru" target="_blank">
-                help@te-st.ru
+              <a href="mailto:help@te-st.org" target="_blank">
+                help@te-st.org
               </a>
             </div>
           </>

@@ -6,7 +6,7 @@ export const TEPLO_COOKIE = {
     expireDays: 30,
   },
   SID: {
-    name: "tps-sid",
+    name: "tps-sid",2
   },
 };
 
@@ -17,6 +17,6 @@ export const TEPLO_LOCAL_STORAGE = {
 };
 
 export const TEPLO_CONTACTS = {
-  EMAIL: "help@te-st.ru",
+  EMAIL: "help@te-st.org",
   TELEGRAM: "https://t.me/+wDgMvQ0f3V45OTky",
 };
