@@ -6,7 +6,7 @@ export const TEPLO_COOKIE = {
     expireDays: 30,
   },
   SID: {
-    name: "tps-sid",2
+    name: "tps-sid",
   },
 };
 
