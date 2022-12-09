@@ -39,7 +39,7 @@ export const getServerSideProps: GetServerSideProps = async ({ req, res }) => {
     page: {
       slug: "dashboard",
       yoast_head_json: {
-        canonical: "https://kurs.te-st.ru/dashboard",
+        canonical: "https://kurst.org/dashboard",
         title: `Личный кабинет пользователя ${session.user.firstName} ${session.user.lastName} — Теплица.Курсы`,
         description: "",
         robots: {

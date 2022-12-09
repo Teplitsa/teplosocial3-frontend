@@ -34,11 +34,11 @@ export const getServerSideProps: GetServerSideProps = async ({ req, res, params:
     page: {
       slug: `members/${slug}`,
       yoast_head_json: {
-        canonical: `https://kurs.te-st.ru/members/${slug}`,
+        canonical: `https://kurst.org/members/${slug}`,
         title: "Профиль пользователя — Теплица.Курсы",
         description: profile.description ?? "",
         opengraphTitle: `Профиль пользователя — Теплица.Курсы`,
-        opengraphUrl: `https://kurs.te-st.ru/members/${slug}`,
+        opengraphUrl: `https://kurst.org/members/${slug}`,
         opengraphSiteName: "Теплица.Курсы",
       },
     },

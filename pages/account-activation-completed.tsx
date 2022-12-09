@@ -25,10 +25,10 @@ export const getServerSideProps: GetServerSideProps = async () => {
     page: {
       slug: `account-activation-completed`,
       seo: {
-        canonical: `https://kurs.te-st.ru/account-activation-completed`,
+        canonical: `https://kurst.org/account-activation-completed`,
         title: "Аккаунт подтвержден - Теплица.Курсы",
         opengraphTitle: `Аккаунт подтвержден - Теплица.Курсы`,
-        opengraphUrl: `https://kurs.te-st.ru/account-activation-completed`,
+        opengraphUrl: `https://kurst.org/account-activation-completed`,
         opengraphSiteName: "Теплица.Курсы",
       },
     },
