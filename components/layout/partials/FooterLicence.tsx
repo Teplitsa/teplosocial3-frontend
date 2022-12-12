@@ -21,7 +21,7 @@ const FooterLicence: React.FunctionComponent = (): ReactElement => {
         </p>
         <p>
           Разработка&nbsp;—&nbsp;
-          <a href="https://te-st.ru" target="_blank">
+          <a href="https://te-st.org" target="_blank">
             Теплица социальных технологий
           </a>
         </p>
