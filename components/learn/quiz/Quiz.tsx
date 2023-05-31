@@ -119,6 +119,8 @@ const Quiz: React.FunctionComponent<{
     return null;
   }
 
+    // console.log('HERE 1:', quiz.quizType, isQuizCompleted);
+
   return (
     <>
       {!!_.get(quiz, "id") &&
@@ -132,9 +134,10 @@ const Quiz: React.FunctionComponent<{
         )}
 
       <div className={styles.block}>
+
         {!["checklist", "quiz"].includes(quiz.quizType) && (
           <div className={styles.title}>
-            <h2 dangerouslySetInnerHTML={{ __html: quiz.title.rendered }} />
+              <h2 dangerouslySetInnerHTML={{ __html: quiz.title.rendered+(isQuizCompleted ? ' - результаты:' : '') }} />
           </div>
         )}
 
