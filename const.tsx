@@ -18,5 +18,5 @@ export const TEPLO_LOCAL_STORAGE = {
 
 export const TEPLO_CONTACTS = {
   EMAIL: "help@te-st.org",
-  TELEGRAM: "https://t.me/+wDgMvQ0f3V45OTky",
+  TELEGRAM: "https://t.me/+pecsjwwiVLBiYTli",
 };
