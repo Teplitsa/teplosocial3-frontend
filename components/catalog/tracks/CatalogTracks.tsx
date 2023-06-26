@@ -9,6 +9,7 @@ import {
   convertObjectToClassName,
   getDeclension,
 } from "../../../utilities/utilities";
+import Link from 'next/link';
 import styles from "./CatalogTracks.module.scss";
 
 const { Button } = InclusiveComponents;
@@ -77,9 +78,11 @@ const CatalogTracks: React.FunctionComponent = (): ReactElement => {
         {(!trackTotal && (
           <div className={styles["catalog-tracks__empty-message"]}>
             Попробуйте переформулировать запрос, поисĸать по тегам или{" "}
-            <a href="/catalog#tracks" onClick={handleResetCatalogLinkClick}>
-              полистать полный каталог
-            </a>{" "}
+              <Link href="/catalog#tracks" passHref={true}>
+                <a onClick={handleResetCatalogLinkClick}>
+                  полистать полный каталог
+                </a>
+              </Link>{" "}
             &mdash; у нас много интересного!
           </div>
         )) || (

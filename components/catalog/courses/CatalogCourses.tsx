@@ -9,6 +9,7 @@ import {
   convertObjectToClassName,
   getDeclension,
 } from "../../../utilities/utilities";
+import Link from 'next/link';
 import styles from "./CatalogCourses.module.scss";
 
 const { Button } = InclusiveComponents;
@@ -79,9 +80,9 @@ const CatalogCourses: React.FunctionComponent = (): ReactElement => {
         {(!courseTotal && (
           <div className={styles["catalog-courses__empty-message"]}>
             Попробуйте переформулировать запрос, поискать по тегам или{" "}
-            <a href="/catalog#courses" onClick={handleResetCatalogLinkClick}>
-              полистать полный каталог
-            </a>{" "}
+            <Link href="/catalog#courses" passHref={true}>
+                <a onClick={handleResetCatalogLinkClick}>полистать полный каталог</a>
+            </Link>{" "}
             &mdash; у нас много интересного!
           </div>
         )) || (
