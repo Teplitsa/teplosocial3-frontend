@@ -104,11 +104,6 @@ const HeaderContent: React.FunctionComponent = (): ReactElement => {
                 <a className={styles["main-menu__link"]}>Каталог курсов</a>
               </Link>
             </li>
-            <li className={styles["main-menu__item"]}>
-              <Link href="/team">
-                <a className={styles["main-menu__link"]}>Команда</a>
-              </Link>
-            </li>
           </ul>
         </nav>
         <aside

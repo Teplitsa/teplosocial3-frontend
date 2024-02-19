@@ -6,9 +6,10 @@ const FooterNav: React.FunctionComponent = (): ReactElement => {
   return (
     <div className={styles.menuList}>
       <nav className="main-menu" aria-label="Основное меню">
-        <Link href="/team">
+        {/* <Link href="/team">
           <a>Команда</a>
         </Link>
+        */}
         <Link href="/about">
           <a>О проекте</a>
         </Link>
